@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Long Flight Kit | VacayKit
+body
+  header
+    
+    a(href="#")
+      h1.logotype VacayKit
+    
+    nav
+      .dropdown
+        h2.dropdown__title
+        .dropdown__panel
+          .dropdown__wrapper
+            ul.dropdown__body
+              li: a(href="#") Beaching
+              li: a(href="#") Surfing
+              li: a(href="#") Caving
+              li: a(href="#") Diving
+              li: a(href="#") Snorkeling
+              li: a(href="#") Jungle
+              
+      a(href="#") Blog
+      a(href="#") About
+    
+    h2.kit.kit_fly
+      span.kit__name Long Flight Kit
+      span.kit__count 8 kits
+    
+    a.subscribe(href="#") Get my Packing List
+  
+  section.page
+  
+  footer
+    p.copyright © 2015 VacayKit. All rights reserved.
+    nav.project
+      a(href="#") Popular kits
+      a(href="#") Blog
+      a(href="#") About
+      a(href="#") Contact us
+    nav.social
+      a.fb(href="#")
+      a.tw(href="#")
+      a.gp(href="#")
+      a.pi(href="#")
+      a.yt(href="#")
+    
+  .popup
+    form.popup__panel.subscribe-form(action="/", method="post")
+      h2.subscribe-form__title Get my Thailand packing list
+      fieldset
+        input.subscribe-form__input(type="email", name="email", placeholder="Email", required="required")
+        button.subscribe-form__submit(type="submit") Send
+      fieldset
+        input#subscribe-form__update(type="checkbox", name="update")
+        label(for="subscribe-form__update") Subscribe me to VacayKit monthly update
+      nav
+        a.popup__close(href="#")
+
+
+  .popup
+    .popup__panel.subscribe-confirmation
+      h2.subscribe-confirmation__title Check your inbox
+      p.subscribe-confirmation__message We've sent The Complete Packing List for Thailand to your Email. Please check Spam folder if you won't have received it in 5 minutes.
+      nav.subscribe-confirmation__socials
+        h3 Help us get famous
+      nav
+        a.popup__close(href="#")
