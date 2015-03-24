@@ -3,15 +3,16 @@ html(lang="en")
 head
   meta(charset="UTF-8")
   title VacayKit
+  link(rel="stylesheet", href="css/styles.css")
 body
   header
-    
+
     a(href="#")
       h1.logotype VacayKit
-    
-    nav
+
+    nav.project
       .dropdown
-        h2.dropdown__title
+        h2.dropdown__title Popular Kits
         .dropdown__panel
           .dropdown__wrapper
             ul.dropdown__body
@@ -21,21 +22,21 @@ body
               li: a(href="#") Diving
               li: a(href="#") Snorkeling
               li: a(href="#") Jungle
-              
       a(href="#") Blog
       a(href="#") About
-    
+
     h2.kit.kit_country
       span.kit__region Asia
       span.kit__country Thailand
       span.kit__count 8 kits
-    
+
     a.subscribe(href="#") Get my Packing List
-  
+
   section.page
-  
+
   footer
-    p.copyright © 2015 VacayKit. All rights reserved.
+    p.copyright © 2015 VacayKit.
+      span  All rights reserved.
     nav.project
       a(href="#") Popular kits
       a(href="#") Blog
@@ -47,7 +48,7 @@ body
       a.gp(href="#")
       a.pi(href="#")
       a.yt(href="#")
-      
+
     .popup
       form.popup__panel.subscribe-form(action="/", method="post")
         h2.subscribe-form__title Get my Thailand packing list
@@ -64,7 +65,7 @@ body
     .popup
       .popup__panel.subscribe-confirmation
         h2.subscribe-confirmation__title Check your inbox
-        p.subscribe-confirmation__message 
+        p.subscribe-confirmation__message
           | We've sent The Complete Packing List for Thailand to your Email. Please check Spam folder if you won't have received it in 5 minutes.
         nav.subscribe-confirmation__socials
           h3 Help us get famous

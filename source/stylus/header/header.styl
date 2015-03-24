@@ -1,0 +1,45 @@
+@import "../helpers/*"
+
+body>header
+  height 380px
+  background url('../images/header_bg_1.jpg')
+  background-size cover
+  background-repeat none
+  color $white
+  .logotype
+    position absolute
+    top 0
+    left 30px
+    width 110px
+    height 60px
+    display block
+    text-indent -9999px
+    overflow hidden
+    background url('../svg/logotype.svg') 50% 50% no-repeat
+    z-index 2
+  .project
+    background-color $opaq-grey
+    z-index 1
+    position absolute
+    top 0
+    left 0
+    right 0
+    height 60px
+    line-height 60px
+    font-size 20px
+    padding 0 50px 0 180px
+    a
+      text-decoration none
+      color $white
+      margin 0 0 0 40px
+      display inline-block
+
+
+@media (max-width: $laptop)
+  body>header
+    height 320px
+
+
+@media (max-width: $mobile)
+  body>header
+    height 200px

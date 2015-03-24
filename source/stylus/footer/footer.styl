@@ -1,0 +1,111 @@
+@import "../helpers/*"
+
+body > footer
+  overflow hidden
+  position absolute
+  bottom 0
+  right 0
+  left 0
+  background-color $cyan
+  background-image url('../svg/logotype_footer.svg')
+  background-position 30px 50%
+  background-repeat no-repeat
+  background-size 30px auto
+  padding 0 50px 0 70px
+  height 56px
+  line-height 56px
+  clearit()
+  .copyright
+    float left
+    font-size 14px
+    color $semi-grey
+    white-space nowrap
+  .project
+    float left
+    white-space nowrap
+    a
+      text-decoration none
+      display inline-block
+      color $grey
+      font-size 16px
+      margin 0 0 0 40px
+  .social
+    float right
+    white-space nowrap
+    a
+      vertical-align middle
+      display inline-block
+      width 35px
+      height 35px
+      margin 0 0 0 10px
+      border-radius 100%
+      text-decoration none
+      transition background-color .25s
+      background-size 35px 35px
+      background-repeat no-repeat
+      &:first-child
+        margin 0
+      &.fb
+        background-color #3b5fa6
+        background-image url('../svg/fb.svg')
+        &:hover
+          background-color darken(#3b5fa6, 30%)
+      &.tw
+        background-color #47a6ed
+        background-image url('../svg/tw.svg')
+        &:hover
+          background-color darken(#47a6ed, 30%)
+      &.gp
+        background-color #d24238
+        background-image url('../svg/gp.svg')
+        &:hover
+          background-color darken(#d24238, 30%)
+      &.pi
+        background-color #aa262a
+        background-image url('../svg/pi.svg')
+        &:hover
+          background-color darken(#aa262a, 30%)
+      &.yt
+        background-color #e52c28
+        background-image url('../svg/yt.svg')
+        &:hover
+          background-color darken(#e52c28, 30%)
+
+@media (max-width: $laptop)
+  html > body > footer
+    .copyright
+      span
+        display none
+
+
+@media (max-width: 900px)
+  html > body > footer
+    background-image none
+    padding 0 50px
+    .copyright
+      display none
+    .project
+      a:first-child
+        margin 0
+
+@media (max-width: 740px)
+  html > body > footer
+    padding 10px
+    height 66px
+    line-height 0
+    text-align center
+    .copyright
+      display none
+    .project
+      dispay inline-block
+      float none
+      line-height 20px
+      margin 0 0 10px
+      a
+        margin 0 0 0 25px
+        &:first-child
+          margin 0
+    .social
+      dispay inline-block
+      float none
+      line-height 35px

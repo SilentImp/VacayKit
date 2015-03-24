@@ -3,15 +3,16 @@ html(lang="en")
 head
   meta(charset="UTF-8")
   title Long Flight Kit | VacayKit
+  link(rel="stylesheet", href="css/styles.css")
 body
   header
     
     a(href="#")
       h1.logotype VacayKit
     
-    nav
+    nav.project
       .dropdown
-        h2.dropdown__title
+        h2.dropdown__title Popular Kits
         .dropdown__panel
           .dropdown__wrapper
             ul.dropdown__body
@@ -21,20 +22,20 @@ body
               li: a(href="#") Diving
               li: a(href="#") Snorkeling
               li: a(href="#") Jungle
-              
       a(href="#") Blog
       a(href="#") About
     
-    h2.kit.kit_fly
-      span.kit__name Long Flight Kit
-      span.kit__count 8 kits
-    
-    a.subscribe(href="#") Get my Packing List
+    //- h2.kit.kit_fly
+    //-   span.kit__name Long Flight Kit
+    //-   span.kit__count 8 kits
+    //- 
+    //- a.subscribe(href="#") Get my Packing List
   
   section.page
   
   footer
-    p.copyright © 2015 VacayKit. All rights reserved.
+    p.copyright © 2015 VacayKit.
+      span  All rights reserved.
     nav.project
       a(href="#") Popular kits
       a(href="#") Blog
