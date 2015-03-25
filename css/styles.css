@@ -367,10 +367,15 @@ body > footer .social a.yt:hover {
 
 body>header {
   height: 380px;
-  background: url("../images/header_bg_1.jpg");
   background-size: cover;
   background-repeat: none;
   color: #fff;
+}
+body>header.thailand {
+  background-image: url("../images/header_bg_1.jpg");
+}
+body>header.fly {
+  background-image: url("../images/header_bg_2.jpg");
 }
 body>header .hamburger {
   display: none;
