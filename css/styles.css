@@ -529,9 +529,6 @@ html body h5,
 html body img {
   pointer-events: all;
 }
-html body .page {
-  min-height: 200vh;
-}
 
 .popup {
   display: none;
