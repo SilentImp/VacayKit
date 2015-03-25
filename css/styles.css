@@ -445,6 +445,9 @@ body>header .project__link_mobile {
   html>body>header {
     height: 200px;
   }
+  html>body>header .subscribe {
+    display: none;
+  }
   html>body>header .hamburger {
     z-index: 3;
     display: block;
