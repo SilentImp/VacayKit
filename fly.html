@@ -1,60 +1,90 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<head>
-  <meta charset="UTF-8"/>
-  <title>Long Flight Kit | VacayKit</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-</head>
-<body>
-  <header><a href="#">
-      <h1 class="logotype">VacayKit</h1></a>
-    <nav>
-      <div class="dropdown">
-        <h2 class="dropdown__title"></h2>
-        <div class="dropdown__panel">
-          <div class="dropdown__wrapper">
-            <ul class="dropdown__body">
-              <li><a href="#">Beaching</a></li>
-              <li><a href="#">Surfing</a></li>
-              <li><a href="#">Caving</a></li>
-              <li><a href="#">Diving</a></li>
-              <li><a href="#">Snorkeling</a></li>
-              <li><a href="#">Jungle</a></li>
-            </ul>
-          </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Long Flight Kit | VacayKit</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script src="js/jquery/dist/jquery.min.js"></script>
+    <script src="js/scripts.js" defer="defer" async="async"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="project"><a href="/">
+          <h1 class="logotype">VacayKit</h1></a>
+        <button type="button" class="hamburger"><span class="hamburger__line hamburger__line_top"></span><span class="hamburger__line hamburger__line_middle"></span><span class="hamburger__line hamburger__line_bottom"></span></button>
+        <div class="project__wrapper"><a href="/" class="project__link project__link_mobile">Home</a>
+          <div class="dropdown">
+            <h2 class="dropdown__title">Popular Kits</h2>
+            <div class="dropdown__panel">
+              <div class="dropdown__wrapper">
+                <ul class="dropdown__body">
+                  <li><a href="#">Beaching</a></li>
+                  <li><a href="#">Surfing</a></li>
+                  <li><a href="#">Caving</a></li>
+                  <li><a href="#">Diving</a></li>
+                  <li><a href="#">Snorkeling</a></li>
+                  <li><a href="#">Jungle</a></li>
+                  <li><a href="#">Beaching</a></li>
+                  <li><a href="#">Surfing</a></li>
+                  <li><a href="#">Caving</a></li>
+                  <li><a href="#">Diving</a></li>
+                  <li><a href="#">Snorkeling</a></li>
+                  <li><a href="#">Jungle</a></li>
+                  <li><a href="#">Beaching</a></li>
+                  <li><a href="#">Surfing</a></li>
+                  <li><a href="#">Caving</a></li>
+                  <li><a href="#">Diving</a></li>
+                  <li><a href="#">Snorkeling</a></li>
+                  <li><a href="#">Jungle</a></li>
+                  <li><a href="#">Beaching</a></li>
+                  <li><a href="#">Surfing</a></li>
+                  <li><a href="#">Caving</a></li>
+                  <li><a href="#">Diving</a></li>
+                  <li><a href="#">Snorkeling</a></li>
+                  <li><a href="#">Jungle</a></li>
+                  <li><a href="#">Beaching</a></li>
+                  <li><a href="#">Surfing</a></li>
+                  <li><a href="#">Caving</a></li>
+                  <li><a href="#">Diving</a></li>
+                  <li><a href="#">Snorkeling</a></li>
+                  <li><a href="#">Jungle</a></li>
+                </ul>
+              </div>
+            </div>
+          </div><a href="#" class="project__link">Blog</a><a href="#" class="project__link">About</a><a href="#" class="project__link project__link_mobile">Contact us</a>
         </div>
-      </div><a href="#">Blog</a><a href="#">About</a>
-    </nav>
-    <h2 class="kit kit_fly"><span class="kit__name">Long Flight Kit</span><span class="kit__count">8 kits</span></h2><a href="#" class="subscribe">Get my Packing List</a>
-  </header>
-  <section class="page"></section>
-  <footer>
-    <p class="copyright">© 2015 VacayKit. All rights reserved.</p>
-    <nav class="project"><a href="#">Popular kits</a><a href="#">Blog</a><a href="#">About</a><a href="#">Contact us</a></nav>
-    <nav class="social"><a href="#" class="fb"></a><a href="#" class="tw"></a><a href="#" class="gp"></a><a href="#" class="pi"></a><a href="#" class="yt"></a></nav>
-  </footer>
-  <div class="popup">
-    <form action="/" method="post" class="popup__panel subscribe-form">
-      <h2 class="subscribe-form__title">Get my Thailand packing list</h2>
-      <fieldset>
-        <input type="email" name="email" placeholder="Email" required="required" class="subscribe-form__input"/>
-        <button type="submit" class="subscribe-form__submit">Send</button>
-      </fieldset>
-      <fieldset>
-        <input id="subscribe-form__update" type="checkbox" name="update"/>
-        <label for="subscribe-form__update">Subscribe me to VacayKit monthly update</label>
-      </fieldset>
-      <nav><a href="#" class="popup__close"></a></nav>
-    </form>
-  </div>
-  <div class="popup">
-    <div class="popup__panel subscribe-confirmation">
-      <h2 class="subscribe-confirmation__title">Check your inbox</h2>
-      <p class="subscribe-confirmation__message">We've sent The Complete Packing List for Thailand to your Email. Please check Spam folder if you won't have received it in 5 minutes.</p>
-      <nav class="subscribe-confirmation__socials">
-        <h3>Help us get famous</h3>
+        <div class="project__lightbox"></div>
       </nav>
-      <nav><a href="#" class="popup__close"></a></nav>
+    </header>
+    <section class="page"></section>
+    <footer>
+      <p class="copyright">© 2015 VacayKit.<span> All rights reserved.</span></p>
+      <nav class="project"><a href="#" class="project__link">Popular kits</a><a href="#" class="project__link">Blog</a><a href="#" class="project__link">About</a><a href="#" class="project__link">Contact us</a></nav>
+      <nav class="social"><a href="#" class="fb"></a><a href="#" class="tw"></a><a href="#" class="gp"></a><a href="#" class="pi"></a><a href="#" class="yt"></a></nav>
+    </footer>
+    <div class="popup">
+      <form action="/" method="post" class="popup__panel subscribe-form">
+        <h2 class="subscribe-form__title">Get my Thailand packing list</h2>
+        <fieldset>
+          <input type="email" name="email" placeholder="Email" required="required" class="subscribe-form__input"/>
+          <button type="submit" class="subscribe-form__submit">Send</button>
+        </fieldset>
+        <fieldset>
+          <input id="subscribe-form__update" type="checkbox" name="update"/>
+          <label for="subscribe-form__update">Subscribe me to VacayKit monthly update</label>
+        </fieldset>
+        <nav><a href="#" class="popup__close"></a></nav>
+      </form>
     </div>
-  </div>
-</body>
+    <div class="popup">
+      <div class="popup__panel subscribe-confirmation">
+        <h2 class="subscribe-confirmation__title">Check your inbox</h2>
+        <p class="subscribe-confirmation__message">We've sent The Complete Packing List for Thailand to your Email. Please check Spam folder if you won't have received it in 5 minutes.</p>
+        <nav class="subscribe-confirmation__socials">
+          <h3>Help us get famous</h3>
+        </nav>
+        <nav><a href="#" class="popup__close"></a></nav>
+      </div>
+    </div>
+  </body>
+</html>
