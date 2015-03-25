@@ -6,6 +6,8 @@ body>header
   background-size cover
   background-repeat none
   color $white
+  .hamburger
+    display none
   .logotype
     position absolute
     top 0
@@ -15,24 +17,28 @@ body>header
     display block
     text-indent -9999px
     overflow hidden
-    background url('../svg/logotype.svg') 50% 50% no-repeat
-    z-index 2
+    background url('../svg/logotype.svg') 50% 55% no-repeat
+    z-index 3
   .project
+    pointer-events all
     background-color $opaq-grey
-    z-index 1
-    position absolute
+    z-index 2
+    position fixed
     top 0
     left 0
     right 0
     height 60px
     line-height 60px
     font-size 20px
-    padding 0 50px 0 180px
-    a
+    padding 0 50px 0 140px
+    white-space nowrap
+    &__link
       text-decoration none
       color $white
       margin 0 0 0 40px
       display inline-block
+      &_mobile
+        display none
 
 
 @media (max-width: $laptop)
@@ -41,5 +47,61 @@ body>header
 
 
 @media (max-width: $mobile)
-  body>header
+  html>body>header
     height 200px
+    .hamburger
+      z-index 3
+      display block
+      &_open + .project__wrapper
+        transform translateX(0)
+      &_open + .project__wrapper + .project__lightbox
+        right 0
+        opacity 1
+    .logotype
+      height 44px
+      left 0
+      right 0
+      margin auto
+    .project
+      height 44px
+      line-height 44px
+      white-space normal
+      &__lightbox
+        position fixed
+        z-index 1
+        top 44px
+        opacity 0
+        bottom 0
+        left 0
+        background-color $opaq-black
+        will-change opacity
+        opacity 0
+        transition opacity .25s linear
+        pointer-events all
+        cursor pointer
+      &__wrapper
+        pointer-events all
+        z-index 2
+        position fixed
+        left 0
+        top 44px
+        bottom 0
+        overflow auto
+        overflow-x hidden
+        overflow-y auto
+        box-sizing border-box
+        padding 20px
+        width 81%
+        width 81vw
+        background-color $opaq-grey-light
+        line-height 20px
+        clearit()
+        will-change transform
+        transition transform .25s linear
+        transform translateX(-100%)
+      &__link
+        clear both
+        float left
+        margin 0 0 20px
+        &_mobile
+          display block

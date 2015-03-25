@@ -2,7 +2,79 @@
 
 .dropdown
   display inline-block
+  position relative
+  height 100%
+  vertical-align top
+  margin 0 0 0 40px
+  *
+    pointer-events all
+  &:hover
+    .dropdown__panel
+      display block
   &__title
+    cursor pointer
     display inline-block
+    padding 0 21px 0 0
+    white-space nowrap
+    background url('../svg/dropdown.svg') 100% 27px no-repeat
+  &__wrapper
+    width 210px
+    max-height 180px
+    overflow auto
+    overflow-x hidden
+    overflow-y auto
+    z-index 1
+    position relative
+
+  &__body
+    padding 0 15px
+    li,
+    li a
+      text-decoration none
+      color $black
+      font-size 16px
+      line-height 32px
+
   &__panel
     display none
+    width 210px
+    padding 15px 0
+    max-height 180px
+    border-radius 4px
+    background-color $white
+    position absolute
+    top 100%
+    margin -10px 0 0 -30px
+    &:after
+      content "."
+      display block
+      position absolute
+      z-index 2
+      left 0
+      right 0
+      top -8px
+      width 32px
+      height 20px
+      overflow hidden
+      text-indent -9999px
+      line-height 0
+      font-size 0
+      background url('../svg/dropdown-tail.svg') 50% 0 no-repeat
+      background-size auto 14px
+      margin auto
+
+@media (max-width: $mobile)
+  html body .dropdown
+    margin 0 0 20px
+    clear both
+    float left
+    display block
+    height auto
+    &__title
+      padding 0
+      background none
+    &:hover
+      .dropdown__panel
+        display none
+    &__panel
+      display none

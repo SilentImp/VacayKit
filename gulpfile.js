@@ -86,6 +86,7 @@ gulp.task('fonts', function() {
 gulp.task('js', function() {
   return gulp.src(dirs.source.coffee)
     .pipe(coffee({bare: true}))
+    .pipe(concat("scripts.js"))
     .pipe(gulp.dest(dirs.build.js));
 });
 
@@ -114,7 +115,7 @@ gulp.task('deploy', function () {
 
 
 gulp.task('watch', function () {
-  gulp.watch(dirs.source.stylus, ['css']);
+  gulp.watch([dirs.source.stylus, dirs.source.css], ['css']);
   gulp.watch(dirs.source.jade, ['html']);
   gulp.watch(dirs.source.coffee, ['js']);
 });
