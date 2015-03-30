@@ -11,11 +11,13 @@ var gulp = require('gulp')
     , deploy = require('gulp-gh-pages')
     , find = require('find')
     , path = require('path')
+    , gulpif = require('gulp-if')
     , dirs = {
       'source': {
         'jade': './source/jade/**/*.jade'
         , 'list': './source/list/index.jade'
         , 'coffee': './source/coffee/**/*.coffee'
+        , 'js': './source/js/**/*.js'
         , 'stylus': './source/stylus/**/*.styl'
         , 'css': './source/css/*.css'
         , 'svg': './source/svg/*.svg'
@@ -84,8 +86,8 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('js', function() {
-  return gulp.src(dirs.source.coffee)
-    .pipe(coffee({bare: true}))
+  return gulp.src([dirs.source.coffee, dirs.source.js])
+    .pipe(gulpif(/[.]coffee$/, coffee({bare: true})))
     .pipe(concat("scripts.js"))
     .pipe(gulp.dest(dirs.build.js));
 });

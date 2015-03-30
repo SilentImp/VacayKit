@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="16px" viewBox="0 0 60 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch Beta 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 92</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs>
+        <path d="M363,16 L8.00510365,16 C3.57898946,16 0,19.5829508 0,24.0027447 L0,203.997255 C0,208.409559 3.58400698,212 8.00510365,212 L751.994896,212 C756.421011,212 760,208.417049 760,203.997255 L760,24.0027447 C760,19.5904405 756.415993,16 751.994896,16 L397,16 L382.822327,1.82232717 C381.269901,0.269900855 378.736401,0.263598914 377.177673,1.82232717 L363,16 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="desktop_wide_01" sketch:type="MSArtboardGroup" transform="translate(-768.000000, -2857.000000)">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(101.500000, 784.000000)">
+                <g id="Group-2" transform="translate(316.500000, 2073.000000)">
+                    <mask id="mask-2" sketch:name="Rectangle 60" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle-60" fill="#EFF3F6" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

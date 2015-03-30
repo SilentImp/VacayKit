@@ -5,10 +5,12 @@
   position relative
   height 100%
   vertical-align top
-  margin 0 0 0 40px
+  padding 0 20px
+  margin 0 0 0 20px
   *
     pointer-events all
   &:hover
+    background-color $opaq-black-light
     .dropdown__panel
       display block
   &__title
@@ -17,6 +19,10 @@
     padding 0 21px 0 0
     white-space nowrap
     background url('../svg/dropdown.svg') 100% 27px no-repeat
+    -webkit-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
   &__wrapper
     width 210px
     max-height 180px
@@ -27,13 +33,15 @@
     position relative
 
   &__body
-    padding 0 15px
-    li,
     li a
       text-decoration none
       color $black
       font-size 16px
       line-height 32px
+      padding 0 15px
+      display block
+      &:hover
+        background-color $opaq-black-lighter
 
   &__panel
     display none
@@ -65,16 +73,49 @@
 
 @media (max-width: $mobile)
   html body .dropdown
-    margin 0 0 20px
-    clear both
-    float left
+    margin 0
+    padding 0
     display block
     height auto
-    &__title
-      padding 0
-      background none
     &:hover
+      background none
       .dropdown__panel
         display none
+    &_open,
+    &_open:hover
+      .dropdown__panel
+        display block
+      .dropdown__title
+        background $transparent-black url('../svg/dropdown-close.svg') 90% 50% no-repeat
+    &__wrapper
+      width auto
+      max-height 238px
+    &__title
+      margin 0
+      padding 0 20px
+      display block
+      line-height 44px
+      white-space nowrap
+      background url('../svg/dropdown-open.svg') 90% 50% no-repeat
+      &:hover
+        background-color  $transparent-black
+    &__body
+      li a
+        padding 0 20px
+        color $white
+        font-size 18px
+        line-height 34px
+        &:hover
+          background-color  $transparent-black
     &__panel
+      border-bottom 1px solid $transparent-white
       display none
+      position static
+      max-height 238px
+      margin 0
+      padding 0
+      background-color transparent
+      width auto
+      border-radius 0
+      &:after
+        display none

@@ -1,0 +1,59 @@
+@import "../helpers/*"
+
+.share-list
+  width 280px
+  height 343px
+  &__title
+    font-size 22px
+    line-height 46px
+    border-bottom 1px solid $transparent-grey
+    display block
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+    font-weight normal
+    padding 0 46px 0 15px
+    margin 0
+  &__navigation
+    padding 15px
+    a
+      display block
+      text-decoration none
+      height 48px
+      border-radius 24px
+      text-align center
+      color $white
+      font-size 20px
+      line-height 48px
+      margin 0 0 6px
+      transition background-color .25s
+      &.fb
+        background-color #3b5fa6
+        &:hover
+          background-color #2F5196
+        &:active
+          background-color darken(#2F5196, 20%)
+      &.tw
+        background-color #47A6ED
+        &:hover
+          background-color #3692D6
+        &:active
+          background-color darken(#3692D6, 20%)
+      &.gp
+        background-color #D24238
+        &:hover
+          background-color #BC3027
+        &:active
+          background-color darken(#BC3027, 20%)
+      &.pi
+        background-color #AA262A
+        &:hover
+          background-color #991C20
+        &:active
+          background-color darken(#991C20, 20%)
+      &.email
+        background-color #62CE51
+        &:hover
+          background-color #4AB739
+        &:active
+          background-color darken(#4AB739, 20%)

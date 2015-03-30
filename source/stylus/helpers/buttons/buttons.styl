@@ -1,0 +1,76 @@
+@import "../colors/colors.styl"
+
+
+grey_button()
+  grey_button_base()
+  height 44px
+  line-height 40px
+  padding 0px 25px 0 50px
+  font-size 20px
+  border-radius 25px
+
+grey_button_base()
+  -webkit-appearance none
+  -moz-appearance none
+  appearance none
+  cursor pointer
+  border-style none
+  margin 0
+  color $grey
+  border 2px solid $grey-border
+  text-decoration none
+  font-weight normal
+  background-color transparent
+  background-repeat no-repeat
+  display inline-block
+  vertical-align middle
+  font-family 'Lato', sans-serif
+  transition background-color .25s, border-color .25s
+  &:hover
+    background-color $grey-hover
+    border-color $grey-hover
+  &:active
+    background-color darken($grey-hover, 10%)
+    border-color darken($grey-hover, 10%)
+
+
+green_button()
+  green_button_base()
+  height 46px
+  line-height 46px
+  padding 0px 25px 0 50px
+  font-size 20px
+  border-radius 25px
+
+green_button_large()
+  green_button_base()
+  height 60px
+  line-height 60px
+  padding 0px 30px 0 60px
+  font-size 22px
+  border-radius 30px
+
+
+green_button_base()
+  -webkit-appearance none
+  -moz-appearance none
+  appearance none
+  cursor pointer
+  border-style none
+  margin 0
+  color $white
+  text-decoration none
+  font-weight bold
+  box-shadow inset 0 -2px 0 0 $green-shadow
+  background-color $green
+  background-repeat no-repeat
+  display inline-block
+  vertical-align middle
+  font-family 'Lato', sans-serif
+  transition background-color .25s, box-shadow .25s
+  &:hover
+    background-color $green-hover
+    box-shadow inset 0 -2px 0 0 $green-hover-shadow
+  &:active
+    background-color $green-active
+    box-shadow inset 0 2px 0 0 $green-active-shadow

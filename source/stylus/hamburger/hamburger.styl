@@ -16,6 +16,9 @@
   height 44px
   top 0
   left 0
+  transition background-color .25s
+  &:hover
+    background-color $opaq-black-light
   &_open
     .hamburger__line
       &_top
@@ -30,7 +33,7 @@
     display block
     background $white
     position absolute
-    left 14px
+    left 13px
     top 50%
     transition transform .25s linear
     transform rotate(0) scale(1, 1)

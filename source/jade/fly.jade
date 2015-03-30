@@ -6,8 +6,10 @@ html(lang="en")
     link(rel="stylesheet", href="css/styles.css")
     script(src="js/jquery/dist/jquery.min.js")
     script(src="js/scripts.js", defer, async)
+    
   body
-    header
+  
+    header.fly
       
       nav.project
       
@@ -40,13 +42,123 @@ html(lang="en")
         
         .project__lightbox
       
-      //- h2.kit.kit_fly
-      //-   span.kit__name Long Flight Kit
-      //-   span.kit__count 8 kits
-      //- 
-      //- a.subscribe(href="#") Get my Packing List
+      .wrapper
+        h2.kit.kit_fly
+          span.kit__name Long Flight Kit
+          span.kit__count 8 kits
+        
+        a.subscribe(href="#") Get my Packing List
     
     section.page
+      section.items
+
+          
+        ol.items__list
+        
+          li.item
+            h3.item__title High sun protection body
+            .item__abstract
+              p Everyone needs sunscreen to protect their skin from damaging UV rays from the sun and sunburn. Using sunscreen products decreases the chances for sunburn and can prevent skin cancer or malignant melanoma.
+            
+            .item__element
+              .item__photo
+                img(src="images/item-1.jpg", alt="Фотография")
+              .item__details
+                .item__info Avene Thermal Spring water spray 300 ml, 10.5 -Ounce Package
+                .item__rating
+                  .stars
+                    .stars__current(style="width: 50%;", data-value="50")
+                  .item__votes 101 reviews
+              a.item__price.item__price_amazon(href="#")
+                strong.item__price-current $14.57
+                del.item__price-old $157.12
+          
+          
+          li.item
+            h3.item__title High sun protection face
+            
+            .item__element
+              .item__photo
+                img(src="images/item-1.jpg", alt="Фотография")
+              .item__details
+                .item__info Avene Thermal Spring water spray 300 ml, 10.5 -Ounce Package
+                .item__rating
+                  .stars
+                    .stars__current(style="width: 80%;", data-value="80")
+                  .item__votes 101 reviews
+              a.item__price.item__price_amazon(href="#")
+                strong.item__price-current $123.57
+                
+            .item__element
+              .item__photo
+                img(src="images/item-2.jpg", alt="Фотография")
+              .item__details
+                .item__info Avene Thermal Spring Water 3 To Go Kit, 5.28 oz
+                .item__rating
+                  .stars
+                    .stars__current(style="width: 100%;", data-value="100")
+                  .item__votes 390 reviews
+              a.item__price.item__price_amazon(href="#")
+                strong.item__price-current $14.57
+                del.item__price-old $157.12
+                
+          li.item.item_important
+            h3.item__title Sun oil
+            .item__abstract
+              p Indication Dermatological care
+            
+            .item__element
+              .item__photo
+                img(src="images/item-3.jpg", alt="Фотография")
+              .item__details
+                .item__info Avene Thermal Spring water spray 300 ml, 10.5 -Ounce Package
+                .item__rating
+                  .stars
+                    .stars__current(style="width: 100%;", data-value="100")
+                  .item__votes 390 reviews
+              a.item__price.item__price_amazon(href="#")
+                strong.item__price-current $14.57
+                del.item__price-old $157.12
+                
+          li.item
+            h3.item__title UV protection shirt and shorts
+            
+            .item__element
+              .item__photo
+                img(src="images/item-4.jpg", alt="Фотография")
+              .item__details
+                .item__info O'Neill UV Sun Protection Men's Basic Skins Tee Rashguard
+                .item__rating
+                  .stars
+                    .stars__current(style="width: 80%;", data-value="80")
+                  .item__votes 101 reviews
+              a.item__price.item__price_amazon(href="#")
+                strong.item__price-current $16.77 - $30.85
+                
+            .item__element
+              .item__photo
+                img(src="images/item-5.jpg", alt="Фотография")
+              .item__details
+                .item__info O'Neill UV Sun Protection Men's Basic Skins Long Sleeve Crew Rashguard
+                .item__rating
+                  .stars
+                    .stars__current(style="width: 100%;", data-value="100")
+                  .item__votes 390 reviews
+              a.item__price.item__price_amazon(href="#")
+                strong.item__price-current $16.77 - $30.85
+                del.item__price-old $16.77 - $30.85
+      
+          
+        form.items-subscribe(action="/subscribe/", method="post")
+          h2.items-subscribe__title Get my Thailand packing list
+          fieldset.items-subscribe__line
+            input.items-subscribe__input(type="email", name="email", placeholder="Email", required="required")
+            button.items-subscribe__submit(type="submit") Send
+          fieldset.items-subscribe__line.checkbox
+            input#items-subscribe__update.checkbox__input(type="checkbox", name="update")
+            label.checkbox__label(for="items-subscribe__update") Subscribe me to VacayKit monthly update
+            
+        
     
     footer
       p.copyright © 2015 VacayKit.
@@ -62,25 +174,41 @@ html(lang="en")
         a.gp(href="#")
         a.pi(href="#")
         a.yt(href="#")
-      
-    .popup
+        
+    .popup.subscribe-form-popup
+      .popup__lightbox
       form.popup__panel.subscribe-form(action="/", method="post")
         h2.subscribe-form__title Get my Thailand packing list
-        fieldset
+        fieldset.subscribe-form__line
           input.subscribe-form__input(type="email", name="email", placeholder="Email", required="required")
           button.subscribe-form__submit(type="submit") Send
-        fieldset
-          input#subscribe-form__update(type="checkbox", name="update")
-          label(for="subscribe-form__update") Subscribe me to VacayKit monthly update
+        fieldset.subscribe-form__line.checkbox
+          input#subscribe-form__update.checkbox__input(type="checkbox", name="update")
+          label.checkbox__label(for="subscribe-form__update") Subscribe me to VacayKit monthly update
         nav
           a.popup__close(href="#")
 
-
-    .popup
+    .popup.subscribe-confirmation-popup
+      .popup__lightbox
       .popup__panel.subscribe-confirmation
         h2.subscribe-confirmation__title Check your inbox
         p.subscribe-confirmation__message We've sent The Complete Packing List for Thailand to your Email. Please check Spam folder if you won't have received it in 5 minutes.
+        button.show-socials(type="button") Share with friends
         nav.subscribe-confirmation__socials
           h3 Help us get famous
+          img(src="images/social_dummy.png", alt="Заглушка для социальных сетей")
+        nav
+          a.popup__close(href="#")
+          
+    .popup.share-list-popup
+      .popup__lightbox
+      .popup__panel.share-list
+        h2.share-list__title Share with friends
+        nav.share-list__navigation
+          a.fb(href="#") Like
+          a.tw(href="#") Tweet
+          a.gp(href="#") +1
+          a.pi(href="#") Pin it
+          a.email(href="#") Send by Email
         nav
           a.popup__close(href="#")

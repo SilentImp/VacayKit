@@ -1,0 +1,107 @@
+@import "../helpers/*"
+
+.item
+  position relative
+  margin 20px 70px 0 40px
+  width 650px
+  padding 0
+  border-bottom 1px solid $grey-light
+  &:last-child
+    border-bottom-style none
+  clearit()
+  &:before
+    counter-increment item
+    content counter(item) "."
+    width 40px
+    right 100%
+    top 0
+    font-size 20px
+    line-height 24px
+    color $semi-grey
+    position absolute
+  &_important
+    .item__title
+      &:after
+        content "Important"
+        text-transform uppercase
+        color $white
+        background-color $pink
+        line-height 20px
+        font-size 12px
+        height 20px
+        display inline-block
+        margin 0 0 0 10px
+        padding 0 8px
+        border-radius 10px
+        vertical-align bottom
+  &__votes
+    display inline-block
+    vertical-align middle
+    margin 0 0 0 10px
+    font-size 14px
+    line-height 22px
+    color $transparent-grey-darker
+  &__element
+    position relative
+    width 100%
+    margin 20px 0
+    clearit()
+  &__price
+    float right
+    position relative
+    right 100%
+    margin-right -100%
+    text-decoration none
+    line-height 22px
+    text-align right
+    &_amazon
+      min-width 75px
+      background url('../svg/amazon.svg') 100% 100% no-repeat
+      padding 0 0 22px
+    &-current
+      font-size 16px
+      font-weight bold
+      color $green-text
+    &-old
+      font-size 14px
+      text-decoration line-through
+      color $semi-grey
+  &__details
+    line-height 22px
+    width 320px
+    float left
+    position relative
+    left 100%
+    margin-left -560px
+  &__photo
+    float left
+    position relative
+    font-size 0
+    left 100%
+    margin-left -100%
+    text-align center
+    line-height 98px
+    width 73px
+    height 98px
+    border $photo-border 1px solid
+    border-radius 4px
+    display inline-block
+    overflow hidden
+    img
+      max-width 100%
+      max-height 100%
+      vertical-align middle
+      border-radius 3px
+      display inline-block
+
+  &__title
+    font-size 20px
+    font-weight bold
+    line-height 24px
+    color $grey
+    margin 0 0 5px
+  &__abstract
+    font-size 16px
+    line-height 20px
+    color $opaq-grey
+    margin 0 0 15px

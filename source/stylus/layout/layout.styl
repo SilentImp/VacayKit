@@ -1,3 +1,5 @@
+@import "../helpers/*"
+
 *
   pointer-events none
 
@@ -6,6 +8,8 @@ html
   height 100%
   overflow-x hidden
   font-family 'Lato', sans-serif
+  &.resizing *
+    transition none !important
   body
     min-height 100%
     width 100%
@@ -16,6 +20,7 @@ html
     input,
     textarea,
     select,
+    label,
     h1,
     h2,
     h3,
@@ -24,5 +29,36 @@ html
     img
       pointer-events all
 
+    button
+      -moz-user-select none
+      -webkit-user-select none
+      -ms-user-select none
+      user-select none
+
     .page
-      min-height 200vh
+      max-width 1000px
+      margin -16px auto 0
+      background $white
+      border-radius 20px 20px 0 0
+      padding 16px 0 56px
+      min-height 200px
+      background-color $white
+
+@media (max-width: $laptop)
+  html>body
+    .page
+      max-width 920px
+      padding 0 0 56px
+      margin 0 auto
+      border-radius 0
+
+@media (max-width: 940px)
+  html>body
+    .page
+      max-width initial
+      margin 0 20px
+
+@media (max-width: $mobile)
+  html>body
+    .page
+      padding 0 0 66px

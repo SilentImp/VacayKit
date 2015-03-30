@@ -1,0 +1,36 @@
+@import "../helpers/*"
+
+.items
+  max-width 760px
+  margin auto
+  counter-reset item
+  &__header
+    height 180px
+    border-radius 8px
+    background-color #FFEE58
+    position relative
+    margin 36px 0 30px
+  &__title
+    font-size 44px
+    line-height 52px
+    font-weight bold
+    color $grey-dark
+    left 20px
+    bottom 15px
+    position absolute
+    white-space nowrap
+  &__count
+    position absolute
+    left 100%
+    bottom 24px
+    font-size 18px
+    line-height 22px
+    white-space nowrap
+    margin 0 0 0 10px
+  &__abstract
+    margin 0 0 30px
+    p
+      margin 10px 0
+      font-size 18px
+      line-height 25px
+      color $grey
