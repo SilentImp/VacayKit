@@ -1455,6 +1455,7 @@ html body .page__subscribe {
   margin: 0 0 5px 30px;
   background-image: url("../svg/subscribe.svg");
   background-position: 20px 50%;
+  display: none;
 }
 html body .page__subscribe:hover {
   background-color: #76e365;
@@ -1491,6 +1492,7 @@ html body .page__share {
   background-image: url("../svg/share.svg");
   background-position: 20px 50%;
   background-size: 15px auto;
+  display: none;
 }
 html body .page__share:hover {
   background-color: #d7dce1;
