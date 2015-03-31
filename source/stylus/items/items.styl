@@ -34,3 +34,14 @@
       font-size 18px
       line-height 25px
       color $grey
+
+
+@media (max-width: $mobile)
+  html body .items
+    max-width initial
+    &__header
+      margin 0 -15px 15px
+      border-radius 0
+    &__abstract
+      font-size 16px
+      line-height 24px

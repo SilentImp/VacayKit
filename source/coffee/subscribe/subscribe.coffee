@@ -16,6 +16,9 @@ class Subscribe
     @sharePopupClose = @sharePopup.find ".popup__close"
     @sharePopupLightbox = @sharePopup.find ".popup__lightbox"
 
+    @pageSubscribeButton = $ ".page__subscribe"
+    @pageShareButton = $ ".page__share"
+
     if @button.length + @inputPopup.length + @confirmPopup.length != 3
       return
 
@@ -26,9 +29,12 @@ class Subscribe
     @confirmPopupLightbox.on 'click', @closeConfirmPopup
     @sharePopupClose.on 'click', @closeSharePopup
     @sharePopupLightbox.on 'click', @closeSharePopup
-    @inputPopup.on 'submit', @submitEmail
+    @pageSubscribeButton.on 'click', @openInputPopup
+
+    @inputPopupForm.on 'submit', @submitEmail
     @itemsSubscribeForm.on "submit", @submitEmail
 
+    @pageShareButton.on 'click', @openSharePopup
     @shareButton.on 'click', @openSharePopup
 
   closeSharePopup: (event)=>
@@ -66,9 +72,6 @@ class Subscribe
     form.reset()
     @closeInputPopup()
     @openConfirmPopup()
-
-
-
 
 $(document).ready ->
   new Subscribe

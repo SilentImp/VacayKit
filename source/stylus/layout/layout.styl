@@ -43,22 +43,65 @@ html
       padding 16px 0 56px
       min-height 200px
       background-color $white
+      &__section
+        clearit()
+      &__subscribe
+        green_button()
+        width 720px
+        margin 0 0 5px 30px
+        background-image url("../svg/subscribe.svg")
+        background-position 20px 50%
+      &__share
+        grey_button()
+        width 720px
+        margin 0 0 5px 30px
+        background-image url("../svg/share.svg")
+        background-position 20px 50%
+        background-size 15px auto
+      &__section-button
+        grey_button()
+        display none
+        width 720px
+        margin 0 0 5px 30px
+        background-image url("../svg/closed.svg")
+        background-position 24px 50%
+        &_open
+          background-image url("../svg/open.svg")
+          background-position 21px 50%
 
 @media (max-width: $laptop)
   html>body
     .page
       max-width 920px
-      padding 0 0 56px
+      padding 30px 0 56px
       margin 0 auto
       border-radius 0
+      &__subscribe,
+      &__share,
+      &__section-button
+        width 710px
+        margin 0 0 5px 0
+
 
 @media (max-width: 940px)
   html>body
     .page
+      padding 30px 0 56px
       max-width initial
-      margin 0 20px
+      margin 0 15px
+      &__section
+        display none
+      &__subscribe,
+      &__share
+        display block
+        width 100%
+      &__section-button
+        display block
+        width 100%
+        &_open + .page__section
+          display block
 
 @media (max-width: $mobile)
   html>body
     .page
-      padding 0 0 66px
+      padding 30px 0 66px

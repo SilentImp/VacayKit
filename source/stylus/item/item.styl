@@ -105,3 +105,79 @@
     line-height 20px
     color $opaq-grey
     margin 0 0 15px
+
+@media (max-width: 750px)
+  html body .item
+    margin 20px -15px 0 0
+    padding 20px 15px 0 0
+    width auto
+    border-bottom-style none
+    border-top 1px solid $border-color
+    &__rating
+      white-space nowrap
+    &__price
+      position absolute
+      bottom 10px
+      left 10px
+      right 10px
+      padding 0
+      height 22px
+      margin 0
+      float none
+      text-align left
+    &__details
+      float none
+      margin 0
+      width auto
+      position absolute
+      font-size 16px
+      line-height 22px
+      top 10px
+      right 10px
+      left 95px
+    &__element
+      height 128px
+      width 280px
+      display inline-block
+      vertical-align top
+      white-space normal
+      margin 0
+      padding 10px
+      border-top 1px solid $border-color-darker
+      border-bottom 1px solid $border-color-darker
+      border-right 1px solid $border-color-darker
+      &:first-child
+        border-left 1px solid $border-color-darker
+    &__elements
+      margin 0
+      white-space nowrap
+      font-size 0
+      line-height 0
+      height 150px
+      padding 0 15px
+      display inline-block
+      vertical-align top
+      &-wrapper
+        margin 20px -15px 15px
+        padding 0
+        display block
+        pointer-events all
+        overflow-x auto
+        overflow-y hidden
+        *
+          pointer-events all
+    &:before
+      background-color $white
+      position absolute
+      width 28px
+      height 28px
+      border-radius 100%
+      left 50%
+      top -14px
+      border 1px solid $border-color
+      text-align center
+      line-height 28px
+      font-size 16px
+      margin 0 0 0 -15px
+      z-index 1
+      text-indent 3px
