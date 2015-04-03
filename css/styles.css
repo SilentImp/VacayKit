@@ -77,6 +77,123 @@ table {
 	outline-style: none;
 	}
 
+.best {
+  position: relative;
+  width: 100%;
+}
+.best:after {
+  content: ".";
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  clear: both;
+  display: block;
+}
+.best * {
+  pointer-events: all;
+}
+.best__abstract {
+  padding: 0 0 0 30px;
+  margin: 30px 0 0;
+  width: 720px;
+}
+.best__abstract p {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 24px;
+}
+.best__graph {
+  float: left;
+  position: relative;
+  left: 100%;
+  margin-left: -100%;
+  width: 600px;
+}
+.best__stats {
+  float: left;
+  position: relative;
+  left: 100%;
+  margin-left: -300px;
+  width: 300px;
+}
+.best__label {
+  display: inline-block;
+  width: 170px;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(74,74,74,0.6);
+  float: left;
+  position: relative;
+  left: 100%;
+  margin-left: -100%;
+}
+.best__data {
+  display: inline-block;
+  width: 130px;
+  font-size: 16px;
+  line-height: 19px;
+  color: #4a4a4a;
+  float: left;
+  position: relative;
+  left: 100%;
+  margin-left: -130px;
+}
+.best__month {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+.best__dataset {
+  width: 300px;
+  position: relative;
+  margin: 0 0 10px;
+}
+.best__dataset:after {
+  content: ".";
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  clear: both;
+  display: block;
+}
+.best__stat {
+  margin: 0 0 30px;
+}
+.best__stat:after {
+  content: ".";
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  clear: both;
+  display: block;
+}
+.best__stat-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 22px;
+  color: rgba(74,74,74,0.6);
+  border-bottom: 1px solid #ededed;
+}
+@media (max-width: 1024px) {
+  html body .best__abstract {
+    padding: 0;
+    margin: 30px 0 0;
+  }
+}
+@media (max-width: 940px) {
+  html body .best__abstract {
+    width: auto;
+    margin: 15px 0 0;
+  }
+}
+
 .brief {
   position: relative;
   float: left;
@@ -91,8 +208,8 @@ table {
 }
 .brief p {
   font-size: 18px;
-  line-height: 25px;
-  margin: 0 0 25px;
+  line-height: 24px;
+  margin: 0 0 24px;
 }
 @media (max-width: 1024px) {
   html body .brief {
@@ -1232,6 +1349,9 @@ body>header .project__link_mobile {
   margin: auto;
   counter-reset: item;
 }
+.items * {
+  pointer-events: all;
+}
 .items__header {
   height: 180px;
   border-radius: 8px;
@@ -1538,9 +1658,20 @@ html body .page__section-button:active {
   background-color: #bec6ce;
   border-color: #bec6ce;
 }
+html body .page__section-button_visible {
+  display: block;
+}
+html body .page__section-button_visible + .page__section {
+  display: none;
+}
+html body .page__section-button_visible.page__section-button_open + .page__section {
+  display: block;
+}
 html body .page__section-button_open {
   background-image: url("../svg/open.svg");
   background-position: 21px 50%;
+  background-color: #d7dce1;
+  border-color: #d7dce1;
 }
 @media (max-width: 1024px) {
   html>body .page {
@@ -1959,4 +2090,48 @@ html body .page__section-button_open {
     padding: 0;
     background-position: 50% 50%;
   }
+}
+
+.switcher {
+  margin: 20px 0;
+  font-size: 0;
+  white-space: nowrap;
+}
+.switcher button {
+  line-height: 32px;
+  height: 32px;
+  margin: 0 0 0 2px;
+  padding: 0 10px;
+  min-width: 60px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border-style: none;
+  text-decoration: none;
+  font-weight: bold;
+  background: none;
+  background-color: #eff3f6;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: rgba(74,74,74,0.6);
+  transition: background-color 0.25s, border-color 0.25s;
+}
+.switcher button:hover {
+  background-color: #e2e7ec;
+}
+.switcher button.switcher__selected,
+.switcher button:active {
+  color: #fff;
+  background-color: #959da4;
+}
+.switcher button:last-child {
+  border-radius: 0 16px 16px 0;
+}
+.switcher button:first-child {
+  border-radius: 16px 0 0 16px;
+  margin: 0;
 }
