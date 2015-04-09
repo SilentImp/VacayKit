@@ -24,32 +24,6 @@ $(document).ready(function() {
   return new Hamburger;
 });
 
-var Navigation,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-Navigation = (function() {
-  function Navigation() {
-    this.toggleDropdown = bind(this.toggleDropdown, this);
-    this.widget = $(".dropdown");
-    if (this.widget.length === 0) {
-      return;
-    }
-    this.title = this.widget.find(".dropdown__title");
-    this.title.on('click', this.toggleDropdown);
-  }
-
-  Navigation.prototype.toggleDropdown = function() {
-    return this.widget.toggleClass("dropdown_open");
-  };
-
-  return Navigation;
-
-})();
-
-$(document).ready(function() {
-  return new Navigation;
-});
-
 var Layout,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -80,6 +54,32 @@ Layout = (function() {
 
 $(document).ready(function() {
   return new Layout;
+});
+
+var Navigation,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Navigation = (function() {
+  function Navigation() {
+    this.toggleDropdown = bind(this.toggleDropdown, this);
+    this.widget = $(".dropdown");
+    if (this.widget.length === 0) {
+      return;
+    }
+    this.title = this.widget.find(".dropdown__title");
+    this.title.on('click', this.toggleDropdown);
+  }
+
+  Navigation.prototype.toggleDropdown = function() {
+    return this.widget.toggleClass("dropdown_open");
+  };
+
+  return Navigation;
+
+})();
+
+$(document).ready(function() {
+  return new Navigation;
 });
 
 var Sections,
@@ -238,7 +238,6 @@ Switcher = (function() {
       button = ref[i];
       this.states.push(button.getAttribute('data-filter'));
     }
-    console.log(this.states);
     return this.filter();
   };
 
@@ -250,8 +249,7 @@ Switcher = (function() {
     }
     tags = '[data-label~="' + this.states.join('"],[data-label~="') + '"]';
     this.list.find('[data-label]').hide();
-    this.list.find(tags).show();
-    return console.log(tags);
+    return this.list.find(tags).show();
   };
 
   Switcher.prototype.toggleState = function(event) {
