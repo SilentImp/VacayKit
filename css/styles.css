@@ -714,12 +714,12 @@ body>header .logotype {
   text-indent: -9999px;
   overflow: hidden;
   background: url("../svg/logotype.svg") 50% 55% no-repeat;
-  z-index: 3;
+  z-index: 13;
 }
 body>header .project {
   pointer-events: all;
   background-color: rgba(62,66,71,0.96);
-  z-index: 2;
+  z-index: 12;
   position: fixed;
   top: 0;
   left: 0;
@@ -1352,6 +1352,12 @@ body>header .project__link_mobile {
 .items * {
   pointer-events: all;
 }
+.items__wrapper {
+  float: right;
+  width: 760px;
+  margin: 0 -37px 0 0;
+  overflow: hidden;
+}
 .items__header {
   height: 180px;
   border-radius: 8px;
@@ -1359,11 +1365,55 @@ body>header .project__link_mobile {
   position: relative;
   margin: 36px 0 30px;
 }
+.items__header_beach {
+  color: #26282c;
+  background-color: #ffee58;
+}
+.items__header_vacination {
+  background-color: #90a4ae;
+  color: #fff;
+}
+.items__header_walking {
+  background-color: #ec407a;
+  color: #fff;
+}
+.items__header_diving {
+  background-color: #ec407a;
+  color: #fff;
+}
+.items__header_aid {
+  background-color: #ff7043;
+  color: #fff;
+}
+.items__header_snorkeling {
+  background-color: #29b6f6;
+  color: #fff;
+}
+.items__header_whales {
+  background-color: #29b6f6;
+  color: #fff;
+}
+.items__header_trekking {
+  background-color: #66bb6a;
+  color: #fff;
+}
+.items__header_safari {
+  background-color: #66bb6a;
+  color: #fff;
+}
+.items__header_caving {
+  background-color: #8d6e63;
+  color: #fff;
+}
+.items__header_surfing {
+  background-color: #26c6da;
+  color: #fff;
+}
 .items__title {
   font-size: 44px;
   line-height: 52px;
   font-weight: bold;
-  color: #26282c;
+  color: inherit;
   left: 24px;
   bottom: 15px;
   position: absolute;
@@ -1373,6 +1423,7 @@ body>header .project__link_mobile {
   position: absolute;
   left: 100%;
   bottom: 31px;
+  color: inherit;
   font-size: 18px;
   line-height: 22px;
   white-space: nowrap;
@@ -1398,6 +1449,14 @@ body>header .project__link_mobile {
   html body .items__abstract {
     font-size: 16px;
     line-height: 24px;
+  }
+}
+@media (max-width: 1120px) {
+  html body .items__wrapper {
+    float: none;
+    width: auto;
+    margin: 0;
+    overflow: visible;
   }
 }
 
@@ -1494,7 +1553,6 @@ body>header .project__link_mobile {
 
 .kits {
   float: left;
-  width: 285px;
   margin: 32px 30px 30px -38px;
 }
 .kits:after {
@@ -1507,10 +1565,34 @@ body>header .project__link_mobile {
   clear: both;
   display: block;
 }
-.kits + .items {
-  float: right;
-  width: 760px;
-  margin: 0 -37px 0 0;
+.kits * {
+  pointer-events: all;
+}
+.kits_stick {
+  position: fixed;
+  top: 60px;
+  margin: 0;
+}
+.kits__trigger {
+  cursor: pointer;
+  display: none;
+  border-style: none;
+  border-bottom: 1px solid rgba(26,26,26,0.09);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-shadow: none;
+  box-sizing: border-box;
+  height: 45px;
+  background: url("../svg/close-kits.svg") 50% 50% no-repeat;
+}
+.kits__trigger-input {
+  position: absolute;
+  left: -9999px;
 }
 .kits__available {
   font-size: 24px;
@@ -1529,17 +1611,29 @@ body>header .project__link_mobile {
 }
 .kits__menu {
   position: relative;
+  max-height: 100vh;
+  max-height: calc(100vh - 108px);
+  width: 285px;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .kits__kit-title {
   font-size: 18px;
   line-height: 22px;
   color: #4a4a4a;
   margin: 13px 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .kits__kit-elements {
   font-size: 14px;
   line-height: 22px;
   color: rgba(74,74,74,0.6);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .kits__kit {
   position: relative;
@@ -1589,6 +1683,7 @@ body>header .project__link_mobile {
 }
 .kits__kit_walking:before {
   background-color: #ec407a;
+  background-image: url("../svg/icons/city_walking.svg");
 }
 .kits__kit_diving:before {
   background-color: #ec407a;
@@ -1601,15 +1696,74 @@ body>header .project__link_mobile {
   background-color: #29b6f6;
   background-image: url("../svg/icons/snorkeling.svg");
 }
+.kits__kit_whales:before {
+  background-color: #29b6f6;
+  background-image: url("../svg/icons/whale_watching.svg");
+}
 .kits__kit_trekking:before {
   background-color: #66bb6a;
   background-image: url("../svg/icons/jungle_trekking.svg");
+}
+.kits__kit_safari:before {
+  background-color: #66bb6a;
+  background-image: url("../svg/icons/safari.svg");
 }
 .kits__kit_caving:before {
   background-color: #8d6e63;
 }
 .kits__kit_surfing:before {
   background-color: #26c6da;
+}
+@media (max-width: 1120px) {
+  .kits {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    float: none;
+    margin: 31px 0 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-width: 1px 1px 1px 0;
+  }
+  .kits_stick {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    margin: 0;
+  }
+  .kits__trigger {
+    display: block;
+  }
+  .kits__trigger-input:checked + .kits__trigger {
+    background: url("../svg/open-kits.svg") 50% 50% no-repeat;
+  }
+  .kits__trigger-input:checked + .kits__trigger + .kits__menu {
+    width: 90px;
+  }
+  .kits__trigger-input:checked + .kits__trigger + .kits__menu .kits__kit-title {
+    display: none;
+  }
+  .kits__trigger-input:checked + .kits__trigger + .kits__menu .kits__kit-elements {
+    display: none;
+  }
+  .kits__available {
+    display: none;
+  }
+  .kits__kit {
+    padding: 10px;
+    border-radius: 0;
+  }
+  .kits__kit-title {
+    width: 144px;
+  }
+  .kits__kit-elements {
+    width: 144px;
+  }
+  .kits__menu {
+    width: 249px;
+    max-height: calc(100vh - 107px);
+  }
 }
 
 * {
