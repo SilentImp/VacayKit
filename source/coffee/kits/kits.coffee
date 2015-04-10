@@ -18,8 +18,6 @@ class Kits
     $(window).on 'scroll', @stickIt
     $(window).on 'resize', @getLayout
 
-
-
   getLayout: =>
     @layout = 'desktop'
     if Modernizr.mq '(max-width: 1120px)'
@@ -31,7 +29,7 @@ class Kits
     @viewport_height = Math.max document.documentElement.clientHeight, window.innerHeight || 0
     @links_width = @wrapper.width()
     @links_height = @wrapper.height()
-    @menu_top = @widget.offset().top
+    @menu_top = $('.items__wrapper').offset().top
 
   stickIt: =>
     top = $('html').scrollTop()

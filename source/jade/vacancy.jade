@@ -98,7 +98,7 @@ html(lang="en")
                 nav.switcher
                   button(type="button", data-filter="F") °F
                   button(type="button", data-filter="C") °C
-              
+
 
             section.best__graph
               h2.best__graph-title Average number of rainy days
@@ -138,7 +138,7 @@ html(lang="en")
       button.page__share(type="button") Share with friends
 
       .kits
-        .kits__available 
+        .kits__available
           | Available kits
           span.kits__count 8
         input(type="checkbox", checked="checked", id="kits__trigger-input", class="kits__trigger-input")
@@ -178,7 +178,10 @@ html(lang="en")
             a.kits__kit.kits__kit_whales(href="#kit11")
               h3.kits__kit-title Whale watching
               p.kits__kit-elements 6 items
-            
+            a.kits__kit.kits__kit_mountin-hiking(href="#kit12")
+              h3.kits__kit-title Mount Hiking
+              p.kits__kit-elements 5 items
+
       .items__wrapper
         section.items(id="kit1")
           .items__header.items__header_beach
@@ -263,16 +266,16 @@ html(lang="en")
 
             li.item
               h3.item__title UV protection shirt and shorts
-              
+
               nav.switcher(data-target="itemlist_1")
                 button.switcher__selected(type="button", data-filter="men") Men
                 button(type="button", data-filter="woman") Woman
                 button(type="button", data-filter="kid") Kids
-              
+
               .item__elements-wrapper
-                
+
                 .item__elements#itemlist_1
-                  
+
                   .item__element(data-label="kid")
                     .item__photo
                       img(src="images/item-4.jpg", alt="Фотография")
@@ -296,7 +299,7 @@ html(lang="en")
                         .item__votes 390 reviews
                     a.item__price.item__price_amazon(href="#")
                       strong.item__price-current $16.77 - $30.85
-                      
+
                   .item__element(data-label="woman")
                     .item__photo
                       img(src="images/item-4.jpg", alt="Фотография")
@@ -320,8 +323,8 @@ html(lang="en")
                         .item__votes 390 reviews
                     a.item__price.item__price_amazon(href="#")
                       strong.item__price-current $16.77 - $30.85
-                      
-                      
+
+
                   .item__element(data-label="men kid")
                     .item__photo
                       img(src="images/item-4.jpg", alt="Фотография")
@@ -345,7 +348,7 @@ html(lang="en")
                         .item__votes 390 reviews
                     a.item__price.item__price_amazon(href="#")
                       strong.item__price-current $16.77 - $30.85
-                      
+
           form.items-subscribe(action="/subscribe/", method="post")
             h2.items-subscribe__title Get my Thailand packing list
             fieldset.items-subscribe__line.items-subscribe__line_email
@@ -354,9 +357,9 @@ html(lang="en")
             fieldset.items-subscribe__line.checkbox
               input#items-subscribe__update.checkbox__input(type="checkbox", name="update")
               label.checkbox__label(for="items-subscribe__update") Subscribe me to VacayKit monthly update
-              
-        
-        section.items(id="kit2")        
+
+
+        section.items(id="kit2")
           .items__header.items__header_vacination
             h2.items__title
               | Vacination
@@ -376,7 +379,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit2") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit3")        
+        section.items(id="kit3")
           .items__header.items__header_walking
             h2.items__title
               | City Walking
@@ -396,7 +399,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit3") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit4")        
+        section.items(id="kit4")
           .items__header.items__header_aid
             h2.items__title
               | First Aid
@@ -416,7 +419,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit4") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit5")        
+        section.items(id="kit5")
           .items__header.items__header_snorkeling
             h2.items__title
               | Snorkeling
@@ -436,7 +439,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit5") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit6")        
+        section.items(id="kit6")
           .items__header.items__header_trekking
             h2.items__title
               | Jungle Trekking
@@ -456,7 +459,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit6") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit7")        
+        section.items(id="kit7")
           .items__header.items__header_caving
             h2.items__title
               | Caving
@@ -476,7 +479,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit7") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit8")        
+        section.items(id="kit8")
           .items__header.items__header_surfing
             h2.items__title
               | Surfing
@@ -496,7 +499,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit8") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit9")        
+        section.items(id="kit9")
           .items__header.items__header_diving
             h2.items__title
               | Scuba Diving
@@ -516,7 +519,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit9") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit10")        
+        section.items(id="kit10")
           .items__header.items__header_safari
             h2.items__title
               | Safari
@@ -536,7 +539,7 @@ html(lang="en")
               label.checkbox__label(for="items-subscribe__update_kit10") Subscribe me to VacayKit monthly update
 
 
-        section.items(id="kit11")        
+        section.items(id="kit11")
           .items__header.items__header_whales
             h2.items__title
               | Whale watching
@@ -554,6 +557,25 @@ html(lang="en")
             fieldset.items-subscribe__line.checkbox
               input#items-subscribe__update_kit11.checkbox__input(type="checkbox", name="update")
               label.checkbox__label(for="items-subscribe__update_kit11") Subscribe me to VacayKit monthly update
+              
+          section.items(id="kit12")
+            .items__header.items__header_mountin-hiking
+              h2.items__title
+                | Mountin hiking
+                span.items__count 5 items
+
+            .items__abstract
+              p Ditch the usual tourist traps and vacation like a native—on foot! With 50 adventures to choose from in each deck, just pick a card from the deck and be on your way.
+              p Whether you're a first time visitor to the city, or just want to discover new terrain, City Walks gives you an intimate view.
+
+            form.items-subscribe(action="/subscribe/", method="post")
+              h2.items-subscribe__title Get my Thailand packing list
+              fieldset.items-subscribe__line.items-subscribe__line_email
+                input.items-subscribe__input(type="email", name="email", placeholder="Email", required="required")
+                button.items-subscribe__submit(type="submit") Send
+              fieldset.items-subscribe__line.checkbox
+                input#items-subscribe__update_kit11.checkbox__input(type="checkbox", name="update")
+                label.checkbox__label(for="items-subscribe__update_kit11") Subscribe me to VacayKit monthly update
 
 
     footer
