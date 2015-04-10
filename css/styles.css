@@ -1795,6 +1795,10 @@ body>header .project__link_mobile {
   }
   .kits__trigger {
     display: block;
+    background-image: url("../svg/unopen.svg");
+  }
+  .kits__trigger-input:checked + .kits__trigger {
+    background-image: url("../svg/open.svg");
   }
   .kits__trigger-input:checked + .kits__trigger + .kits__menu {
     width: auto;
