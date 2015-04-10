@@ -24,6 +24,38 @@ $(document).ready(function() {
   return new Hamburger;
 });
 
+var Layout,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Layout = (function() {
+  function Layout() {
+    this.unblockTransitions = bind(this.unblockTransitions, this);
+    this.blockTransitions = bind(this.blockTransitions, this);
+    this.html = $('html');
+    this.timer = null;
+    $(window).on('resize', this.blockTransitions);
+  }
+
+  Layout.prototype.blockTransitions = function() {
+    if (!this.html.hasClass('resizing')) {
+      this.html.addClass('resizing');
+    }
+    window.clearTimeout(this.timer);
+    return this.timer = window.setTimeout(this.unblockTransitions, 250);
+  };
+
+  Layout.prototype.unblockTransitions = function() {
+    return this.html.removeClass('resizing');
+  };
+
+  return Layout;
+
+})();
+
+$(document).ready(function() {
+  return new Layout;
+});
+
 var Kits,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -63,12 +95,12 @@ Kits = (function() {
     }
     this.viewport_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     this.links_width = this.wrapper.width();
-    return this.links_height = this.wrapper.height();
+    this.links_height = this.wrapper.height();
+    return this.menu_top = this.widget.offset().top;
   };
 
   Kits.prototype.stickIt = function() {
     var top, visible_footer;
-    this.menu_top = this.widget.offset().top;
     top = $('html').scrollTop();
     if (top + this.header_height >= this.menu_top) {
       this.widget.toggleClass('kits_stick', true);
@@ -159,38 +191,6 @@ Kits = (function() {
 
 $(document).ready(function() {
   return new Kits;
-});
-
-var Layout,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-Layout = (function() {
-  function Layout() {
-    this.unblockTransitions = bind(this.unblockTransitions, this);
-    this.blockTransitions = bind(this.blockTransitions, this);
-    this.html = $('html');
-    this.timer = null;
-    $(window).on('resize', this.blockTransitions);
-  }
-
-  Layout.prototype.blockTransitions = function() {
-    if (!this.html.hasClass('resizing')) {
-      this.html.addClass('resizing');
-    }
-    window.clearTimeout(this.timer);
-    return this.timer = window.setTimeout(this.unblockTransitions, 250);
-  };
-
-  Layout.prototype.unblockTransitions = function() {
-    return this.html.removeClass('resizing');
-  };
-
-  return Layout;
-
-})();
-
-$(document).ready(function() {
-  return new Layout;
 });
 
 var Navigation,
