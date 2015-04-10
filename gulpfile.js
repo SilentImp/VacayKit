@@ -20,7 +20,7 @@ var gulp = require('gulp')
         , 'js': './source/js/**/*.js'
         , 'stylus': './source/stylus/**/*.styl'
         , 'css': './source/css/*.css'
-        , 'svg': './source/svg/*.svg'
+        , 'svg': './source/svg/**/*.svg'
         , 'images': './source/images/*'
         , 'fonts': './source/fonts/*'
       }

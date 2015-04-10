@@ -1,0 +1,80 @@
+@import "../helpers/*"
+
+.best
+  position relative
+  width 100%
+  clearit()
+  *
+    pointer-events all
+  &__abstract
+    padding 0 0 0 30px
+    margin 30px 0 0
+    width 720px
+    p
+      font-size 18px
+      line-height 24px
+      margin 0 0 24px
+  &__graph
+    float left
+    position relative
+    left 100%
+    margin-left -100%
+    width 600px
+  &__stats
+    float left
+    position relative
+    left 100%
+    margin-left -300px
+    width 300px
+  &__label
+    display inline-block
+    width 170px
+    font-size 16px
+    line-height 19px
+    color $semi-grey
+    float left
+    position relative
+    left 100%
+    margin-left -100%
+  &__data
+    display inline-block
+    width 130px
+    font-size 16px
+    line-height 19px
+    color $grey
+    float left
+    position relative
+    left 100%
+    margin-left -130px
+  &__month
+    font-size 18px
+    line-height 22px
+    font-weight bold
+    margin 0 0 10px
+  &__dataset
+    width 300px
+    position:relative
+    margin 0 0 10px
+    clearit()
+  &__stat
+    clearit()
+    margin 0 0 30px
+    &-title
+      margin 0 0 10px
+      font-size 18px
+      line-height 22px
+      color $semi-grey
+      border-bottom 1px solid $light-grey-border
+
+
+@media (max-width: $laptop)
+  html body .best
+    &__abstract
+      padding 0
+      margin 30px 0 0
+
+@media (max-width: 940px)
+  html body .best
+    &__abstract
+      width auto
+      margin 15px 0 0

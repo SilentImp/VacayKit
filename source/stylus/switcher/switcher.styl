@@ -1,0 +1,39 @@
+@import "../helpers/*"
+
+.switcher
+  margin 20px 0
+  font-size 0
+  white-space nowrap
+  button
+    line-height 32px
+    height 32px
+    margin 0 0 0 2px
+    padding 0 10px
+    min-width 60px
+    -webkit-appearance none
+    -moz-appearance none
+    appearance none
+    cursor pointer
+    border-style none
+    text-decoration none
+    font-weight bold
+    background none
+    background-color $green-gray
+    background-repeat no-repeat
+    display inline-block
+    vertical-align middle
+    font-family 'Lato', sans-serif
+    font-size 16px
+    color $semi-grey
+    transition background-color .25s, border-color .25s
+    &:hover
+      background-color $green-gray-hover-light
+    &.switcher__selected,
+    &:active
+      color $white
+      background-color $green-gray-light
+    &:last-child
+      border-radius 0 16px 16px 0
+    &:first-child
+      border-radius 16px 0 0 16px
+      margin 0

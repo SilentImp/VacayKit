@@ -9,6 +9,10 @@ grey_button()
   font-size 20px
   border-radius 25px
 
+grey_button_hover()
+  background-color $grey-hover
+  border-color $grey-hover
+
 grey_button_base()
   -webkit-appearance none
   -moz-appearance none
@@ -27,8 +31,7 @@ grey_button_base()
   font-family 'Lato', sans-serif
   transition background-color .25s, border-color .25s
   &:hover
-    background-color $grey-hover
-    border-color $grey-hover
+    grey_button_hover()
   &:active
     background-color darken($grey-hover, 10%)
     border-color darken($grey-hover, 10%)

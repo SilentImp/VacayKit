@@ -6,23 +6,24 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     title Long Flight Kit | VacayKit
     link(rel="stylesheet", href="css/styles.css")
+    script(src="js/modernizr/modernizr.js")
     script(src="js/jquery/dist/jquery.min.js")
     script(src="js/scripts.js", defer, async)
-    
+
   body
-  
+
     header.fly
-      
+
       nav.project
-      
+
         a(href="/")
           h1.logotype VacayKit
-          
+
         button.hamburger(type="button")
           span.hamburger__line.hamburger__line_top
           span.hamburger__line.hamburger__line_middle
           span.hamburger__line.hamburger__line_bottom
-                    
+
         .project__wrapper
           a.project__link.project__link_mobile(href="/") Home
           .dropdown
@@ -41,43 +42,43 @@ html(lang="en")
           a.project__link(href="#") Blog
           a.project__link(href="#") About
           a.project__link.project__link_mobile(href="#") Contact us
-        
+
         .project__lightbox
-      
+
       .wrapper
         h2.kit.kit_fly
           span.kit__name Long Flight Kit
           span.kit__count 8 kits
-        
+
         a.subscribe(href="#") Get my Packing List
-    
+
     section.page
-      
+
       section.page__header
-      
+
         button.page__section-button.page__section-button_open(type="button") General Info
         section.page__section
-        
+
           aside.info
-            
+
             section.info__social
               h2.info__title Share with friends
               .info__details
                 img(src="images/social_dummy_2.png", alt="Заглушка")
-            
-            
-          section.brief
-          
-            p Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all. 
 
-            p The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls. 
+
+          section.brief
+
+            p Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.
+
+            p The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.
 
             p What ever you are looking for in a summer holiday, you can find it in Thailand!
-    
+
       section.items
 
         ol.items__list
-        
+
           li.item
             h3.item__title High sun protection body
             .item__abstract
@@ -96,10 +97,10 @@ html(lang="en")
                   a.item__price.item__price_amazon(href="#")
                     strong.item__price-current $14.57
                     del.item__price-old $157.12
-          
+
           li.item
             h3.item__title High sun protection face
-            
+
             .item__elements-wrapper
               .item__elements
 
@@ -114,7 +115,7 @@ html(lang="en")
                       .item__votes 101 reviews
                   a.item__price.item__price_amazon(href="#")
                     strong.item__price-current $123.57
-                    
+
                 .item__element
                   .item__photo
                     img(src="images/item-2.jpg", alt="Фотография")
@@ -127,12 +128,12 @@ html(lang="en")
                   a.item__price.item__price_amazon(href="#")
                     strong.item__price-current $14.57
                     del.item__price-old $157.12
-                
+
           li.item.item_important
             h3.item__title Sun oil
             .item__abstract
               p Indication Dermatological care
-            
+
             .item__elements-wrapper
               .item__elements
                 .item__element
@@ -147,7 +148,7 @@ html(lang="en")
                   a.item__price.item__price_amazon(href="#")
                     strong.item__price-current $14.57
                     del.item__price-old $157.12
-                
+
           li.item
             h3.item__title UV protection shirt and shorts
             .item__elements-wrapper
@@ -163,7 +164,7 @@ html(lang="en")
                       .item__votes 101 reviews
                   a.item__price.item__price_amazon(href="#")
                     strong.item__price-current $16.77 - $30.85
-                    
+
                 .item__element
                   .item__photo
                     img(src="images/item-5.jpg", alt="Фотография")
@@ -175,8 +176,8 @@ html(lang="en")
                       .item__votes 390 reviews
                   a.item__price.item__price_amazon(href="#")
                     strong.item__price-current $16.77 - $30.85
-      
-          
+
+
         form.items-subscribe(action="/subscribe/", method="post")
           h2.items-subscribe__title Get my Thailand packing list
           fieldset.items-subscribe__line.items-subscribe__line_email
@@ -185,7 +186,7 @@ html(lang="en")
           fieldset.items-subscribe__line.checkbox
             input#items-subscribe__update.checkbox__input(type="checkbox", name="update")
             label.checkbox__label(for="items-subscribe__update") Subscribe me to VacayKit monthly update
-            
+
     footer
       p.copyright © 2015 VacayKit.
         span  All rights reserved.
@@ -200,7 +201,7 @@ html(lang="en")
         a.gp(href="#")
         a.pi(href="#")
         a.yt(href="#")
-        
+
     .popup.subscribe-form-popup
       .popup__lightbox
       form.popup__panel.subscribe-form(action="/", method="post")
@@ -225,7 +226,7 @@ html(lang="en")
           img(src="images/social_dummy.png", alt="Заглушка для социальных сетей")
         nav
           a.popup__close(href="#")
-          
+
     .popup.share-list-popup
       .popup__lightbox
       .popup__panel.share-list
