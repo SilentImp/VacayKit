@@ -1,3 +1,29 @@
+var Hamburger,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Hamburger = (function() {
+  function Hamburger() {
+    this.switchState = bind(this.switchState, this);
+    this.button = $('body>header .hamburger');
+    if (this.button.length === 0) {
+      return;
+    }
+    this.button.on('click touch', this.switchState);
+    $('.project__lightbox').on('click touch', this.switchState);
+  }
+
+  Hamburger.prototype.switchState = function() {
+    return this.button.toggleClass('hamburger_open');
+  };
+
+  return Hamburger;
+
+})();
+
+$(document).ready(function() {
+  return new Hamburger;
+});
+
 var Kits,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -96,7 +122,9 @@ Kits = (function() {
       link_width = link.width();
       if (link_left < scroll_left || (link_left + link_width) > (scroll_left + menu_width)) {
         this.menu.scrollTop(0);
-        return this.menu.scrollLeft(parseInt(link_left + link_width / 2 - menu_width / 2, 10));
+        return this.menu.stop().animate({
+          scrollLeft: parseInt(link_left + link_width / 2 - menu_width / 2, 10) + 'px'
+        }, 'fast');
       }
     } else {
       scroll_top = this.menu.scrollTop();
@@ -104,7 +132,9 @@ Kits = (function() {
       link_height = link.height();
       if ((link_top < scroll_top) || (link_top + link_height) > (scroll_top + menu_height)) {
         this.menu.scrollLeft(0);
-        return this.menu.scrollTop(parseInt(link_top + link_height / 2 - menu_height / 2 + 15, 10));
+        return this.menu.stop().animate({
+          scrollTop: parseInt(link_top + link_height / 2 - menu_height / 2 + 15, 10) + 'px'
+        }, 'fast');
       }
     }
   };
@@ -118,7 +148,7 @@ Kits = (function() {
     } else {
       target = parseInt(element.offset().top - this.header_height - 20, 10);
     }
-    return $('html').animate({
+    return $('html').stop().animate({
       scrollTop: target + 'px'
     }, 'fast');
   };
@@ -129,32 +159,6 @@ Kits = (function() {
 
 $(document).ready(function() {
   return new Kits;
-});
-
-var Hamburger,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-Hamburger = (function() {
-  function Hamburger() {
-    this.switchState = bind(this.switchState, this);
-    this.button = $('body>header .hamburger');
-    if (this.button.length === 0) {
-      return;
-    }
-    this.button.on('click touch', this.switchState);
-    $('.project__lightbox').on('click touch', this.switchState);
-  }
-
-  Hamburger.prototype.switchState = function() {
-    return this.button.toggleClass('hamburger_open');
-  };
-
-  return Hamburger;
-
-})();
-
-$(document).ready(function() {
-  return new Hamburger;
 });
 
 var Layout,
