@@ -1409,6 +1409,10 @@ body>header .project__link_mobile {
   background-color: #26c6da;
   color: #fff;
 }
+.items__header_mountin-hiking {
+  background-color: #26c6da;
+  color: #fff;
+}
 .items__title {
   font-size: 44px;
   line-height: 52px;
@@ -1697,6 +1701,7 @@ body>header .project__link_mobile {
 }
 .kits__kit_vacination:before {
   background-color: #90a4ae;
+  background-image: url("../svg/icons/vaccination.svg");
 }
 .kits__kit_walking:before {
   background-color: #ec407a;
@@ -1708,6 +1713,7 @@ body>header .project__link_mobile {
 }
 .kits__kit_aid:before {
   background-color: #ff7043;
+  background-image: url("../svg/icons/first_aid.svg");
 }
 .kits__kit_snorkeling:before {
   background-color: #29b6f6;
@@ -1727,9 +1733,14 @@ body>header .project__link_mobile {
 }
 .kits__kit_caving:before {
   background-color: #8d6e63;
+  background-image: url("../svg/icons/caving.svg");
 }
 .kits__kit_surfing:before {
   background-color: #26c6da;
+}
+.kits__kit_mountin-hiking:before {
+  background-color: #26c6da;
+  background-image: url("../svg/icons/mountain_hiking.svg");
 }
 @media (max-width: 1120px) {
   .kits {
