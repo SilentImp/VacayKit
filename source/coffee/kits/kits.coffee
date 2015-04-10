@@ -31,11 +31,11 @@ class Kits
     @viewport_height = Math.max document.documentElement.clientHeight, window.innerHeight || 0
     @links_width = @wrapper.width()
     @links_height = @wrapper.height()
+    @menu_top = @widget.offset().top
 
   stickIt: =>
-    @menu_top = @widget.offset().top
     top = $('html').scrollTop()
-    if top+@header_height  >= @menu_top
+    if top+@header_height >= @menu_top
       @widget.toggleClass 'kits_stick', true
       if @layout is 'desktop' || @layout is 'tablet'
         visible_footer = Math.max((top + @viewport_height) - @footer.offset().top, 0)
