@@ -30,9 +30,7 @@ var Kits,
 Kits = (function() {
   function Kits() {
     this.scrollTo = bind(this.scrollTo, this);
-    this.stickItMobile = bind(this.stickItMobile, this);
-    this.stickItTablet = bind(this.stickItTablet, this);
-    this.stickItDeskTop = bind(this.stickItDeskTop, this);
+    this.getCurrentKit = bind(this.getCurrentKit, this);
     this.stickIt = bind(this.stickIt, this);
     this.getLayout = bind(this.getLayout, this);
     this.widget = $('.kits');
@@ -42,6 +40,9 @@ Kits = (function() {
     this.header_height = $('body>header>.project').height();
     this.menu = this.widget.find('.kits__menu');
     this.buttons = this.menu.find('a');
+    this.footer = $('body>footer');
+    this.heads = $('.items__header');
+    this.head_height = $(this.heads.get(0)).height();
     this.getLayout();
     this.buttons.on('click', this.scrollTo);
     $(window).on('scroll', this.stickIt);
@@ -55,47 +56,65 @@ Kits = (function() {
     }
     if (Modernizr.mq('(max-width: 980px)')) {
       this.layout = 'mobile';
+      this.menu.css('max-height', 'initial');
+      this.widget.css('bottom', 'auto');
     }
-    return this.menu_top = this.widget.offset().top;
+    return this.viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   };
 
   Kits.prototype.stickIt = function() {
-    switch (this.layout) {
-      case 'desktop':
-        return this.stickItDeskTop();
-      case 'tablet':
-        return this.stickItTablet();
-      case 'mobile':
-        return this.stickItMobile();
+    var top, visible_footer;
+    this.menu_top = this.widget.offset().top;
+    top = $('html').scrollTop();
+    if (top + this.header_height >= this.menu_top) {
+      this.widget.toggleClass('kits_stick', true);
+      if (this.layout === 'desktop' || this.layout === 'tablet') {
+        visible_footer = Math.max((top + this.viewportHeight) - this.footer.offset().top, 0);
+        this.menu.css('max-height', this.viewportHeight - this.header_height - visible_footer - 48);
+        this.widget.css('bottom', visible_footer + 'px');
+      }
+    } else {
+      this.widget.toggleClass('kits_stick', false);
+      this.menu.css('max-height', this.viewportHeight - this.header_height);
+      this.widget.css('bottom', 'auto');
     }
+    return this.getCurrentKit();
   };
 
-  Kits.prototype.stickItDeskTop = function() {
-    if ($('html').scrollTop() + this.header_height >= this.menu_top) {
-      return this.widget.toggleClass('kits_stick', true);
-    } else {
-      return this.widget.toggleClass('kits_stick', false);
+  Kits.prototype.getCurrentKit = function() {
+    var bottom, head, i, id, last, len, level, ref;
+    bottom = $('html').scrollTop() + this.viewportHeight;
+    last = null;
+    ref = this.heads;
+    for (i = 0, len = ref.length; i < len; i++) {
+      head = ref[i];
+      head = $(head);
+      level = head.offset().top + this.head_height;
+      if (bottom - level >= 0) {
+        last = head.get(0);
+      } else {
+        break;
+      }
     }
-  };
-
-  Kits.prototype.stickItTablet = function() {
-    if ($('html').scrollTop() + this.header_height >= this.menu_top) {
-      return this.widget.toggleClass('kits_stick', true);
-    } else {
-      return this.widget.toggleClass('kits_stick', false);
-    }
-  };
-
-  Kits.prototype.stickItMobile = function() {
-    if ($('html').scrollTop() + this.header_height >= this.menu_top) {
-      return this.widget.toggleClass('kits_stick', true);
-    } else {
-      return this.widget.toggleClass('kits_stick', false);
+    if (last !== null) {
+      id = last.parentNode.getAttribute('id');
+      this.menu.find('.kits__kit_active').removeClass('kits__kit_active');
+      return this.menu.find('a[href="#' + id + '"]').addClass('kits__kit_active');
     }
   };
 
   Kits.prototype.scrollTo = function(event) {
-    return event.preventDefault();
+    var element, target;
+    event.preventDefault();
+    element = $(event.currentTarget.getAttribute('href'));
+    if (this.layout === 'mobile') {
+      target = parseInt(element.offset().top - this.header_height - this.widget.height() - 20, 10);
+    } else {
+      target = parseInt(element.offset().top - this.header_height - 20, 10);
+    }
+    return $('html').animate({
+      scrollTop: target + 'px'
+    }, 'fast');
   };
 
   return Kits;
