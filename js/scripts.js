@@ -1,3 +1,136 @@
+var Kits,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Kits = (function() {
+  function Kits() {
+    this.scrollTo = bind(this.scrollTo, this);
+    this.scroll_menu = bind(this.scroll_menu, this);
+    this.getCurrentKit = bind(this.getCurrentKit, this);
+    this.stickIt = bind(this.stickIt, this);
+    this.getLayout = bind(this.getLayout, this);
+    this.widget = $('.kits');
+    if (this.widget.length === 0) {
+      return;
+    }
+    this.header_height = $('body>header>.project').height();
+    this.menu = this.widget.find('.kits__menu');
+    this.buttons = this.menu.find('a');
+    this.footer = $('body>footer');
+    this.heads = $('.items__header');
+    this.head_height = $(this.heads.get(0)).height();
+    this.wrapper = this.menu.find('.kits__wrapper');
+    this.getLayout();
+    this.buttons.on('click', this.scrollTo);
+    $(window).on('scroll', this.stickIt);
+    $(window).on('resize', this.getLayout);
+  }
+
+  Kits.prototype.getLayout = function() {
+    this.layout = 'desktop';
+    if (Modernizr.mq('(max-width: 1120px)')) {
+      this.layout = 'tablet';
+    }
+    if (Modernizr.mq('(max-width: 980px)')) {
+      this.layout = 'mobile';
+      this.menu.css('max-height', 'initial');
+      this.widget.css('bottom', 'auto');
+    }
+    this.viewport_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    this.links_width = this.wrapper.width();
+    return this.links_height = this.wrapper.height();
+  };
+
+  Kits.prototype.stickIt = function() {
+    var top, visible_footer;
+    this.menu_top = this.widget.offset().top;
+    top = $('html').scrollTop();
+    if (top + this.header_height >= this.menu_top) {
+      this.widget.toggleClass('kits_stick', true);
+      if (this.layout === 'desktop' || this.layout === 'tablet') {
+        visible_footer = Math.max((top + this.viewport_height) - this.footer.offset().top, 0);
+        this.menu.css('max-height', this.viewport_height - this.header_height - visible_footer - 48);
+        this.widget.css('bottom', visible_footer + 'px');
+      }
+    } else {
+      this.widget.toggleClass('kits_stick', false);
+      this.menu.css('max-height', this.viewport_height - this.header_height);
+      this.widget.css('bottom', 'auto');
+    }
+    return this.getCurrentKit();
+  };
+
+  Kits.prototype.getCurrentKit = function() {
+    var bottom, head, i, id, last, len, level, link, menu_height, menu_width, ref;
+    bottom = $('html').scrollTop() + this.viewport_height;
+    last = null;
+    ref = this.heads;
+    for (i = 0, len = ref.length; i < len; i++) {
+      head = ref[i];
+      head = $(head);
+      level = head.offset().top + this.head_height;
+      if (bottom - level >= 0) {
+        last = head.get(0);
+      } else {
+        break;
+      }
+    }
+    if (last !== null) {
+      id = last.parentNode.getAttribute('id');
+      this.menu.find('.kits__kit_active').removeClass('kits__kit_active');
+      link = this.menu.find('a[href="#' + id + '"]');
+      link.addClass('kits__kit_active');
+      menu_width = this.menu.width();
+      menu_height = this.menu.height();
+      if ((this.layout === 'mobile' && this.links_width > menu_width) || (this.layout !== 'mobile' && this.links_height > menu_height)) {
+        window.clearTimeout(this.scroll_timer);
+        return this.scroll_timer = window.setTimeout(this.scroll_menu, 100, link, menu_width, menu_height);
+      }
+    }
+  };
+
+  Kits.prototype.scroll_menu = function(link, menu_width, menu_height) {
+    var link_height, link_left, link_top, link_width, scroll_left, scroll_top;
+    if (this.layout === 'mobile') {
+      scroll_left = this.menu.scrollLeft();
+      link_left = link.offset().left;
+      link_width = link.width();
+      if (link_left < scroll_left || (link_left + link_width) > (scroll_left + menu_width)) {
+        this.menu.scrollTop(0);
+        return this.menu.scrollLeft(parseInt(link_left + link_width / 2 - menu_width / 2, 10));
+      }
+    } else {
+      scroll_top = this.menu.scrollTop();
+      link_top = link.offset().top - link.parent().offset().top;
+      link_height = link.height();
+      if ((link_top < scroll_top) || (link_top + link_height) > (scroll_top + menu_height)) {
+        this.menu.scrollLeft(0);
+        return this.menu.scrollTop(parseInt(link_top + link_height / 2 - menu_height / 2 + 15, 10));
+      }
+    }
+  };
+
+  Kits.prototype.scrollTo = function(event) {
+    var element, target;
+    event.preventDefault();
+    element = $(event.currentTarget.getAttribute('href'));
+    if (this.layout === 'mobile') {
+      target = parseInt(element.offset().top - this.header_height - this.widget.height() - 20, 10);
+    } else {
+      target = parseInt(element.offset().top - this.header_height - 20, 10);
+    }
+    return $('html').animate({
+      scrollTop: target + 'px'
+    }, 'fast');
+  };
+
+  return Kits;
+
+})();
+
+$(document).ready(function() {
+  return new Kits;
+});
+
 var Hamburger,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -22,107 +155,6 @@ Hamburger = (function() {
 
 $(document).ready(function() {
   return new Hamburger;
-});
-
-var Kits,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-Kits = (function() {
-  function Kits() {
-    this.scrollTo = bind(this.scrollTo, this);
-    this.getCurrentKit = bind(this.getCurrentKit, this);
-    this.stickIt = bind(this.stickIt, this);
-    this.getLayout = bind(this.getLayout, this);
-    this.widget = $('.kits');
-    if (this.widget.length === 0) {
-      return;
-    }
-    this.header_height = $('body>header>.project').height();
-    this.menu = this.widget.find('.kits__menu');
-    this.buttons = this.menu.find('a');
-    this.footer = $('body>footer');
-    this.heads = $('.items__header');
-    this.head_height = $(this.heads.get(0)).height();
-    this.getLayout();
-    this.buttons.on('click', this.scrollTo);
-    $(window).on('scroll', this.stickIt);
-    $(window).on('resize', this.getLayout);
-  }
-
-  Kits.prototype.getLayout = function() {
-    this.layout = 'desktop';
-    if (Modernizr.mq('(max-width: 1120px)')) {
-      this.layout = 'tablet';
-    }
-    if (Modernizr.mq('(max-width: 980px)')) {
-      this.layout = 'mobile';
-      this.menu.css('max-height', 'initial');
-      this.widget.css('bottom', 'auto');
-    }
-    return this.viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-  };
-
-  Kits.prototype.stickIt = function() {
-    var top, visible_footer;
-    this.menu_top = this.widget.offset().top;
-    top = $('html').scrollTop();
-    if (top + this.header_height >= this.menu_top) {
-      this.widget.toggleClass('kits_stick', true);
-      if (this.layout === 'desktop' || this.layout === 'tablet') {
-        visible_footer = Math.max((top + this.viewportHeight) - this.footer.offset().top, 0);
-        this.menu.css('max-height', this.viewportHeight - this.header_height - visible_footer - 48);
-        this.widget.css('bottom', visible_footer + 'px');
-      }
-    } else {
-      this.widget.toggleClass('kits_stick', false);
-      this.menu.css('max-height', this.viewportHeight - this.header_height);
-      this.widget.css('bottom', 'auto');
-    }
-    return this.getCurrentKit();
-  };
-
-  Kits.prototype.getCurrentKit = function() {
-    var bottom, head, i, id, last, len, level, ref;
-    bottom = $('html').scrollTop() + this.viewportHeight;
-    last = null;
-    ref = this.heads;
-    for (i = 0, len = ref.length; i < len; i++) {
-      head = ref[i];
-      head = $(head);
-      level = head.offset().top + this.head_height;
-      if (bottom - level >= 0) {
-        last = head.get(0);
-      } else {
-        break;
-      }
-    }
-    if (last !== null) {
-      id = last.parentNode.getAttribute('id');
-      this.menu.find('.kits__kit_active').removeClass('kits__kit_active');
-      return this.menu.find('a[href="#' + id + '"]').addClass('kits__kit_active');
-    }
-  };
-
-  Kits.prototype.scrollTo = function(event) {
-    var element, target;
-    event.preventDefault();
-    element = $(event.currentTarget.getAttribute('href'));
-    if (this.layout === 'mobile') {
-      target = parseInt(element.offset().top - this.header_height - this.widget.height() - 20, 10);
-    } else {
-      target = parseInt(element.offset().top - this.header_height - 20, 10);
-    }
-    return $('html').animate({
-      scrollTop: target + 'px'
-    }, 'fast');
-  };
-
-  return Kits;
-
-})();
-
-$(document).ready(function() {
-  return new Kits;
 });
 
 var Layout,
