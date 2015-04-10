@@ -24,6 +24,88 @@ $(document).ready(function() {
   return new Hamburger;
 });
 
+var Kits,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Kits = (function() {
+  function Kits() {
+    this.scrollTo = bind(this.scrollTo, this);
+    this.stickItMobile = bind(this.stickItMobile, this);
+    this.stickItTablet = bind(this.stickItTablet, this);
+    this.stickItDeskTop = bind(this.stickItDeskTop, this);
+    this.stickIt = bind(this.stickIt, this);
+    this.getLayout = bind(this.getLayout, this);
+    this.widget = $('.kits');
+    if (this.widget.length === 0) {
+      return;
+    }
+    this.header_height = $('body>header>.project').height();
+    this.menu = this.widget.find('.kits__menu');
+    this.buttons = this.menu.find('a');
+    this.getLayout();
+    this.buttons.on('click', this.scrollTo);
+    $(window).on('scroll', this.stickIt);
+    $(window).on('resize', this.getLayout);
+  }
+
+  Kits.prototype.getLayout = function() {
+    this.layout = 'desktop';
+    if (Modernizr.mq('(max-width: 1120px)')) {
+      this.layout = 'tablet';
+    }
+    if (Modernizr.mq('(max-width: 980px)')) {
+      this.layout = 'mobile';
+    }
+    return this.menu_top = this.widget.offset().top;
+  };
+
+  Kits.prototype.stickIt = function() {
+    switch (this.layout) {
+      case 'desktop':
+        return this.stickItDeskTop();
+      case 'tablet':
+        return this.stickItTablet();
+      case 'mobile':
+        return this.stickItMobile();
+    }
+  };
+
+  Kits.prototype.stickItDeskTop = function() {
+    if ($('html').scrollTop() + this.header_height >= this.menu_top) {
+      return this.widget.toggleClass('kits_stick', true);
+    } else {
+      return this.widget.toggleClass('kits_stick', false);
+    }
+  };
+
+  Kits.prototype.stickItTablet = function() {
+    if ($('html').scrollTop() + this.header_height >= this.menu_top) {
+      return this.widget.toggleClass('kits_stick', true);
+    } else {
+      return this.widget.toggleClass('kits_stick', false);
+    }
+  };
+
+  Kits.prototype.stickItMobile = function() {
+    if ($('html').scrollTop() + this.header_height >= this.menu_top) {
+      return this.widget.toggleClass('kits_stick', true);
+    } else {
+      return this.widget.toggleClass('kits_stick', false);
+    }
+  };
+
+  Kits.prototype.scrollTo = function(event) {
+    return event.preventDefault();
+  };
+
+  return Kits;
+
+})();
+
+$(document).ready(function() {
+  return new Kits;
+});
+
 var Layout,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
