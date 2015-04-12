@@ -105,11 +105,13 @@ table {
   margin: 0 0 24px;
 }
 .best__graph {
+  clear: left;
   float: left;
   position: relative;
   left: 100%;
   margin-left: -100%;
   width: 600px;
+  min-height: 100px;
 }
 .best__stats {
   float: left;
@@ -888,12 +890,21 @@ body>header .project__link_mobile {
   color: #4a4a4a;
   margin: 0 0 10px;
 }
+.info .info__currency-name {
+  display: block;
+  white-space: normal;
+}
+.info .info__currency-rates {
+  white-space: normal;
+}
 .info .info__currency-rate {
+  display: inline-block;
   font-size: 14px;
-  margin: 0 10px 0 0;
+  margin: 0 10px 10px 0;
   padding: 0;
   line-height: 25px;
   height: 25px;
+  white-space: nowrap;
 }
 .info .info__currency-rate:before {
   content: ".";
@@ -911,10 +922,10 @@ body>header .project__link_mobile {
   background-color: transparent;
 }
 .info .info__currency-rate_usd:before {
-  background-image: url("../svg/eur.svg");
+  background-image: url("../svg/usd.svg");
 }
 .info .info__currency-rate_eur:before {
-  background-image: url("../svg/usd.svg");
+  background-image: url("../svg/eur.svg");
 }
 @media (max-width: 1024px) {
   html body .info {
