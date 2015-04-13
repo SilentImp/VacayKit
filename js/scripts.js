@@ -58,11 +58,22 @@ Graph = (function() {
   function Graph(widget) {
     this.widget = widget;
     this.temperaturesChart = bind(this.temperaturesChart, this);
-    this.dy = bind(this.dy, this);
-    this.dx = bind(this.dx, this);
-    this.exampleData = bind(this.exampleData, this);
     this.precipitationChart = bind(this.precipitationChart, this);
     this.labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    this.container = this.widget.find('.best__graph-container');
+    this.margin = {
+      top: 30,
+      right: 0,
+      bottom: 30,
+      left: 0
+    };
+    this.width = this.container.width() - this.margin.left - this.margin.right;
+    this.height = this.container.height() - this.margin.top - this.margin.bottom;
+    this.x = d3.scale.ordinal().domain(this.labels).rangeRoundBands([0, this.width], 0);
+    this.y = d3.scale.linear().range([this.height, 0]);
+    this.xAxis = d3.svg.axis().scale(this.x).orient("bottom");
+    this.svg = d3.select(this.container[0]).append("g");
+    this.svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + this.height + ")").call(this.xAxis);
     switch (this.widget.attr('data-type')) {
       case 'precipitation':
         this.precipitationChart();
@@ -72,70 +83,70 @@ Graph = (function() {
     }
   }
 
+  Graph.prototype.lightenDarkenColor = function(col, amt) {
+    var b, g, num, r, usePound;
+    usePound = false;
+    if (col[0] === "#") {
+      col = col.slice(1);
+      usePound = true;
+    }
+    num = parseInt(col, 16);
+    r = (num >> 16) + amt;
+    if (r > 255) {
+      r = 255;
+    } else if (r < 0) {
+      r = 0;
+    }
+    b = ((num >> 8) & 0x00FF) + amt;
+    if (b > 255) {
+      b = 255;
+    } else if (b < 0) {
+      b = 0;
+    }
+    g = (num & 0x0000FF) + amt;
+    if (g > 255) {
+      g = 255;
+    } else if (g < 0) {
+      g = 0;
+    }
+    return "#" + (g | (b << 8) | (r << 16)).toString(16);
+  };
+
   Graph.prototype.precipitationChart = function() {
-    var chart;
-    console.log('precipitation');
+    var bar, barEnter, barUpdate, chart, color, dx, maxX;
     this.values = JSON.parse(this.widget.attr('data-values'));
-    this.container = this.widget.find('.best__graph-container');
-    chart = nv.models.discreteBarChart().x(this.dx).y(this.dy).tooltips(false).showValues(true);
-    d3.select(this.container[0]).datum(this.exampleData).call(chart);
-    return nv.utils.windowResize(chart.update);
-  };
-
-  Graph.prototype.exampleData = function() {
-    return [
-      {
-        key: "Average number of rainy days",
-        values: [
-          {
-            "label": "JAN",
-            "value": 1
-          }, {
-            "label": "FEB",
-            "value": 2
-          }, {
-            "label": "MAR",
-            "value": 3
-          }, {
-            "label": "APR",
-            "value": 4
-          }, {
-            "label": "MAY",
-            "value": 13
-          }, {
-            "label": "JUN",
-            "value": 22
-          }, {
-            "label": "JUL",
-            "value": 12
-          }, {
-            "label": "AUG",
-            "value": 11
-          }, {
-            "label": "SEP",
-            "value": 20
-          }, {
-            "label": "OCT",
-            "value": 18
-          }, {
-            "label": "NOV",
-            "value": 5
-          }, {
-            "label": "DEC",
-            "value": 2
-          }
-        ]
-      }
-    ];
-  };
-
-  Graph.prototype.dx = function(d) {
-    console.log(d);
-    return d.label;
-  };
-
-  Graph.prototype.dy = function(d) {
-    return d.value;
+    maxX = Math.max.apply(null, this.values);
+    this.y.domain([0, maxX]);
+    dx = 0;
+    color = d3.rgb('#1E88E5');
+    chart = d3.select(this.container[0]);
+    bar = chart.selectAll(".bar");
+    barUpdate = bar.data(this.values);
+    barEnter = barUpdate.enter().append("rect");
+    barEnter.attr("width", 100 / 12 + "%");
+    barEnter.attr("height", (function(_this) {
+      return function(d) {
+        return Math.floor(((d * 100 / maxX) / 100) * _this.height) + "px";
+      };
+    })(this));
+    barEnter.attr("y", (function(_this) {
+      return function(d) {
+        return (_this.height - Math.floor(((d * 100 / maxX) / 100) * _this.height)) + "px";
+      };
+    })(this));
+    barEnter.attr("x", (function(_this) {
+      return function(d) {
+        var tmp;
+        tmp = dx;
+        dx += 100 / 12;
+        return Math.min(tmp, 100 - 100 / 12) + "%";
+      };
+    })(this));
+    return barEnter.attr("fill", (function(_this) {
+      return function(d) {
+        return _this.lightenDarkenColor('#1E88E5', 100 - d * 100 / maxX);
+      };
+    })(this));
   };
 
   Graph.prototype.temperaturesChart = function() {
