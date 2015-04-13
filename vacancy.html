@@ -66,90 +66,94 @@
         <button type="button" class="subscribe">Get my Packing List</button>
       </div>
     </header>
-    <section data-country="Belarus" data-code="BY" class="page">
-      <button type="button" class="page__section-button page__section-button_open">General Info</button>
-      <section class="page__section">
-        <aside class="info">
-          <section class="info__capital">
-            <h2 class="info__title">Capital city</h2>
-            <div class="info__details">
-              <p>Bangkok</p>
-            </div>
+    <section data-code="RU" class="page">
+      <div class="page__sections">
+        <button type="button" class="page__section-button page__section-button_open">General Info</button>
+        <section class="page__section">
+          <aside class="info">
+            <section class="info__capital">
+              <h2 class="info__title">Capital city</h2>
+              <div class="info__details">
+                <p>Bangkok</p>
+              </div>
+            </section>
+            <section class="info__currency">
+              <h2 class="info__title">Local currency</h2>
+              <div class="info__details">
+                <p class="info__currency-name">Batt (THB)</p>
+                <p class="info__currency-rates"><strong class="info__currency-rate info__currency-rate_usd">32 THB</strong><strong class="info__currency-rate info__currency-rate_eur">37 THB</strong></p>
+              </div>
+            </section>
+            <section class="info__social">
+              <h2 class="info__title">Share with friends</h2>
+              <div class="info__details"><img src="images/social_dummy_2.png" alt="Заглушка"/></div>
+            </section>
+          </aside>
+          <section class="brief">
+            <p>Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.</p>
+            <p>The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.</p>
+            <p>What ever you are looking for in a summer holiday, you can find it in Thailand!</p>
           </section>
-          <section class="info__currency">
-            <h2 class="info__title">Local currency</h2>
-            <div class="info__details">
-              <p class="info__currency-name">Batt (THB)</p>
-              <p class="info__currency-rates"><strong class="info__currency-rate info__currency-rate_usd">32 THB</strong><strong class="info__currency-rate info__currency-rate_eur">37 THB</strong></p>
-            </div>
-          </section>
-          <section class="info__social">
-            <h2 class="info__title">Share with friends</h2>
-            <div class="info__details"><img src="images/social_dummy_2.png" alt="Заглушка"/></div>
-          </section>
-        </aside>
-        <section class="brief">
-          <p>Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.</p>
-          <p>The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.</p>
-          <p>What ever you are looking for in a summer holiday, you can find it in Thailand!</p>
         </section>
-      </section>
-      <button type="button" class="page__section-button page__section-button_visible">Best time to visit</button>
-      <section class="page__section">
-        <div class="best">
-          <div class="best__abstract">
-            <p>The cool season is the best time to come to Thailand: as well as having more manageable temperatures and less rain, it offers waterfalls in full spate and the best of the upland flowers in bloom. Bear in mind, however, that it’s also the busiest season, so forward planning is essential.</p>
-          </div>
-          <div class="best__graphs">
-            <section data-type="temperature" class="best__graph">
-              <header class="best__graph-header">
-                <h2 class="best__graph-title">Average temperature</h2>
-                <nav class="switcher">
-                  <button type="button" data-filter="F">°F</button>
-                  <button type="button" data-filter="C">°C</button>
-                </nav>
-              </header>
-            </section>
-            <section data-type="precipitation" class="best__graph">
-              <h2 class="best__graph-title">Average number of rainy days</h2>
-            </section>
-          </div>
-          <div class="best__stats">
-            <div class="best__stat">
-              <h3 class="best__stat-title">Cool Season</h3>
-              <p class="best__month">November — February</p>
-              <p class="best__dataset"><span class="best__label">Average temperature</span>
-                <data class="best__data">22–33 °C</data>
-              </p>
-              <p class="best__dataset"><span class="best__label">Average number of rainy days</span>
-                <data class="best__data">1–5</data>
-              </p>
+        <button type="button" class="page__section-button page__section-button_open page__section-button_visible">Best time to visit</button>
+        <section class="page__section">
+          <div class="best">
+            <div class="best__abstract">
+              <p>The cool season is the best time to come to Thailand: as well as having more manageable temperatures and less rain, it offers waterfalls in full spate and the best of the upland flowers in bloom. Bear in mind, however, that it’s also the busiest season, so forward planning is essential.</p>
             </div>
-            <div class="best__stat">
-              <h3 class="best__stat-title">Hot Season</h3>
-              <p class="best__month">November — February</p>
-              <p class="best__dataset"><span class="best__label">Average temperature</span>
-                <data class="best__data">22–33 °C</data>
-              </p>
-              <p class="best__dataset"><span class="best__label">Average number of rainy days</span>
-                <data class="best__data">1–5</data>
-              </p>
+            <div class="best__graphs">
+              <section data-type="temperature" data-min="[78,82,86,88,92,92,88,88,86,84,84,84]" data-max="[70,72,72,74,75,79,75,73,71,68,66,62]" data-format="F" class="best__graph">
+                <header class="best__graph-header">
+                  <h2 class="best__graph-title">Average temperature</h2>
+                  <nav class="switcher">
+                    <button type="button" data-filter="F">°F</button>
+                    <button type="button" data-filter="C">°C</button>
+                  </nav>
+                </header>
+                <svg class="best__graph-container"></svg>
+              </section>
+              <section data-type="precipitation" data-values="[1,2,3,4,13,22,13,11,20,18,5,2]" class="best__graph">
+                <h2 class="best__graph-title">Average number of rainy days</h2>
+                <svg class="best__graph-container"></svg>
+              </section>
             </div>
-            <div class="best__stat">
-              <h3 class="best__stat-title">Rainy Season</h3>
-              <p class="best__month">November — February</p>
-              <p class="best__dataset"><span class="best__label">Average temperature</span>
-                <data class="best__data">22–33 °C</data>
-              </p>
-              <p class="best__dataset"><span class="best__label">Average number of rainy days</span>
-                <data class="best__data">1–5</data>
-              </p>
+            <div class="best__stats">
+              <div class="best__stat">
+                <h3 class="best__stat-title">Cool Season</h3>
+                <p class="best__month">November — February</p>
+                <p class="best__dataset"><span class="best__label">Average temperature</span>
+                  <data class="best__data">22–33 °C</data>
+                </p>
+                <p class="best__dataset"><span class="best__label">Average number of rainy days</span>
+                  <data class="best__data">1–5</data>
+                </p>
+              </div>
+              <div class="best__stat">
+                <h3 class="best__stat-title">Hot Season</h3>
+                <p class="best__month">November — February</p>
+                <p class="best__dataset"><span class="best__label">Average temperature</span>
+                  <data class="best__data">22–33 °C</data>
+                </p>
+                <p class="best__dataset"><span class="best__label">Average number of rainy days</span>
+                  <data class="best__data">1–5</data>
+                </p>
+              </div>
+              <div class="best__stat">
+                <h3 class="best__stat-title">Rainy Season</h3>
+                <p class="best__month">November — February</p>
+                <p class="best__dataset"><span class="best__label">Average temperature</span>
+                  <data class="best__data">22–33 °C</data>
+                </p>
+                <p class="best__dataset"><span class="best__label">Average number of rainy days</span>
+                  <data class="best__data">1–5</data>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <button type="button" class="page__subscribe">Get the Packing List</button>
-      <button type="button" class="page__share">Share with friends</button>
+        </section>
+        <button type="button" class="page__subscribe">Get the Packing List</button>
+        <button type="button" class="page__share">Share with friends</button>
+      </div>
       <div class="kits">
         <div class="kits__available">Available kits<span class="kits__count">8</span></div>
         <input type="checkbox" checked="checked" id="kits__trigger-input" class="kits__trigger-input"/>

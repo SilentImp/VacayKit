@@ -113,6 +113,10 @@ table {
   width: 600px;
   min-height: 100px;
 }
+.best__graph-container {
+  width: 100%;
+  height: 300px;
+}
 .best__stats {
   float: left;
   position: relative;
@@ -876,6 +880,9 @@ body>header .project__link_mobile {
 .info section {
   margin: 0 0 20px;
 }
+.info__capital {
+  display: none;
+}
 .info__title {
   border-bottom: 1px solid #ebebeb;
   font-size: 16px;
@@ -889,6 +896,9 @@ body>header .project__link_mobile {
   line-height: 24px;
   color: #4a4a4a;
   margin: 0 0 10px;
+}
+.info .info__currency {
+  display: none;
 }
 .info .info__currency-name {
   display: block;
@@ -1374,7 +1384,7 @@ body>header .project__link_mobile {
   border-radius: 8px;
   background-color: #ffee58;
   position: relative;
-  margin: 36px 0 30px;
+  margin: 0 0 30px;
 }
 .items__header_beach {
   color: #26282c;
@@ -1574,7 +1584,7 @@ body>header .project__link_mobile {
 
 .kits {
   float: left;
-  margin: 32px 30px 30px -38px;
+  margin: 0 30px 30px -38px;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
@@ -1759,7 +1769,7 @@ body>header .project__link_mobile {
     position: absolute;
     left: 0;
     float: none;
-    margin: 31px 0 0;
+    margin: 0 0 0;
     background-color: #fff;
     box-sizing: border-box;
     border: 1px solid rgba(26,26,26,0.09);
@@ -1812,7 +1822,7 @@ body>header .project__link_mobile {
     left: 0;
     right: 0;
     height: auto;
-    margin: 20px 0 0;
+    margin: -4px 0 0;
   }
   .kits_stick {
     position: fixed;
@@ -1930,6 +1940,19 @@ html body .page {
   background-color: #fff;
 }
 html body .page:after {
+  content: ".";
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  clear: both;
+  display: block;
+}
+html body .page__sections {
+  margin: 0 0 32px;
+}
+html body .page__sections:after {
   content: ".";
   font-size: 0;
   line-height: 0;
