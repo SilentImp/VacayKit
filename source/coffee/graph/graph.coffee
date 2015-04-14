@@ -21,10 +21,16 @@ class Graph
     switch @widget.attr 'data-type'
       when 'precipitation' then @precipitationChart()
       else
-        @switcher = @widget.find('.switcher')
-        @switcher_buttons = @switcher.find('button')
+        @switcher = @widget.find '.switcher'
+        @switcher_buttons = @switcher.find 'button'
         @switcher_buttons.on 'click', @toggleTemperature
-        @switcher_status = @switcher.find('.switcher__selected').attr('data-filter')
+        @switcher_status = @switcher.find('.switcher__selected').attr 'data-filter'
+        @min = JSON.parse @widget.attr 'data-min'
+        @max = JSON.parse @widget.attr 'data-max'
+        @max_nodes = []
+        @min_nodes = []
+        @min_links = []
+        @max_links = []
         @temperaturesChart()
 
   lightenDarkenColor: (col, amt)->
@@ -102,16 +108,12 @@ class Graph
 
   toggleTemperature: =>
     @switcher_buttons.toggleClass('switcher__selected')
-    min = JSON.parse @widget.attr('data-min')
-    max = JSON.parse @widget.attr('data-max')
     if @switcher_status == "F"
-      min = (Math.round((t - 32)*(5/9)) for t in min)
-      max = (Math.round((t - 32)*(5/9)) for t in max)
+      @min = (Math.round((t - 32)*(5/9)) for t in @min)
+      @max = (Math.round((t - 32)*(5/9)) for t in @max)
     else
-      min = (Math.round(t*(9/5) + 32) for t in min)
-      max = (Math.round(t*(9/5) + 32) for t in max)
-    @widget.attr 'data-min', JSON.stringify(min)
-    @widget.attr 'data-max', JSON.stringify(max)
+      @min = (Math.round(t*(9/5) + 32) for t in @min)
+      @max = (Math.round(t*(9/5) + 32) for t in @max)
     @switcher_status = @switcher.find('.switcher__selected').attr('data-filter')
     @update()
 
@@ -121,44 +123,47 @@ class Graph
 
   temperatureData: =>
 
-    console.log 'reread'
-
-    @min = JSON.parse @widget.attr('data-min')
-    @max = JSON.parse @widget.attr('data-max')
-
-    maxX = Math.max.apply(null, @max)
+    maxX = Math.max.apply null, @max
     maxX += 20
-    minX = Math.min.apply(null, @min)
-    minX = Math.max(0, minX-20)
+    minX = Math.min.apply null, @min
+    minX = Math.max 0, minX-20
 
     d = 100/24
-
-    @max_nodes = []
+    @max_nodes.splice 0
     for x in @max
       tmp = d
-      @max_nodes.push({'y': (@height-Math.floor(@height*(x-minX)/(maxX-minX)))+"px", 'x': d + "%", value: x})
+      @max_nodes.push
+        'y': (@height-Math.floor(@height*(x-minX)/(maxX-minX)))+"px"
+        'x': d + "%"
+        value: x
       d+=100/12
 
     d = 100/24
-
-    @min_nodes = []
+    @min_nodes.splice 0
     for x in @min
       tmp = d
-      @min_nodes.push({'y': (@height-Math.floor(@height*(x-minX)/(maxX-minX)))+"px", 'x': d + "%", value: x})
+      @min_nodes.push
+        'y': (@height-Math.floor(@height*(x-minX)/(maxX-minX)))+"px"
+        'x': d + "%"
+        value: x
       d+=100/12
 
-    @min_links = []
+    @min_links.splice 0
     old_node = null
     for node in @min_nodes
       if old_node != null
-        @min_links.push {source: old_node, target: node}
+        @min_links.push
+          source: old_node
+          target: node
       old_node = node
 
-    @max_links = []
+    @max_links.splice 0
     old_node = null
     for node in @max_nodes
       if old_node != null
-        @max_links.push {source: old_node, target: node}
+        @max_links.push
+          source: old_node
+          target: node
       old_node = node
 
   temperaturesChart: =>
