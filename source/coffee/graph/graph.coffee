@@ -134,8 +134,8 @@ class Graph
     @temperatureData()
 
     max_text = @max_text.data(@max_nodes)
-
-    max_text.enter()
+    max_text
+      .transition()
       .attr("x", (d)->
         return d.x
         )
@@ -145,59 +145,57 @@ class Graph
       .text((d)=>
         return d.value
         )
+    max_text
+      .exit()
+      .remove()
 
-    # @min_text
-    #   .exit()
-    #   .remove()
 
     min_text = @min_text.data(@min_nodes)
-
-    min_text.enter()
+    min_text
+      .transition()
       .attr("x", (d)->
         return d.x
         )
       .attr("y", (d)->
-        return (parseInt(d.y,10) - 20)
+        return (parseInt(d.y,10) + 30)
         )
       .text((d)=>
         return d.value
         )
-
-    # @max_dots
-    #   .exit()
-    #   .remove()
+    min_text
+      .exit()
+      .remove()
 
     max_dots = @max_dots.data(@max_nodes)
-
-    max_dots.enter()
+    max_dots
+      .transition()
       .attr("cx", (d)->
         return d.x
         )
       .attr("cy", (d)->
         return d.y
         )
-
-    # @min_dots
-    #   .exit()
-    #   .remove()
+    max_dots
+      .exit()
+      .remove()
 
     min_dots = @min_dots.data(@min_nodes)
 
-    min_dots.enter()
+    min_dots
+      .transition()
       .attr("cx", (d)->
         return d.x
         )
       .attr("cy", (d)->
         return d.y
         )
-
-    # @min_lines
-    #   .exit()
-    #   .remove()
+    min_dots
+      .exit()
+      .remove()
 
     min_lines = @min_lines.data(@min_links)
-
-    min_lines.enter()
+    min_lines
+      .transition()
       .attr("x1", (d)->
         return d.source.x
         )
@@ -210,13 +208,13 @@ class Graph
       .attr("y2", (d)->
         return d.target.y
         )
-
-    # @max_lines
-    #   .exit()
-    #   .remove()
+    min_lines
+      .exit()
+      .remove()
 
     max_lines = @max_lines.data(@max_links)
-    max_lines.enter()
+    max_lines
+      .transition()
       .attr("x1", (d)->
         return d.source.x
         )
@@ -229,6 +227,9 @@ class Graph
       .attr("y2", (d)->
         return d.target.y
         )
+    max_lines
+      .exit()
+      .remove()
 
     # @svg.selectAll(".min,.max").remove()
     # @temperaturesChart()
