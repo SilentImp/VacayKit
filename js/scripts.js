@@ -248,7 +248,7 @@ Graph = (function() {
     var max_dots, max_lines, max_text, min_dots, min_lines, min_text;
     this.temperatureData();
     max_text = this.max_text.data(this.max_nodes);
-    max_text.enter().attr("x", function(d) {
+    max_text.transition().attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
@@ -257,30 +257,34 @@ Graph = (function() {
         return d.value;
       };
     })(this));
+    max_text.exit().remove();
     min_text = this.min_text.data(this.min_nodes);
-    min_text.enter().attr("x", function(d) {
+    min_text.transition().attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
-      return parseInt(d.y, 10) - 20;
+      return parseInt(d.y, 10) + 30;
     }).text((function(_this) {
       return function(d) {
         return d.value;
       };
     })(this));
+    min_text.exit().remove();
     max_dots = this.max_dots.data(this.max_nodes);
-    max_dots.enter().attr("cx", function(d) {
+    max_dots.transition().attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     });
+    max_dots.exit().remove();
     min_dots = this.min_dots.data(this.min_nodes);
-    min_dots.enter().attr("cx", function(d) {
+    min_dots.transition().attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     });
+    min_dots.exit().remove();
     min_lines = this.min_lines.data(this.min_links);
-    min_lines.enter().attr("x1", function(d) {
+    min_lines.transition().attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -289,8 +293,9 @@ Graph = (function() {
     }).attr("y2", function(d) {
       return d.target.y;
     });
+    min_lines.exit().remove();
     max_lines = this.max_lines.data(this.max_links);
-    return max_lines.enter().attr("x1", function(d) {
+    max_lines.transition().attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -299,6 +304,7 @@ Graph = (function() {
     }).attr("y2", function(d) {
       return d.target.y;
     });
+    return max_lines.exit().remove();
   };
 
   Graph.prototype.temperatureData = function() {
