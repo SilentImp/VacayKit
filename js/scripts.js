@@ -232,7 +232,8 @@ Graph = (function() {
   };
 
   Graph.prototype.update = function() {
-    return this.temperatureData();
+    this.svg.selectAll(".min,.max").remove();
+    return this.temperaturesChart();
   };
 
   Graph.prototype.temperatureData = function() {
