@@ -1888,15 +1888,19 @@ body>header .project__link_mobile {
   .kits__trigger {
     display: block;
   }
+  .kits__trigger-input:checked ~ .kits__trigger,
   .kits__trigger-input:checked + .kits__trigger {
     background: url("../svg/open-kits.svg") 50% 50% no-repeat;
   }
+  .kits__trigger-input:checked ~ .kits__trigger + .kits__menu,
   .kits__trigger-input:checked + .kits__trigger + .kits__menu {
     width: 90px;
   }
+  .kits__trigger-input:checked ~ .kits__trigger + .kits__menu .kits__kit-title,
   .kits__trigger-input:checked + .kits__trigger + .kits__menu .kits__kit-title {
     display: none;
   }
+  .kits__trigger-input:checked ~ .kits__trigger + .kits__menu .kits__kit-elements,
   .kits__trigger-input:checked + .kits__trigger + .kits__menu .kits__kit-elements {
     display: none;
   }
