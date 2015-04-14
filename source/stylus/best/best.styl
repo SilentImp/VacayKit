@@ -2,26 +2,28 @@
 
 .best
   position relative
-  width 100%
+  padding 0 0 0 30px
   clearit()
   *
     pointer-events all
   &__abstract
-    padding 0 0 0 30px
     margin 30px 0 0
     width 720px
     p
       font-size 18px
       line-height 24px
       margin 0 0 24px
-  &__graph
+  &__graphs
     clear left
     float left
     position relative
     left 100%
     margin-left -100%
     width 600px
+  &__graph
+    width 600px
     min-height 100px
+    clearit()
     &-header
       .best__graph-title
         margin 0
@@ -37,7 +39,8 @@
       font-weight bold
       line-height 25px
     &-container
-      width 100%
+      width 600px
+      max-width 100%
       height 300px
       .bar
         fill steelblue
@@ -61,6 +64,8 @@
     left 100%
     margin-left -300px
     width 300px
+    clearit()
+
   &__label
     display inline-block
     width 170px

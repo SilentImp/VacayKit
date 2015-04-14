@@ -8,6 +8,8 @@ class Graph
     @width = @container.width() - @margin.left - @margin.right
     @height = @container.height() - @margin.top - @margin.bottom
 
+    console.log @container.width()
+
     @x = d3.scale.ordinal().domain(@labels).rangeRoundBands [0, @width], 0
     @y = d3.scale.linear().range [@height, 0]
 
@@ -117,13 +119,11 @@ class Graph
     @switcher_status = @switcher.find('.switcher__selected').attr('data-filter')
     @update()
 
-
   update: =>
     @svg.selectAll(".min,.max").remove()
     @temperaturesChart()
 
   temperatureData: =>
-
     maxX = Math.max.apply null, @max
     maxX += 20
     minX = Math.min.apply null, @min
