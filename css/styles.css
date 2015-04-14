@@ -113,6 +113,22 @@ table {
   width: 600px;
   min-height: 100px;
 }
+.best__graph-header .best__graph-title {
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.best__graph-header .switcher {
+  margin: 0 0 0 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.best__graph-title {
+  margin: 50px 0 30px;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 25px;
+}
 .best__graph-container {
   width: 100%;
   height: 300px;
@@ -124,13 +140,15 @@ table {
 .best__graph-container .bar:hover {
   fill: #a52a2a;
 }
-.best__graph-container .axis {
-  font: 10px sans-serif;
+.best__graph-container .axis text {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  fill: rgba(74,74,74,0.6);
 }
 .best__graph-container .axis path,
 .best__graph-container .axis line {
   fill: none;
-  stroke: #383838;
+  stroke: #ededed;
   shape-rendering: crispEdges;
 }
 .best__stats {
@@ -1401,17 +1419,21 @@ body>header .project__link_mobile {
   background-color: #ffee58;
   position: relative;
   margin: 0 0 30px;
+  background-size: cover;
 }
 .items__header_beach {
-  color: #26282c;
+  color: #fff;
   background-color: #ffee58;
+  background-image: url("../images/item_beaching.jpg");
 }
 .items__header_vacination {
   background-color: #90a4ae;
+  background-image: url("../images/item_vaccination.jpg");
   color: #fff;
 }
 .items__header_walking {
   background-color: #ec407a;
+  background-image: url("../images/item_city_walking.jpg");
   color: #fff;
 }
 .items__header_diving {
@@ -1420,6 +1442,7 @@ body>header .project__link_mobile {
 }
 .items__header_aid {
   background-color: #ff7043;
+  background-image: url("../images/item_first_aid.jpg");
   color: #fff;
 }
 .items__header_snorkeling {
@@ -1444,6 +1467,7 @@ body>header .project__link_mobile {
 }
 .items__header_surfing {
   background-color: #26c6da;
+  background-image: url("../images/item_surfing.jpg");
   color: #fff;
 }
 .items__header_mountin-hiking {

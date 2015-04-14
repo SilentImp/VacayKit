@@ -58,6 +58,9 @@ Graph = (function() {
   function Graph(widget) {
     this.widget = widget;
     this.temperaturesChart = bind(this.temperaturesChart, this);
+    this.temperatureData = bind(this.temperatureData, this);
+    this.update = bind(this.update, this);
+    this.toggleTemperature = bind(this.toggleTemperature, this);
     this.precipitationChart = bind(this.precipitationChart, this);
     this.labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     this.container = this.widget.find('.best__graph-container');
@@ -73,12 +76,16 @@ Graph = (function() {
     this.y = d3.scale.linear().range([this.height, 0]);
     this.xAxis = d3.svg.axis().scale(this.x).orient("bottom");
     this.svg = d3.select(this.container[0]).append("g");
-    this.svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + this.height + ")").call(this.xAxis);
+    this.svg.append("g").attr("class", "axis").attr("transform", "translate(0," + this.height + ")").call(this.xAxis);
     switch (this.widget.attr('data-type')) {
       case 'precipitation':
         this.precipitationChart();
         break;
       default:
+        this.switcher = this.widget.find('.switcher');
+        this.switcher_buttons = this.switcher.find('button');
+        this.switcher_buttons.on('click', this.toggleTemperature);
+        this.switcher_status = this.switcher.find('.switcher__selected').attr('data-filter');
         this.temperaturesChart();
     }
   }
@@ -113,25 +120,44 @@ Graph = (function() {
   };
 
   Graph.prototype.precipitationChart = function() {
-    var bar, barEnter, barUpdate, chart, color, dx, maxX;
+    var bar, barEnter, barText, barUpdate, chart, color, dx, maxX;
     this.values = JSON.parse(this.widget.attr('data-values'));
     maxX = Math.max.apply(null, this.values);
-    this.y.domain([0, maxX]);
-    dx = 0;
+    dx = 100 / 24;
     color = d3.rgb('#1E88E5');
     chart = d3.select(this.container[0]);
     bar = chart.selectAll(".bar");
     barUpdate = bar.data(this.values);
+    barText = barUpdate.enter().append("text");
+    barText.attr("y", (this.height - 20) + "px");
+    barText.attr("x", (function(_this) {
+      return function(d) {
+        var tmp;
+        tmp = dx;
+        dx += 100 / 12;
+        return tmp + "%";
+      };
+    })(this));
+    barText.style("text-anchor", "middle");
+    barText.style("font-size", "16px");
+    barText.style("font-family", "Lato");
+    barText.style("font-weight", "bold");
+    barText.text((function(_this) {
+      return function(d) {
+        return d;
+      };
+    })(this));
+    dx = 0;
     barEnter = barUpdate.enter().append("rect");
     barEnter.attr("width", 100 / 12 + "%");
     barEnter.attr("height", (function(_this) {
       return function(d) {
-        return Math.floor(((d * 100 / maxX) / 100) * _this.height) + "px";
+        return Math.floor(((d * 100 / maxX) / 100) * (_this.height - 50)) + "px";
       };
     })(this));
     barEnter.attr("y", (function(_this) {
       return function(d) {
-        return (_this.height - Math.floor(((d * 100 / maxX) / 100) * _this.height)) + "px";
+        return ((_this.height - 50) - Math.floor(((d * 100 / maxX) / 100) * (_this.height - 50))) + "px";
       };
     })(this));
     barEnter.attr("x", (function(_this) {
@@ -149,77 +175,156 @@ Graph = (function() {
     })(this));
   };
 
-  Graph.prototype.temperaturesChart = function() {
-    var d, i, j, k, l, len, len1, len2, len3, maxX, max_links, max_nodes, min_links, min_nodes, node, nodes, old_node, ref, ref1, tmp, x;
+  Graph.prototype.toggleTemperature = function() {
+    var max, min, t;
+    this.switcher_buttons.toggleClass('switcher__selected');
+    min = JSON.parse(this.widget.attr('data-min'));
+    max = JSON.parse(this.widget.attr('data-max'));
+    if (this.switcher_status === "F") {
+      min = (function() {
+        var i, len, results;
+        results = [];
+        for (i = 0, len = min.length; i < len; i++) {
+          t = min[i];
+          results.push(Math.round((t - 32) * (5 / 9)));
+        }
+        return results;
+      })();
+      max = (function() {
+        var i, len, results;
+        results = [];
+        for (i = 0, len = max.length; i < len; i++) {
+          t = max[i];
+          results.push(Math.round((t - 32) * (5 / 9)));
+        }
+        return results;
+      })();
+    } else {
+      min = (function() {
+        var i, len, results;
+        results = [];
+        for (i = 0, len = min.length; i < len; i++) {
+          t = min[i];
+          results.push(Math.round(t * (9 / 5) + 32));
+        }
+        return results;
+      })();
+      max = (function() {
+        var i, len, results;
+        results = [];
+        for (i = 0, len = max.length; i < len; i++) {
+          t = max[i];
+          results.push(Math.round(t * (9 / 5) + 32));
+        }
+        return results;
+      })();
+    }
+    this.widget.attr('data-min', JSON.stringify(min));
+    this.widget.attr('data-max', JSON.stringify(max));
+    this.switcher_status = this.switcher.find('.switcher__selected').attr('data-filter');
+    return this.update();
+  };
+
+  Graph.prototype.update = function() {
+    return this.temperatureData();
+  };
+
+  Graph.prototype.temperatureData = function() {
+    var d, i, j, k, l, len, len1, len2, len3, maxX, minX, node, old_node, ref, ref1, ref2, ref3, results, tmp, x;
+    console.log('reread');
     this.min = JSON.parse(this.widget.attr('data-min'));
     this.max = JSON.parse(this.widget.attr('data-max'));
     maxX = Math.max.apply(null, this.max);
-    maxX += 10;
-    this.y.domain([0, maxX]);
+    maxX += 20;
+    minX = Math.min.apply(null, this.min);
+    minX = Math.max(0, minX - 20);
     d = 100 / 24;
-    max_nodes = [];
+    this.max_nodes = [];
     ref = this.max;
     for (i = 0, len = ref.length; i < len; i++) {
       x = ref[i];
       tmp = d;
-      max_nodes.push({
-        'y': (this.height - Math.floor(this.height * x / maxX)) + "px",
+      this.max_nodes.push({
+        'y': (this.height - Math.floor(this.height * (x - minX) / (maxX - minX))) + "px",
         'x': d + "%",
         value: x
       });
       d += 100 / 12;
     }
     d = 100 / 24;
-    min_nodes = [];
+    this.min_nodes = [];
     ref1 = this.min;
     for (j = 0, len1 = ref1.length; j < len1; j++) {
       x = ref1[j];
       tmp = d;
-      min_nodes.push({
-        'y': (this.height - Math.floor(this.height * x / maxX)) + "px",
+      this.min_nodes.push({
+        'y': (this.height - Math.floor(this.height * (x - minX) / (maxX - minX))) + "px",
         'x': d + "%",
         value: x
       });
       d += 100 / 12;
     }
-    min_links = [];
+    this.min_links = [];
     old_node = null;
-    for (k = 0, len2 = min_nodes.length; k < len2; k++) {
-      node = min_nodes[k];
+    ref2 = this.min_nodes;
+    for (k = 0, len2 = ref2.length; k < len2; k++) {
+      node = ref2[k];
       if (old_node !== null) {
-        min_links.push({
+        this.min_links.push({
           source: old_node,
           target: node
         });
       }
       old_node = node;
     }
-    max_links = [];
+    this.max_links = [];
     old_node = null;
-    for (l = 0, len3 = max_nodes.length; l < len3; l++) {
-      node = max_nodes[l];
+    ref3 = this.max_nodes;
+    results = [];
+    for (l = 0, len3 = ref3.length; l < len3; l++) {
+      node = ref3[l];
       if (old_node !== null) {
-        max_links.push({
+        this.max_links.push({
           source: old_node,
           target: node
         });
       }
-      old_node = node;
+      results.push(old_node = node);
     }
-    nodes = this.svg.selectAll("circle.nodes").data(max_nodes).enter().append("svg:circle").attr("cx", function(d) {
+    return results;
+  };
+
+  Graph.prototype.temperaturesChart = function() {
+    this.temperatureData();
+    this.max_text = this.svg.selectAll("text.max").data(this.max_nodes).enter().append("svg:text").attr("class", "max").attr("x", function(d) {
+      return d.x;
+    }).attr("y", function(d) {
+      return parseInt(d.y, 10) - 20;
+    }).style("text-anchor", "middle").style("font-size", "13px").style("font-family", "Lato").text((function(_this) {
+      return function(d) {
+        return d.value;
+      };
+    })(this));
+    this.min_text = this.svg.selectAll("text.min").data(this.min_nodes).enter().append("svg:text").attr("class", "min").attr("x", function(d) {
+      return d.x;
+    }).attr("y", function(d) {
+      return parseInt(d.y, 10) + 30;
+    }).style("text-anchor", "middle").style("font-size", "13px").style("font-family", "Lato").text((function(_this) {
+      return function(d) {
+        return d.value;
+      };
+    })(this));
+    this.max_dots = this.svg.selectAll("circle.max").data(this.max_nodes).enter().append("svg:circle").attr("class", "max").attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     }).attr("fill", '#FF7043').attr("r", "8px");
-    nodes.append("text").attr("dy", ".3em").style("text-anchor", "middle").text(function(d) {
-      return d.value;
-    });
-    this.svg.selectAll("circle.nodes").data(min_nodes).enter().append("svg:circle").attr("cx", function(d) {
+    this.min_dots = this.svg.selectAll("circle.min").data(this.min_nodes).enter().append("svg:circle").attr("class", "min").attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     }).attr("fill", '#42A5F5').attr("r", "8px");
-    this.svg.selectAll(".line").data(max_links).enter().append("line").attr("x1", function(d) {
+    this.max_lines = this.svg.selectAll("line.max").data(this.max_links).enter().append("line").attr("class", "max").attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -228,7 +333,7 @@ Graph = (function() {
     }).attr("y2", function(d) {
       return d.target.y;
     }).style("stroke", "#FF7043").attr("stroke-width", "3px");
-    return this.svg.selectAll(".line").data(min_links).enter().append("line").attr("x1", function(d) {
+    return this.min_lines = this.svg.selectAll("line.min").data(this.min_links).enter().append("line").attr("class", "min").attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
