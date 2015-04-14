@@ -89,28 +89,11 @@ html(lang="en")
 
             p What ever you are looking for in a summer holiday, you can find it in Thailand!
 
-        button.page__section-button.page__section-button_visible(type="button") Best time to visit
+        button.page__section-button.page__section-button_visible.page__section-button_open(type="button") Best time to visit
         section.page__section
           .best
             .best__abstract
               p The cool season is the best time to come to Thailand: as well as having more manageable temperatures and less rain, it offers waterfalls in full spate and the best of the upland flowers in bloom. Bear in mind, however, that it’s also the busiest season, so forward planning is essential.
-
-            .best__graphs
-              section.best__graph(data-type="temperature", data-max="[78,82,86,88,92,92,88,88,86,84,84,84]", data-min="[70,72,72,74,75,79,75,73,71,68,66,62]",
-              data-format="F")
-                header.best__graph-header
-                  h2.best__graph-title Average temperature
-                  nav.switcher
-                    button.switcher__selected(type="button", data-filter="F") °F
-                    button(type="button", data-filter="C") °C
-                svg.best__graph-container
-                  
-
-
-              section.best__graph(data-type="precipitation", data-values="[1,2,3,4,13,22,13,11,20,18,5,2]")
-                h2.best__graph-title Average number of rainy days
-                svg.best__graph-container
-                
 
             .best__stats
               .best__stat
@@ -143,6 +126,23 @@ html(lang="en")
                   span.best__label Average number of rainy days
                   data.best__data 1–5
 
+
+            .best__graphs
+              section.best__graph(data-type="temperature", data-max="[78,82,86,88,92,92,88,88,86,84,84,84]", data-min="[70,72,72,74,75,79,75,73,71,68,66,62]",
+              data-format="F")
+                header.best__graph-header
+                  h2.best__graph-title Average temperature
+                  nav.switcher
+                    button.switcher__selected(type="button", data-filter="F") °F
+                    button(type="button", data-filter="C") °C
+                svg.best__graph-container
+                  
+
+
+              section.best__graph(data-type="precipitation", data-values="[1,2,3,4,13,22,13,11,20,18,5,2]")
+                h2.best__graph-title Average number of rainy days
+                svg.best__graph-container
+                
         button.page__subscribe(type="button") Get the Packing List
         button.page__share(type="button") Share with friends
 

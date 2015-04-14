@@ -2,24 +2,17 @@
 class Graph
   constructor: (@widget)->
     @labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+    @labels_mobile = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
     @container = @widget.find '.best__graph-container'
-
     @margin = {top: 0, right: 0, bottom: 30, left: 0}
-    @width = @container.width() - @margin.left - @margin.right
-    @height = @container.height() - @margin.top - @margin.bottom
+    @svg = d3.select(@container[0])
 
-    console.log @container.width()
+    $(window).on 'resize', @init
+    @init()
 
-    @x = d3.scale.ordinal().domain(@labels).rangeRoundBands [0, @width], 0
-    @y = d3.scale.linear().range [@height, 0]
-
-    @xAxis = d3.svg.axis().scale(@x).orient("bottom")
-    @svg = d3.select(@container[0]).append("g")
-    @svg.append("g")
-      .attr("class", "axis")
-      .attr("transform", "translate(0," + @height + ")")
-      .call(@xAxis)
-
+  init: =>
+    @svg.selectAll("*").remove()
+    @axes()
     switch @widget.attr 'data-type'
       when 'precipitation' then @precipitationChart()
       else
@@ -34,6 +27,26 @@ class Graph
         @min_links = []
         @max_links = []
         @temperaturesChart()
+
+  axes: =>
+    @width = @container.width() - @margin.left - @margin.right
+    @height = @container.height() - @margin.top - @margin.bottom
+
+    if Modernizr.mq('(min-width: 500px)')
+      @x = d3.scale.ordinal().domain(@labels).rangeRoundBands [@width, 0], 0
+    else
+      @x = d3.scale.ordinal().domain(@labels_mobile).rangeRoundBands [@width, 0], 0
+
+
+    @y = d3.scale.linear().range [@height, 0]
+
+    @xAxis = d3.svg.axis().scale(@x).orient("bottom")
+    @svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + @height + ")")
+      .call(@xAxis)
+
+
 
   lightenDarkenColor: (col, amt)->
     usePound = false
@@ -82,9 +95,7 @@ class Graph
       return tmp+ "%"
       )
     barText.style("text-anchor", "middle")
-    barText.style("font-size", "16px")
-    barText.style("font-family", "Lato")
-    barText.style("font-weight", "bold")
+    .attr("class", "bar-text")
     barText.text((d)=>
       return d
       )
@@ -183,8 +194,6 @@ class Graph
         return (parseInt(d.y,10) - 20)
         )
       .style("text-anchor", "middle")
-      .style("font-size", "13px")
-      .style("font-family", "Lato")
       .text((d)=>
         return d.value
         )
@@ -201,8 +210,6 @@ class Graph
         return (parseInt(d.y,10) + 30)
         )
       .style("text-anchor", "middle")
-      .style("font-size", "13px")
-      .style("font-family", "Lato")
       .text((d)=>
         return d.value
         )
