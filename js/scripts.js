@@ -431,13 +431,16 @@ Kits = (function() {
 
   Kits.prototype.getLayout = function() {
     this.layout = 'desktop';
-    if (Modernizr.mq('(max-width: 1120px)')) {
-      this.layout = 'tablet';
-    }
     if (Modernizr.mq('(max-width: 980px)')) {
       this.layout = 'mobile';
       this.menu.css('max-height', 'initial');
       this.widget.css('bottom', 'auto');
+      this.wrapper.width(this.buttons.length * this.buttons.width());
+    } else if (Modernizr.mq('(max-width: 1120px)')) {
+      this.layout = 'tablet';
+      this.wrapper.width("auto");
+    } else {
+      this.wrapper.width("auto");
     }
     this.viewport_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     this.links_width = this.wrapper.width();
@@ -526,7 +529,7 @@ Kits = (function() {
     } else {
       target = parseInt(element.offset().top - this.header_height - 20, 10);
     }
-    return $('html').stop().animate({
+    return $("body").stop().animate({
       scrollTop: target + 'px'
     }, 'fast');
   };
