@@ -1,0 +1,276 @@
+
+class Graph
+  constructor: (@widget)->
+    @labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+    @container = @widget.find '.best__graph-container'
+
+    @margin = {top: 0, right: 0, bottom: 30, left: 0}
+    @width = @container.width() - @margin.left - @margin.right
+    @height = @container.height() - @margin.top - @margin.bottom
+
+    @x = d3.scale.ordinal().domain(@labels).rangeRoundBands [0, @width], 0
+    @y = d3.scale.linear().range [@height, 0]
+
+    @xAxis = d3.svg.axis().scale(@x).orient("bottom")
+    @svg = d3.select(@container[0]).append("g")
+    @svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + @height + ")")
+      .call(@xAxis)
+
+    switch @widget.attr 'data-type'
+      when 'precipitation' then @precipitationChart()
+      else
+        @switcher = @widget.find('.switcher')
+        @switcher_buttons = @switcher.find('button')
+        @switcher_buttons.on 'click', @toggleTemperature
+        @switcher_status = @switcher.find('.switcher__selected').attr('data-filter')
+        @temperaturesChart()
+
+  lightenDarkenColor: (col, amt)->
+    usePound = false
+    if col[0] == "#"
+      col = col.slice 1
+      usePound = true
+    num = parseInt col, 16
+    r = (num >> 16) + amt
+
+    if r > 255
+      r = 255
+    else if r < 0
+      r = 0
+
+    b = ((num >> 8) & 0x00FF) + amt
+
+    if b > 255
+      b = 255
+    else if b < 0
+      b = 0
+
+    g = (num & 0x0000FF) + amt
+
+    if g > 255
+      g = 255
+    else if g < 0
+      g = 0
+
+    return "#" + (g | (b << 8) | (r << 16)).toString(16)
+
+  precipitationChart: =>
+    @values = JSON.parse(@widget.attr('data-values'))
+    maxX = Math.max.apply(null, @values)
+    dx = 100/24
+    color = d3.rgb('#1E88E5')
+
+    chart = d3.select(@container[0])
+    bar = chart.selectAll(".bar")
+    barUpdate = bar.data(@values)
+
+    barText = barUpdate.enter().append("text")
+    barText.attr("y", (@height-20)+"px")
+    barText.attr("x", (d)=>
+      tmp = dx
+      dx += 100/12
+      return tmp+ "%"
+      )
+    barText.style("text-anchor", "middle")
+    barText.style("font-size", "16px")
+    barText.style("font-family", "Lato")
+    barText.style("font-weight", "bold")
+    barText.text((d)=>
+      return d
+      )
+
+    dx = 0
+
+    barEnter = barUpdate.enter().append("rect")
+    barEnter.attr("width", 100/12 + "%")
+    barEnter.attr("height", (d)=>
+      return Math.floor(((d*100/maxX)/100)*(@height-50))+"px"
+      )
+    barEnter.attr("y", (d)=>
+      return ((@height-50) - Math.floor(((d*100/maxX)/100)*(@height-50)))+"px"
+      )
+    barEnter.attr("x", (d)=>
+      tmp = dx
+      dx += 100/12
+      return Math.min(tmp, 100 - 100/12)+ "%"
+      )
+    barEnter.attr("fill", (d)=>
+      return @lightenDarkenColor('#1E88E5', 100 - d*100/maxX)
+      )
+
+  toggleTemperature: =>
+    @switcher_buttons.toggleClass('switcher__selected')
+    min = JSON.parse @widget.attr('data-min')
+    max = JSON.parse @widget.attr('data-max')
+    if @switcher_status == "F"
+      min = (Math.round((t - 32)*(5/9)) for t in min)
+      max = (Math.round((t - 32)*(5/9)) for t in max)
+    else
+      min = (Math.round(t*(9/5) + 32) for t in min)
+      max = (Math.round(t*(9/5) + 32) for t in max)
+    @widget.attr 'data-min', JSON.stringify(min)
+    @widget.attr 'data-max', JSON.stringify(max)
+    @switcher_status = @switcher.find('.switcher__selected').attr('data-filter')
+    @update()
+
+
+  update: =>
+    @temperatureData()
+
+  temperatureData: =>
+
+    console.log 'reread'
+
+    @min = JSON.parse @widget.attr('data-min')
+    @max = JSON.parse @widget.attr('data-max')
+
+    maxX = Math.max.apply(null, @max)
+    maxX += 20
+    minX = Math.min.apply(null, @min)
+    minX = Math.max(0, minX-20)
+
+    d = 100/24
+
+    @max_nodes = []
+    for x in @max
+      tmp = d
+      @max_nodes.push({'y': (@height-Math.floor(@height*(x-minX)/(maxX-minX)))+"px", 'x': d + "%", value: x})
+      d+=100/12
+
+    d = 100/24
+
+    @min_nodes = []
+    for x in @min
+      tmp = d
+      @min_nodes.push({'y': (@height-Math.floor(@height*(x-minX)/(maxX-minX)))+"px", 'x': d + "%", value: x})
+      d+=100/12
+
+    @min_links = []
+    old_node = null
+    for node in @min_nodes
+      if old_node != null
+        @min_links.push {source: old_node, target: node}
+      old_node = node
+
+    @max_links = []
+    old_node = null
+    for node in @max_nodes
+      if old_node != null
+        @max_links.push {source: old_node, target: node}
+      old_node = node
+
+  temperaturesChart: =>
+
+    @temperatureData()
+
+    @max_text = @svg.selectAll("text.max")
+      .data(@max_nodes)
+      .enter()
+      .append("svg:text")
+      .attr("class", "max")
+      .attr("x", (d)->
+        return d.x
+        )
+      .attr("y", (d)->
+        return (parseInt(d.y,10) - 20)
+        )
+      .style("text-anchor", "middle")
+      .style("font-size", "13px")
+      .style("font-family", "Lato")
+      .text((d)=>
+        return d.value
+        )
+
+    @min_text = @svg.selectAll("text.min")
+      .data(@min_nodes)
+      .enter()
+      .append("svg:text")
+      .attr("class", "min")
+      .attr("x", (d)->
+        return d.x
+        )
+      .attr("y", (d)->
+        return (parseInt(d.y,10) + 30)
+        )
+      .style("text-anchor", "middle")
+      .style("font-size", "13px")
+      .style("font-family", "Lato")
+      .text((d)=>
+        return d.value
+        )
+
+    @max_dots = @svg.selectAll("circle.max")
+      .data(@max_nodes)
+      .enter()
+      .append("svg:circle")
+      .attr("class", "max")
+      .attr("cx", (d)->
+        return d.x
+        )
+      .attr("cy", (d)->
+        return d.y
+        )
+      .attr("fill", '#FF7043')
+      .attr("r", "8px")
+
+    @min_dots = @svg.selectAll("circle.min")
+      .data(@min_nodes)
+      .enter()
+      .append("svg:circle")
+      .attr("class", "min")
+      .attr("cx", (d)->
+        return d.x
+        )
+      .attr("cy", (d)->
+        return d.y
+        )
+      .attr("fill", '#42A5F5')
+      .attr("r", "8px")
+
+    @max_lines = @svg.selectAll("line.max")
+      .data(@max_links)
+      .enter()
+      .append("line")
+      .attr("class", "max")
+      .attr("x1", (d)->
+        return d.source.x
+        )
+      .attr("y1", (d)->
+        return d.source.y
+        )
+      .attr("x2", (d)->
+        return d.target.x
+        )
+      .attr("y2", (d)->
+        return d.target.y
+        )
+      .style("stroke", "#FF7043")
+      .attr("stroke-width", "3px")
+
+    @min_lines = @svg.selectAll("line.min")
+      .data(@min_links)
+      .enter()
+      .append("line")
+      .attr("class", "min")
+      .attr("x1", (d)->
+        return d.source.x
+        )
+      .attr("y1", (d)->
+        return d.source.y
+        )
+      .attr("x2", (d)->
+        return d.target.x
+        )
+      .attr("y2", (d)->
+        return d.target.y
+        )
+      .style("stroke", "#42A5F5")
+      .attr("stroke-width", "3px")
+
+
+
+$(document).ready ->
+  for graph in $ '.best__graph[data-type]'
+    new Graph $(graph)

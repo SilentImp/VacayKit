@@ -13,7 +13,8 @@
 
   section
     margin 0 0 20px
-
+  &__capital
+    display none
   &__title
     border-bottom 1px solid $light-grey
     font-size 16px
@@ -28,30 +29,40 @@
     color $grey
     margin 0 0 10px
 
-  .info__currency-rate
-    font-size 14px
-    margin 0 10px 0 0
-    padding 0
-    line-height 25px
-    height 25px
-    &:before
-      content "."
-      overflow hidden
-      text-indent -999px
-      border-radius 100%
-      margin 0 5px 0 0
-      width 23px
-      height 23px
-      border 1px solid $currency-border
-      vertical-align middle
-      display inline-block
-      background-repeat no-repeat
-      background-position 50% 50%
-      background-color transparent
-    &_usd:before
-      background-image url("../svg/eur.svg")
-    &_eur:before
-      background-image url("../svg/usd.svg")
+  .info
+    &__currency
+      display none
+      &-name
+        display block
+        white-space normal
+      &-rates
+        white-space normal
+      &-rate
+        display inline-block
+        font-size 14px
+        margin 0 10px 10px 0
+        padding 0
+        line-height 25px
+        height 25px
+        white-space nowrap
+        &:before
+          content "."
+          overflow hidden
+          text-indent -999px
+          border-radius 100%
+          margin 0 5px 0 0
+          width 23px
+          height 23px
+          border 1px solid $currency-border
+          vertical-align middle
+          display inline-block
+          background-repeat no-repeat
+          background-position 50% 50%
+          background-color transparent
+        &_usd:before
+          background-image url("../svg/usd.svg")
+        &_eur:before
+          background-image url("../svg/eur.svg")
 
 
 

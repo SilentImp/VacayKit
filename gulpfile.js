@@ -88,6 +88,7 @@ gulp.task('fonts', function() {
 gulp.task('js', function() {
   return gulp.src([dirs.source.coffee, dirs.source.js])
     .pipe(gulpif(/[.]coffee$/, coffee({bare: true})))
+    .pipe(order(['currency/currency.js']))
     .pipe(concat("scripts.js"))
     .pipe(gulp.dest(dirs.build.js));
 });

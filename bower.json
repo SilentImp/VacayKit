@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "modernizr": "~2.8.3",
-    "perfect-scrollbar": "~0.6.1"
+    "perfect-scrollbar": "~0.6.1",
+    "nvd3": "~1.7.1"
   }
 }

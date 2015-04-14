@@ -15,11 +15,46 @@
       line-height 24px
       margin 0 0 24px
   &__graph
+    clear left
     float left
     position relative
     left 100%
     margin-left -100%
     width 600px
+    min-height 100px
+    &-header
+      .best__graph-title
+        margin 0
+        display inline-block
+        vertical-align middle
+      .switcher
+        margin 0 0 0 20px
+        display inline-block
+        vertical-align middle
+    &-title
+      margin 50px 0 30px
+      font-size 21px
+      font-weight bold
+      line-height 25px
+    &-container
+      width 100%
+      height 300px
+      .bar
+        fill steelblue
+        float left
+      .bar:hover
+        fill brown
+
+      .axis text
+        font-size 14px
+        font-family 'Lato', sans-serif
+        fill $semi-grey
+      .axis path,
+      .axis line
+        fill none
+        stroke $light-grey-border
+        shape-rendering crispEdges
+
   &__stats
     float left
     position relative

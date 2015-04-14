@@ -6,8 +6,14 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     title Thailand | VacayKit
     link(rel="stylesheet", href="css/styles.css")
+    
     script(src="js/modernizr/modernizr.js")
     script(src="js/jquery/dist/jquery.min.js")
+    
+    link(rel="stylesheet", href="js/nvd3/build/nv.d3.min.css")
+    script(src="js/d3/d3.min.js")
+    script(src="js/nvd3/build/nv.d3.min.js")
+    
     script(src="js/scripts.js", defer, async)
 
   body
@@ -53,89 +59,95 @@ html(lang="en")
 
         button.subscribe(type="button") Get my Packing List
 
-    section.page
-      button.page__section-button.page__section-button_open(type="button") General Info
-      section.page__section
+    section.page(data-code="RU")
+      .page__sections
+        button.page__section-button.page__section-button_open(type="button") General Info
+        section.page__section
 
-        aside.info
+          aside.info
 
-          section.info__capital
-            h2.info__title Capital city
-            .info__details
-              p Bangkok
+            section.info__capital
+              h2.info__title Capital city
+              .info__details
+                p Bangkok
 
-          section.info__currency
-            h2.info__title Local currency
-            .info__details
-              p.info__currency-name Batt (THB)
-              p
-                strong.info__currency-rate.info__currency-rate_usd 32 THB
-                strong.info__currency-rate.info__currency-rate_eur 37 THB
+            section.info__currency
+              h2.info__title Local currency
+              .info__details
+                p.info__currency-name Batt (THB)
+                p.info__currency-rates
+                  strong.info__currency-rate.info__currency-rate_usd 32 THB
+                  strong.info__currency-rate.info__currency-rate_eur 37 THB
 
-          section.info__social
-            h2.info__title Share with friends
-            .info__details
-              img(src="images/social_dummy_2.png", alt="Заглушка")
+            section.info__social
+              h2.info__title Share with friends
+              .info__details
+                img(src="images/social_dummy_2.png", alt="Заглушка")
 
-        section.brief
+          section.brief
 
-          p Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.
+            p Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.
 
-          p The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.
+            p The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.
 
-          p What ever you are looking for in a summer holiday, you can find it in Thailand!
+            p What ever you are looking for in a summer holiday, you can find it in Thailand!
 
-      button.page__section-button.page__section-button_visible(type="button") Best time to visit
-      section.page__section
-        .best
-          .best__abstract
-            p The cool season is the best time to come to Thailand: as well as having more manageable temperatures and less rain, it offers waterfalls in full spate and the best of the upland flowers in bloom. Bear in mind, however, that it’s also the busiest season, so forward planning is essential.
+        button.page__section-button.page__section-button_open.page__section-button_visible(type="button") Best time to visit
+        section.page__section
+          .best
+            .best__abstract
+              p The cool season is the best time to come to Thailand: as well as having more manageable temperatures and less rain, it offers waterfalls in full spate and the best of the upland flowers in bloom. Bear in mind, however, that it’s also the busiest season, so forward planning is essential.
 
-          .best__graphs
-            section.best__graph
-              header.best__graph-header
-                h2.best__graph-title Average temperature
-                nav.switcher
-                  button(type="button", data-filter="F") °F
-                  button(type="button", data-filter="C") °C
+            .best__graphs
+              section.best__graph(data-type="temperature", data-max="[78,82,86,88,92,92,88,88,86,84,84,84]", data-min="[70,72,72,74,75,79,75,73,71,68,66,62]",
+              data-format="F")
+                header.best__graph-header
+                  h2.best__graph-title Average temperature
+                  nav.switcher
+                    button.switcher__selected(type="button", data-filter="F") °F
+                    button(type="button", data-filter="C") °C
+                svg.best__graph-container
+                  
 
 
-            section.best__graph
-              h2.best__graph-title Average number of rainy days
+              section.best__graph(data-type="precipitation", data-values="[1,2,3,4,13,22,13,11,20,18,5,2]")
+                h2.best__graph-title Average number of rainy days
+                svg.best__graph-container
+                
 
-          .best__stats
-            .best__stat
-              h3.best__stat-title Cool Season
-              p.best__month November — February
-              p.best__dataset
-                span.best__label Average temperature
-                data.best__data 22–33 °C
-              p.best__dataset
-                span.best__label Average number of rainy days
-                data.best__data 1–5
+            .best__stats
+              .best__stat
+                h3.best__stat-title Cool Season
+                p.best__month November — February
+                p.best__dataset
+                  span.best__label Average temperature
+                  data.best__data 22–33 °C
+                p.best__dataset
+                  span.best__label Average number of rainy days
+                  data.best__data 1–5
 
-            .best__stat
-              h3.best__stat-title Hot Season
-              p.best__month November — February
-              p.best__dataset
-                span.best__label Average temperature
-                data.best__data 22–33 °C
-              p.best__dataset
-                span.best__label Average number of rainy days
-                data.best__data 1–5
+              .best__stat
+                h3.best__stat-title Hot Season
+                p.best__month November — February
+                p.best__dataset
+                  span.best__label Average temperature
+                  data.best__data 22–33 °C
+                p.best__dataset
+                  span.best__label Average number of rainy days
+                  data.best__data 1–5
 
-            .best__stat
-              h3.best__stat-title Rainy Season
-              p.best__month November — February
-              p.best__dataset
-                span.best__label Average temperature
-                data.best__data 22–33 °C
-              p.best__dataset
-                span.best__label Average number of rainy days
-                data.best__data 1–5
+              .best__stat
+                h3.best__stat-title Rainy Season
+                p.best__month November — February
+                p.best__dataset
+                  span.best__label Average temperature
+                  data.best__data 22–33 °C
+                p.best__dataset
+                  span.best__label Average number of rainy days
+                  data.best__data 1–5
 
-      button.page__subscribe(type="button") Get the Packing List
-      button.page__share(type="button") Share with friends
+        button.page__subscribe(type="button") Get the Packing List
+        button.page__share(type="button") Share with friends
 
       .kits
         .kits__available
