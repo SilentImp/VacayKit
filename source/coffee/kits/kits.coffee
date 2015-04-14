@@ -20,12 +20,18 @@ class Kits
 
   getLayout: =>
     @layout = 'desktop'
-    if Modernizr.mq '(max-width: 1120px)'
-      @layout = 'tablet'
+
     if Modernizr.mq '(max-width: 980px)'
       @layout = 'mobile'
       @menu.css 'max-height', 'initial'
       @widget.css 'bottom', 'auto'
+      @wrapper.width @buttons.length*@buttons.width()
+    else if Modernizr.mq '(max-width: 1120px)'
+      @layout = 'tablet'
+      @wrapper.width "auto"
+    else
+      @wrapper.width "auto"
+
     @viewport_height = Math.max document.documentElement.clientHeight, window.innerHeight || 0
     @links_width = @wrapper.width()
     @links_height = @wrapper.height()
@@ -34,8 +40,6 @@ class Kits
 
     @menu_top = $('.items__wrapper').offset().top
     top = Math.max $('html').scrollTop(), document.body.scrollTop
-
-    # console.log 'check', top, document.body.scrollTop
 
     if top+@header_height >= @menu_top
       @widget.toggleClass 'kits_stick', true
@@ -51,7 +55,7 @@ class Kits
     @getCurrentKit()
 
   getCurrentKit: =>
-    bottom = $('html').scrollTop() + @viewport_height
+    bottom = Math.max($('html').scrollTop(), document.body.scrollTop) + @viewport_height
     last = null
 
     for head in @heads
@@ -70,12 +74,15 @@ class Kits
 
       menu_width = @menu.width()
       menu_height = @menu.height()
+
       if (@layout == 'mobile' && @links_width > menu_width) || (@layout != 'mobile' && @links_height > menu_height)
+
         window.clearTimeout @scroll_timer
         @scroll_timer = window.setTimeout @scroll_menu, 100, link, menu_width, menu_height
 
   scroll_menu: (link, menu_width, menu_height)=>
     if @layout == 'mobile'
+
       scroll_left = @menu.scrollLeft()
       link_left = link.offset().left
       link_width = link.width()
@@ -109,7 +116,7 @@ class Kits
     else
       target = parseInt(element.offset().top - @header_height - 20, 10)
 
-    $('html').stop().animate(
+    $("body").stop().animate(
         scrollTop: target + 'px'
       , 'fast')
 
