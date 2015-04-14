@@ -5,16 +5,19 @@
   margin 0 30px 30px -38px
   clearit()
   transform translateZ(0)
+
   *
     pointer-events all
     -moz-user-select none
     -webkit-user-select none
     -ms-user-select none
     user-select none
+
   &_stick
     position fixed
     top 0
     margin 0 0 0 -38px
+
   &__trigger
     cursor pointer
     display none
@@ -32,15 +35,18 @@
     box-sizing border-box
     height 45px
     background url('../svg/close-kits.svg') 50% 50% no-repeat
+
     &-input
       position absolute
       left -9999px
+
   &__available
     font-size 24px
     line-height 32px
     color $grey
     font-weight bold
     margin 0 0 11px 5px
+
   &__count
     font-size 14px
     vertical-align super
@@ -48,6 +54,7 @@
     margin 0 0 0 5px
     position relative
     top -2px
+
   &__menu
     position relative
     max-height 100vh
@@ -59,6 +66,7 @@
     padding 0 0 5px
     box-sizing border-box
     transform translateZ(0)
+
   &__kit-title
     font-size 18px
     line-height 22px
@@ -75,6 +83,7 @@
     white-space nowrap
     text-overflow ellipsis
     overflow hidden
+
   &__kit
     position relative
     text-decoration none
@@ -82,6 +91,7 @@
     padding 5px
     height 70px
     border-radius 10px
+
     &_warnig:after
       z-index 1
       content ""
@@ -94,12 +104,15 @@
       background $pink url('../svg/warning.svg') 50% 50% no-repeat
       border-radius 100%
       border 2px solid #fff
+
     &:active:hover,
     &:active
       background-color darken($green-gray, 10%)
+
     &_active,
     &:hover
       background-color $green-gray
+
     &:before
       float left
       content ""
@@ -166,6 +179,7 @@
     &__trigger
       display block
       &-input
+        &:checked ~ .kits__trigger,
         &:checked + .kits__trigger
           background url('../svg/open-kits.svg') 50% 50% no-repeat
           & + .kits__menu
