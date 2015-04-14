@@ -246,8 +246,58 @@ Graph = (function() {
 
   Graph.prototype.update = function() {
     this.temperatureData();
-    this.max_text.data(this.max_nodes);
-    return this.min_text = this.svg.selectAll("text.min").data(this.min_nodes).enter();
+    this.max_text.exit().remove();
+    this.max_text.data(this.max_nodes).enter().attr("x", function(d) {
+      return d.x;
+    }).attr("y", function(d) {
+      return parseInt(d.y, 10) - 20;
+    }).text((function(_this) {
+      return function(d) {
+        return d.value;
+      };
+    })(this));
+    this.min_text.exit().remove();
+    this.min_text.data(this.min_nodes).enter().attr("x", function(d) {
+      return d.x;
+    }).attr("y", function(d) {
+      return parseInt(d.y, 10) - 20;
+    }).text((function(_this) {
+      return function(d) {
+        return d.value;
+      };
+    })(this));
+    this.max_dots.exit().remove();
+    this.max_dots.data(this.max_nodes).enter().attr("cx", function(d) {
+      return d.x;
+    }).attr("cy", function(d) {
+      return d.y;
+    });
+    this.min_dots.exit().remove();
+    this.min_dots.data(this.min_nodes).enter().attr("cx", function(d) {
+      return d.x;
+    }).attr("cy", function(d) {
+      return d.y;
+    });
+    this.min_lines.exit().remove();
+    this.min_lines.data(this.min_links).enter().attr("x1", function(d) {
+      return d.source.x;
+    }).attr("y1", function(d) {
+      return d.source.y;
+    }).attr("x2", function(d) {
+      return d.target.x;
+    }).attr("y2", function(d) {
+      return d.target.y;
+    });
+    this.max_lines.exit().remove();
+    return this.max_lines.data(this.max_links).enter().attr("x1", function(d) {
+      return d.source.x;
+    }).attr("y1", function(d) {
+      return d.source.y;
+    }).attr("x2", function(d) {
+      return d.target.x;
+    }).attr("y2", function(d) {
+      return d.target.y;
+    });
   };
 
   Graph.prototype.temperatureData = function() {
@@ -314,35 +364,40 @@ Graph = (function() {
 
   Graph.prototype.temperaturesChart = function() {
     this.temperatureData();
-    this.max_text = this.svg.selectAll("text.max").data(this.max_nodes).enter().append("svg:text").attr("class", "max").attr("x", function(d) {
+    this.max_text = this.svg.selectAll("text.max").data(this.max_nodes);
+    this.max_text.enter().append("svg:text").attr("class", "max").style("text-anchor", "middle").attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
-    }).style("text-anchor", "middle").text((function(_this) {
+    }).text((function(_this) {
       return function(d) {
         return d.value;
       };
     })(this));
-    this.min_text = this.svg.selectAll("text.min").data(this.min_nodes).enter().append("svg:text").attr("class", "min").attr("x", function(d) {
+    this.min_text = this.svg.selectAll("text.min").data(this.min_nodes);
+    this.min_text.enter().append("svg:text").attr("class", "min").style("text-anchor", "middle").attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) + 30;
-    }).style("text-anchor", "middle").text((function(_this) {
+    }).text((function(_this) {
       return function(d) {
         return d.value;
       };
     })(this));
-    this.max_dots = this.svg.selectAll("circle.max").data(this.max_nodes).enter().append("svg:circle").attr("class", "max").attr("cx", function(d) {
+    this.max_dots = this.svg.selectAll("circle.max").data(this.max_nodes);
+    this.max_dots.enter().append("svg:circle").attr("class", "max").attr("fill", '#FF7043').attr("r", "8px").attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
-    }).attr("fill", '#FF7043').attr("r", "8px");
-    this.min_dots = this.svg.selectAll("circle.min").data(this.min_nodes).enter().append("svg:circle").attr("class", "min").attr("cx", function(d) {
+    });
+    this.min_dots = this.svg.selectAll("circle.min").data(this.min_nodes);
+    this.min_dots.enter().append("svg:circle").attr("class", "min").attr("fill", '#42A5F5').attr("r", "8px").attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
-    }).attr("fill", '#42A5F5').attr("r", "8px");
-    this.max_lines = this.svg.selectAll("line.max").data(this.max_links).enter().append("line").attr("class", "max").attr("x1", function(d) {
+    });
+    this.max_lines = this.svg.selectAll("line.max").data(this.max_links);
+    this.max_lines.enter().append("line").attr("class", "max").style("stroke", "#FF7043").attr("stroke-width", "3px").attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -350,8 +405,9 @@ Graph = (function() {
       return d.target.x;
     }).attr("y2", function(d) {
       return d.target.y;
-    }).style("stroke", "#FF7043").attr("stroke-width", "3px");
-    return this.min_lines = this.svg.selectAll("line.min").data(this.min_links).enter().append("line").attr("class", "min").attr("x1", function(d) {
+    });
+    this.min_lines = this.svg.selectAll("line.min").data(this.min_links);
+    return this.min_lines.enter().append("line").attr("class", "min").style("stroke", "#42A5F5").attr("stroke-width", "3px").attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -359,7 +415,7 @@ Graph = (function() {
       return d.target.x;
     }).attr("y2", function(d) {
       return d.target.y;
-    }).style("stroke", "#42A5F5").attr("stroke-width", "3px");
+    });
   };
 
   return Graph;
