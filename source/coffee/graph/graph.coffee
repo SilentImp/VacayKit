@@ -133,12 +133,9 @@ class Graph
   update: =>
     @temperatureData()
 
-    @max_text
-      .exit()
-      .remove()
+    max_text = @max_text.data(@max_nodes)
 
-    @max_text.data(@max_nodes)
-      .enter()
+    max_text.enter()
       .attr("x", (d)->
         return d.x
         )
@@ -149,13 +146,13 @@ class Graph
         return d.value
         )
 
-    @min_text
-      .exit()
-      .remove()
+    # @min_text
+    #   .exit()
+    #   .remove()
 
-    @min_text
-      .data(@min_nodes)
-      .enter()
+    min_text = @min_text.data(@min_nodes)
+
+    min_text.enter()
       .attr("x", (d)->
         return d.x
         )
@@ -166,13 +163,13 @@ class Graph
         return d.value
         )
 
-    @max_dots
-      .exit()
-      .remove()
+    # @max_dots
+    #   .exit()
+    #   .remove()
 
-    @max_dots
-      .data(@max_nodes)
-      .enter()
+    max_dots = @max_dots.data(@max_nodes)
+
+    max_dots.enter()
       .attr("cx", (d)->
         return d.x
         )
@@ -180,13 +177,13 @@ class Graph
         return d.y
         )
 
-    @min_dots
-      .exit()
-      .remove()
+    # @min_dots
+    #   .exit()
+    #   .remove()
 
-    @min_dots
-      .data(@min_nodes)
-      .enter()
+    min_dots = @min_dots.data(@min_nodes)
+
+    min_dots.enter()
       .attr("cx", (d)->
         return d.x
         )
@@ -194,13 +191,13 @@ class Graph
         return d.y
         )
 
-    @min_lines
-      .exit()
-      .remove()
+    # @min_lines
+    #   .exit()
+    #   .remove()
 
-    @min_lines
-      .data(@min_links)
-      .enter()
+    min_lines = @min_lines.data(@min_links)
+
+    min_lines.enter()
       .attr("x1", (d)->
         return d.source.x
         )
@@ -214,13 +211,12 @@ class Graph
         return d.target.y
         )
 
-    @max_lines
-      .exit()
-      .remove()
+    # @max_lines
+    #   .exit()
+    #   .remove()
 
-    @max_lines
-      .data(@max_links)
-      .enter()
+    max_lines = @max_lines.data(@max_links)
+    max_lines.enter()
       .attr("x1", (d)->
         return d.source.x
         )
