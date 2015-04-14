@@ -86,6 +86,12 @@ Graph = (function() {
         this.switcher_buttons = this.switcher.find('button');
         this.switcher_buttons.on('click', this.toggleTemperature);
         this.switcher_status = this.switcher.find('.switcher__selected').attr('data-filter');
+        this.min = JSON.parse(this.widget.attr('data-min'));
+        this.max = JSON.parse(this.widget.attr('data-max'));
+        this.max_nodes = [];
+        this.min_nodes = [];
+        this.min_links = [];
+        this.max_links = [];
         this.temperaturesChart();
     }
   }
@@ -176,51 +182,51 @@ Graph = (function() {
   };
 
   Graph.prototype.toggleTemperature = function() {
-    var max, min, t;
+    var t;
     this.switcher_buttons.toggleClass('switcher__selected');
-    min = JSON.parse(this.widget.attr('data-min'));
-    max = JSON.parse(this.widget.attr('data-max'));
     if (this.switcher_status === "F") {
-      min = (function() {
-        var i, len, results;
+      this.min = (function() {
+        var i, len, ref, results;
+        ref = this.min;
         results = [];
-        for (i = 0, len = min.length; i < len; i++) {
-          t = min[i];
+        for (i = 0, len = ref.length; i < len; i++) {
+          t = ref[i];
           results.push(Math.round((t - 32) * (5 / 9)));
         }
         return results;
-      })();
-      max = (function() {
-        var i, len, results;
+      }).call(this);
+      this.max = (function() {
+        var i, len, ref, results;
+        ref = this.max;
         results = [];
-        for (i = 0, len = max.length; i < len; i++) {
-          t = max[i];
+        for (i = 0, len = ref.length; i < len; i++) {
+          t = ref[i];
           results.push(Math.round((t - 32) * (5 / 9)));
         }
         return results;
-      })();
+      }).call(this);
     } else {
-      min = (function() {
-        var i, len, results;
+      this.min = (function() {
+        var i, len, ref, results;
+        ref = this.min;
         results = [];
-        for (i = 0, len = min.length; i < len; i++) {
-          t = min[i];
+        for (i = 0, len = ref.length; i < len; i++) {
+          t = ref[i];
           results.push(Math.round(t * (9 / 5) + 32));
         }
         return results;
-      })();
-      max = (function() {
-        var i, len, results;
+      }).call(this);
+      this.max = (function() {
+        var i, len, ref, results;
+        ref = this.max;
         results = [];
-        for (i = 0, len = max.length; i < len; i++) {
-          t = max[i];
+        for (i = 0, len = ref.length; i < len; i++) {
+          t = ref[i];
           results.push(Math.round(t * (9 / 5) + 32));
         }
         return results;
-      })();
+      }).call(this);
     }
-    this.widget.attr('data-min', JSON.stringify(min));
-    this.widget.attr('data-max', JSON.stringify(max));
     this.switcher_status = this.switcher.find('.switcher__selected').attr('data-filter');
     return this.update();
   };
@@ -231,15 +237,12 @@ Graph = (function() {
 
   Graph.prototype.temperatureData = function() {
     var d, i, j, k, l, len, len1, len2, len3, maxX, minX, node, old_node, ref, ref1, ref2, ref3, results, tmp, x;
-    console.log('reread');
-    this.min = JSON.parse(this.widget.attr('data-min'));
-    this.max = JSON.parse(this.widget.attr('data-max'));
     maxX = Math.max.apply(null, this.max);
     maxX += 20;
     minX = Math.min.apply(null, this.min);
     minX = Math.max(0, minX - 20);
     d = 100 / 24;
-    this.max_nodes = [];
+    this.max_nodes.splice(0);
     ref = this.max;
     for (i = 0, len = ref.length; i < len; i++) {
       x = ref[i];
@@ -252,7 +255,7 @@ Graph = (function() {
       d += 100 / 12;
     }
     d = 100 / 24;
-    this.min_nodes = [];
+    this.min_nodes.splice(0);
     ref1 = this.min;
     for (j = 0, len1 = ref1.length; j < len1; j++) {
       x = ref1[j];
@@ -264,7 +267,7 @@ Graph = (function() {
       });
       d += 100 / 12;
     }
-    this.min_links = [];
+    this.min_links.splice(0);
     old_node = null;
     ref2 = this.min_nodes;
     for (k = 0, len2 = ref2.length; k < len2; k++) {
@@ -277,7 +280,7 @@ Graph = (function() {
       }
       old_node = node;
     }
-    this.max_links = [];
+    this.max_links.splice(0);
     old_node = null;
     ref3 = this.max_nodes;
     results = [];
