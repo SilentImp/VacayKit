@@ -119,7 +119,9 @@ class Graph
 
 
   update: =>
-    @temperatureData()
+    # @temperatureData()
+    @svg.selectAll(".min,.max").remove()
+    @temperaturesChart()
 
   temperatureData: =>
 
