@@ -245,9 +245,10 @@ Graph = (function() {
   };
 
   Graph.prototype.update = function() {
+    var max_dots, max_lines, max_text, min_dots, min_lines, min_text;
     this.temperatureData();
-    this.max_text.exit().remove();
-    this.max_text.data(this.max_nodes).enter().attr("x", function(d) {
+    max_text = this.max_text.data(this.max_nodes);
+    max_text.enter().attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
@@ -256,8 +257,8 @@ Graph = (function() {
         return d.value;
       };
     })(this));
-    this.min_text.exit().remove();
-    this.min_text.data(this.min_nodes).enter().attr("x", function(d) {
+    min_text = this.min_text.data(this.min_nodes);
+    min_text.enter().attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
@@ -266,20 +267,20 @@ Graph = (function() {
         return d.value;
       };
     })(this));
-    this.max_dots.exit().remove();
-    this.max_dots.data(this.max_nodes).enter().attr("cx", function(d) {
+    max_dots = this.max_dots.data(this.max_nodes);
+    max_dots.enter().attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     });
-    this.min_dots.exit().remove();
-    this.min_dots.data(this.min_nodes).enter().attr("cx", function(d) {
+    min_dots = this.min_dots.data(this.min_nodes);
+    min_dots.enter().attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     });
-    this.min_lines.exit().remove();
-    this.min_lines.data(this.min_links).enter().attr("x1", function(d) {
+    min_lines = this.min_lines.data(this.min_links);
+    min_lines.enter().attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -288,8 +289,8 @@ Graph = (function() {
     }).attr("y2", function(d) {
       return d.target.y;
     });
-    this.max_lines.exit().remove();
-    return this.max_lines.data(this.max_links).enter().attr("x1", function(d) {
+    max_lines = this.max_lines.data(this.max_links);
+    return max_lines.enter().attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
