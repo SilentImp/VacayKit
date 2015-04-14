@@ -62,7 +62,7 @@ Graph = (function() {
     this.labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     this.container = this.widget.find('.best__graph-container');
     this.margin = {
-      top: 30,
+      top: 0,
       right: 0,
       bottom: 30,
       left: 0
@@ -150,8 +150,93 @@ Graph = (function() {
   };
 
   Graph.prototype.temperaturesChart = function() {
-    this.min = this.widget.attr('data-values-min');
-    return this.max = this.widget.attr('data-values-min');
+    var d, i, j, k, l, len, len1, len2, len3, maxX, max_links, max_nodes, min_links, min_nodes, node, nodes, old_node, ref, ref1, tmp, x;
+    this.min = JSON.parse(this.widget.attr('data-min'));
+    this.max = JSON.parse(this.widget.attr('data-max'));
+    maxX = Math.max.apply(null, this.max);
+    maxX += 10;
+    this.y.domain([0, maxX]);
+    d = 100 / 24;
+    max_nodes = [];
+    ref = this.max;
+    for (i = 0, len = ref.length; i < len; i++) {
+      x = ref[i];
+      tmp = d;
+      max_nodes.push({
+        'y': (this.height - Math.floor(this.height * x / maxX)) + "px",
+        'x': d + "%",
+        value: x
+      });
+      d += 100 / 12;
+    }
+    d = 100 / 24;
+    min_nodes = [];
+    ref1 = this.min;
+    for (j = 0, len1 = ref1.length; j < len1; j++) {
+      x = ref1[j];
+      tmp = d;
+      min_nodes.push({
+        'y': (this.height - Math.floor(this.height * x / maxX)) + "px",
+        'x': d + "%",
+        value: x
+      });
+      d += 100 / 12;
+    }
+    min_links = [];
+    old_node = null;
+    for (k = 0, len2 = min_nodes.length; k < len2; k++) {
+      node = min_nodes[k];
+      if (old_node !== null) {
+        min_links.push({
+          source: old_node,
+          target: node
+        });
+      }
+      old_node = node;
+    }
+    max_links = [];
+    old_node = null;
+    for (l = 0, len3 = max_nodes.length; l < len3; l++) {
+      node = max_nodes[l];
+      if (old_node !== null) {
+        max_links.push({
+          source: old_node,
+          target: node
+        });
+      }
+      old_node = node;
+    }
+    nodes = this.svg.selectAll("circle.nodes").data(max_nodes).enter().append("svg:circle").attr("cx", function(d) {
+      return d.x;
+    }).attr("cy", function(d) {
+      return d.y;
+    }).attr("fill", '#FF7043').attr("r", "8px");
+    nodes.append("text").attr("dy", ".3em").style("text-anchor", "middle").text(function(d) {
+      return d.value;
+    });
+    this.svg.selectAll("circle.nodes").data(min_nodes).enter().append("svg:circle").attr("cx", function(d) {
+      return d.x;
+    }).attr("cy", function(d) {
+      return d.y;
+    }).attr("fill", '#42A5F5').attr("r", "8px");
+    this.svg.selectAll(".line").data(max_links).enter().append("line").attr("x1", function(d) {
+      return d.source.x;
+    }).attr("y1", function(d) {
+      return d.source.y;
+    }).attr("x2", function(d) {
+      return d.target.x;
+    }).attr("y2", function(d) {
+      return d.target.y;
+    }).style("stroke", "#FF7043").attr("stroke-width", "3px");
+    return this.svg.selectAll(".line").data(min_links).enter().append("line").attr("x1", function(d) {
+      return d.source.x;
+    }).attr("y1", function(d) {
+      return d.source.y;
+    }).attr("x2", function(d) {
+      return d.target.x;
+    }).attr("y2", function(d) {
+      return d.target.y;
+    }).style("stroke", "#42A5F5").attr("stroke-width", "3px");
   };
 
   return Graph;
