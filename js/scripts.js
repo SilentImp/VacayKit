@@ -447,7 +447,7 @@ Kits = (function() {
   Kits.prototype.stickIt = function() {
     var top, visible_footer;
     this.menu_top = $('.items__wrapper').offset().top;
-    top = $('html').scrollTop();
+    top = Math.max($('html').scrollTop(), document.body.scrollTop);
     if (top + this.header_height >= this.menu_top) {
       this.widget.toggleClass('kits_stick', true);
       if (this.layout === 'desktop' || this.layout === 'tablet') {
