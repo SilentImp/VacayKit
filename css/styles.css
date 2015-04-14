@@ -79,7 +79,7 @@ table {
 
 .best {
   position: relative;
-  width: 100%;
+  padding: 0 0 0 30px;
 }
 .best:after {
   content: ".";
@@ -95,7 +95,6 @@ table {
   pointer-events: all;
 }
 .best__abstract {
-  padding: 0 0 0 30px;
   margin: 30px 0 0;
   width: 720px;
 }
@@ -104,14 +103,26 @@ table {
   line-height: 24px;
   margin: 0 0 24px;
 }
-.best__graph {
-  clear: left;
+.best__graphs {
   float: left;
   position: relative;
   left: 100%;
   margin-left: -100%;
   width: 600px;
+}
+.best__graph {
+  width: 100%;
   min-height: 100px;
+}
+.best__graph:after {
+  content: ".";
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  clear: both;
+  display: block;
 }
 .best__graph-header .best__graph-title {
   margin: 0;
@@ -132,6 +143,16 @@ table {
 .best__graph-container {
   width: 100%;
   height: 300px;
+}
+.best__graph-container .min,
+.best__graph-container .max {
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+}
+.best__graph-container .bar-text {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
 }
 .best__graph-container .bar {
   fill: #4682b4;
@@ -157,6 +178,16 @@ table {
   left: 100%;
   margin-left: -300px;
   width: 300px;
+}
+.best__stats:after {
+  content: ".";
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  clear: both;
+  display: block;
 }
 .best__label {
   display: inline-block;
@@ -222,12 +253,43 @@ table {
   border-bottom: 1px solid #ededed;
 }
 @media (max-width: 1024px) {
-  html body .best__abstract {
+  html body .best {
     padding: 0;
+  }
+  html body .best__abstract {
     margin: 30px 0 0;
+  }
+  html body .best__graph .min,
+  html body .best__graph .max,
+  html body .best__graph .bar-text {
+    font-size: 12px;
   }
 }
 @media (max-width: 940px) {
+  html body .best__stats {
+    float: none;
+    left: auto;
+    margin: 0 0 30px;
+    width: auto;
+  }
+  html body .best__graph {
+    width: 100%;
+  }
+  html body .best__graph .min,
+  html body .best__graph .max,
+  html body .best__graph .bar-text {
+    font-size: 11px;
+    font-weight: normal;
+  }
+  html body .best__graph .axis text {
+    font-size: 11px;
+  }
+  html body .best__graphs {
+    width: auto;
+    float: none;
+    left: auto;
+    margin: 0 0 30px;
+  }
   html body .best__abstract {
     width: auto;
     margin: 15px 0 0;

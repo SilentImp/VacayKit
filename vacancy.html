@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <script src="js/modernizr/modernizr.js"></script>
     <script src="js/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="js/nvd3/build/nv.d3.min.css"/>
     <script src="js/d3/d3.min.js"></script>
-    <script src="js/nvd3/build/nv.d3.min.js"></script>
     <script src="js/scripts.js" defer="defer" async="async"></script>
   </head>
   <body>
@@ -95,27 +93,11 @@
             <p>What ever you are looking for in a summer holiday, you can find it in Thailand!</p>
           </section>
         </section>
-        <button type="button" class="page__section-button page__section-button_open page__section-button_visible">Best time to visit</button>
+        <button type="button" class="page__section-button page__section-button_visible page__section-button_open">Best time to visit</button>
         <section class="page__section">
           <div class="best">
             <div class="best__abstract">
               <p>The cool season is the best time to come to Thailand: as well as having more manageable temperatures and less rain, it offers waterfalls in full spate and the best of the upland flowers in bloom. Bear in mind, however, that it’s also the busiest season, so forward planning is essential.</p>
-            </div>
-            <div class="best__graphs">
-              <section data-type="temperature" data-max="[78,82,86,88,92,92,88,88,86,84,84,84]" data-min="[70,72,72,74,75,79,75,73,71,68,66,62]" data-format="F" class="best__graph">
-                <header class="best__graph-header">
-                  <h2 class="best__graph-title">Average temperature</h2>
-                  <nav class="switcher">
-                    <button type="button" data-filter="F" class="switcher__selected">°F</button>
-                    <button type="button" data-filter="C">°C</button>
-                  </nav>
-                </header>
-                <svg class="best__graph-container"></svg>
-              </section>
-              <section data-type="precipitation" data-values="[1,2,3,4,13,22,13,11,20,18,5,2]" class="best__graph">
-                <h2 class="best__graph-title">Average number of rainy days</h2>
-                <svg class="best__graph-container"></svg>
-              </section>
             </div>
             <div class="best__stats">
               <div class="best__stat">
@@ -148,6 +130,22 @@
                   <data class="best__data">1–5</data>
                 </p>
               </div>
+            </div>
+            <div class="best__graphs">
+              <section data-type="temperature" data-max="[78,82,86,88,92,92,88,88,86,84,84,84]" data-min="[70,72,72,74,75,79,75,73,71,68,66,62]" data-format="F" class="best__graph">
+                <header class="best__graph-header">
+                  <h2 class="best__graph-title">Average temperature</h2>
+                  <nav class="switcher">
+                    <button type="button" data-filter="F" class="switcher__selected">°F</button>
+                    <button type="button" data-filter="C">°C</button>
+                  </nav>
+                </header>
+                <svg class="best__graph-container"></svg>
+              </section>
+              <section data-type="precipitation" data-values="[1,2,3,4,13,22,13,11,20,18,5,2]" class="best__graph">
+                <h2 class="best__graph-title">Average number of rainy days</h2>
+                <svg class="best__graph-container"></svg>
+              </section>
             </div>
           </div>
         </section>

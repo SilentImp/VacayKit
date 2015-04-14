@@ -62,7 +62,10 @@ Graph = (function() {
     this.update = bind(this.update, this);
     this.toggleTemperature = bind(this.toggleTemperature, this);
     this.precipitationChart = bind(this.precipitationChart, this);
+    this.axes = bind(this.axes, this);
+    this.init = bind(this.init, this);
     this.labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    this.labels_mobile = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
     this.container = this.widget.find('.best__graph-container');
     this.margin = {
       top: 0,
@@ -70,17 +73,17 @@ Graph = (function() {
       bottom: 30,
       left: 0
     };
-    this.width = this.container.width() - this.margin.left - this.margin.right;
-    this.height = this.container.height() - this.margin.top - this.margin.bottom;
-    this.x = d3.scale.ordinal().domain(this.labels).rangeRoundBands([0, this.width], 0);
-    this.y = d3.scale.linear().range([this.height, 0]);
-    this.xAxis = d3.svg.axis().scale(this.x).orient("bottom");
-    this.svg = d3.select(this.container[0]).append("g");
-    this.svg.append("g").attr("class", "axis").attr("transform", "translate(0," + this.height + ")").call(this.xAxis);
+    this.svg = d3.select(this.container[0]);
+    $(window).on('resize', this.init);
+    this.init();
+  }
+
+  Graph.prototype.init = function() {
+    this.svg.selectAll("*").remove();
+    this.axes();
     switch (this.widget.attr('data-type')) {
       case 'precipitation':
-        this.precipitationChart();
-        break;
+        return this.precipitationChart();
       default:
         this.switcher = this.widget.find('.switcher');
         this.switcher_buttons = this.switcher.find('button');
@@ -92,9 +95,22 @@ Graph = (function() {
         this.min_nodes = [];
         this.min_links = [];
         this.max_links = [];
-        this.temperaturesChart();
+        return this.temperaturesChart();
     }
-  }
+  };
+
+  Graph.prototype.axes = function() {
+    this.width = this.container.width() - this.margin.left - this.margin.right;
+    this.height = this.container.height() - this.margin.top - this.margin.bottom;
+    if (Modernizr.mq('(min-width: 500px)')) {
+      this.x = d3.scale.ordinal().domain(this.labels).rangeRoundBands([this.width, 0], 0);
+    } else {
+      this.x = d3.scale.ordinal().domain(this.labels_mobile).rangeRoundBands([this.width, 0], 0);
+    }
+    this.y = d3.scale.linear().range([this.height, 0]);
+    this.xAxis = d3.svg.axis().scale(this.x).orient("bottom");
+    return this.svg.append("g").attr("class", "axis").attr("transform", "translate(0," + this.height + ")").call(this.xAxis);
+  };
 
   Graph.prototype.lightenDarkenColor = function(col, amt) {
     var b, g, num, r, usePound;
@@ -144,10 +160,7 @@ Graph = (function() {
         return tmp + "%";
       };
     })(this));
-    barText.style("text-anchor", "middle");
-    barText.style("font-size", "16px");
-    barText.style("font-family", "Lato");
-    barText.style("font-weight", "bold");
+    barText.style("text-anchor", "middle").attr("class", "bar-text");
     barText.text((function(_this) {
       return function(d) {
         return d;
@@ -304,7 +317,7 @@ Graph = (function() {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
-    }).style("text-anchor", "middle").style("font-size", "13px").style("font-family", "Lato").text((function(_this) {
+    }).style("text-anchor", "middle").text((function(_this) {
       return function(d) {
         return d.value;
       };
@@ -313,7 +326,7 @@ Graph = (function() {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) + 30;
-    }).style("text-anchor", "middle").style("font-size", "13px").style("font-family", "Lato").text((function(_this) {
+    }).style("text-anchor", "middle").text((function(_this) {
       return function(d) {
         return d.value;
       };
