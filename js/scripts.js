@@ -245,8 +245,9 @@ Graph = (function() {
   };
 
   Graph.prototype.update = function() {
-    this.svg.selectAll(".min,.max").remove();
-    return this.temperaturesChart();
+    this.temperatureData();
+    this.max_text.data(this.max_nodes);
+    return this.min_text = this.svg.selectAll("text.min").data(this.min_nodes).enter();
   };
 
   Graph.prototype.temperatureData = function() {
