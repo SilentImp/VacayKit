@@ -31,8 +31,12 @@ class Kits
     @links_height = @wrapper.height()
 
   stickIt: =>
+
     @menu_top = $('.items__wrapper').offset().top
-    top = $('html').scrollTop()
+    top = Math.max $('html').scrollTop(), document.body.scrollTop
+
+    # console.log 'check', top, document.body.scrollTop
+
     if top+@header_height >= @menu_top
       @widget.toggleClass 'kits_stick', true
       if @layout is 'desktop' || @layout is 'tablet'
