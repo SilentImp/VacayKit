@@ -4,7 +4,6 @@ class Kits
     if @widget.length == 0
       return
 
-    @header_height = $('body>header>.project').height()
     @menu = @widget.find '.kits__menu'
     @buttons = @menu.find 'a'
     @footer = $ 'body>footer'
@@ -41,15 +40,15 @@ class Kits
     @menu_top = $('.items__wrapper').offset().top
     top = Math.max $('html').scrollTop(), document.body.scrollTop
 
-    if top+@header_height >= @menu_top
+    if top >= @menu_top
       @widget.toggleClass 'kits_stick', true
       if @layout is 'desktop' || @layout is 'tablet'
         visible_footer = Math.max((top + @viewport_height) - @footer.offset().top, 0)
-        @menu.css 'max-height', @viewport_height - @header_height - visible_footer - 48
+        @menu.css 'max-height', @viewport_height - visible_footer - 47
         @widget.css 'bottom', visible_footer + 'px'
     else
       @widget.toggleClass 'kits_stick', false
-      @menu.css 'max-height', @viewport_height - @header_height
+      @menu.css 'max-height', @viewport_height
       @widget.css 'bottom', 'auto'
 
     @getCurrentKit()
@@ -112,11 +111,15 @@ class Kits
     element = $ event.currentTarget.getAttribute('href')
 
     if @layout == 'mobile'
-      target = parseInt(element.offset().top - @header_height - @widget.height() - 20, 10)
+      target = parseInt(element.offset().top - @widget.height() - 20, 10)
     else
-      target = parseInt(element.offset().top - @header_height - 20, 10)
+      target = parseInt(element.offset().top - 20, 10)
 
     $("body").stop().animate(
+        scrollTop: target + 'px'
+      , 'fast')
+
+    $("html").stop().animate(
         scrollTop: target + 'px'
       , 'fast')
 

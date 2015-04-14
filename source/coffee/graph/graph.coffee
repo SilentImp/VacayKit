@@ -131,8 +131,13 @@ class Graph
     @update()
 
   update: =>
-    @svg.selectAll(".min,.max").remove()
-    @temperaturesChart()
+    @temperatureData()
+    # на данный момент данные уже новые, я проверил
+    @max_text.data(@max_nodes)
+    @min_text = @svg.selectAll("text.min").data(@min_nodes).enter()
+
+    # @svg.selectAll(".min,.max").remove()
+    # @temperaturesChart()
 
   temperatureData: =>
     maxX = Math.max.apply null, @max
