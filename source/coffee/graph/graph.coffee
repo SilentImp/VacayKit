@@ -132,9 +132,107 @@ class Graph
 
   update: =>
     @temperatureData()
-    # на данный момент данные уже новые, я проверил
+
+    @max_text
+      .exit()
+      .remove()
+
     @max_text.data(@max_nodes)
-    @min_text = @svg.selectAll("text.min").data(@min_nodes).enter()
+      .enter()
+      .attr("x", (d)->
+        return d.x
+        )
+      .attr("y", (d)->
+        return (parseInt(d.y,10) - 20)
+        )
+      .text((d)=>
+        return d.value
+        )
+
+    @min_text
+      .exit()
+      .remove()
+
+    @min_text
+      .data(@min_nodes)
+      .enter()
+      .attr("x", (d)->
+        return d.x
+        )
+      .attr("y", (d)->
+        return (parseInt(d.y,10) - 20)
+        )
+      .text((d)=>
+        return d.value
+        )
+
+    @max_dots
+      .exit()
+      .remove()
+
+    @max_dots
+      .data(@max_nodes)
+      .enter()
+      .attr("cx", (d)->
+        return d.x
+        )
+      .attr("cy", (d)->
+        return d.y
+        )
+
+    @min_dots
+      .exit()
+      .remove()
+
+    @min_dots
+      .data(@min_nodes)
+      .enter()
+      .attr("cx", (d)->
+        return d.x
+        )
+      .attr("cy", (d)->
+        return d.y
+        )
+
+    @min_lines
+      .exit()
+      .remove()
+
+    @min_lines
+      .data(@min_links)
+      .enter()
+      .attr("x1", (d)->
+        return d.source.x
+        )
+      .attr("y1", (d)->
+        return d.source.y
+        )
+      .attr("x2", (d)->
+        return d.target.x
+        )
+      .attr("y2", (d)->
+        return d.target.y
+        )
+
+    @max_lines
+      .exit()
+      .remove()
+
+    @max_lines
+      .data(@max_links)
+      .enter()
+      .attr("x1", (d)->
+        return d.source.x
+        )
+      .attr("y1", (d)->
+        return d.source.y
+        )
+      .attr("x2", (d)->
+        return d.target.x
+        )
+      .attr("y2", (d)->
+        return d.target.y
+        )
 
     # @svg.selectAll(".min,.max").remove()
     # @temperaturesChart()
@@ -189,69 +287,76 @@ class Graph
 
     @max_text = @svg.selectAll("text.max")
       .data(@max_nodes)
-      .enter()
+
+    @max_text.enter()
       .append("svg:text")
       .attr("class", "max")
+      .style("text-anchor", "middle")
       .attr("x", (d)->
         return d.x
         )
       .attr("y", (d)->
         return (parseInt(d.y,10) - 20)
         )
-      .style("text-anchor", "middle")
       .text((d)=>
         return d.value
         )
 
     @min_text = @svg.selectAll("text.min")
       .data(@min_nodes)
-      .enter()
+
+    @min_text.enter()
       .append("svg:text")
       .attr("class", "min")
+      .style("text-anchor", "middle")
       .attr("x", (d)->
         return d.x
         )
       .attr("y", (d)->
         return (parseInt(d.y,10) + 30)
         )
-      .style("text-anchor", "middle")
       .text((d)=>
         return d.value
         )
 
     @max_dots = @svg.selectAll("circle.max")
       .data(@max_nodes)
-      .enter()
+
+    @max_dots.enter()
       .append("svg:circle")
       .attr("class", "max")
+      .attr("fill", '#FF7043')
+      .attr("r", "8px")
       .attr("cx", (d)->
         return d.x
         )
       .attr("cy", (d)->
         return d.y
         )
-      .attr("fill", '#FF7043')
-      .attr("r", "8px")
 
     @min_dots = @svg.selectAll("circle.min")
       .data(@min_nodes)
-      .enter()
+
+    @min_dots.enter()
       .append("svg:circle")
       .attr("class", "min")
+      .attr("fill", '#42A5F5')
+      .attr("r", "8px")
       .attr("cx", (d)->
         return d.x
         )
       .attr("cy", (d)->
         return d.y
         )
-      .attr("fill", '#42A5F5')
-      .attr("r", "8px")
 
     @max_lines = @svg.selectAll("line.max")
       .data(@max_links)
-      .enter()
+
+    @max_lines.enter()
       .append("line")
       .attr("class", "max")
+      .style("stroke", "#FF7043")
+      .attr("stroke-width", "3px")
       .attr("x1", (d)->
         return d.source.x
         )
@@ -264,14 +369,15 @@ class Graph
       .attr("y2", (d)->
         return d.target.y
         )
-      .style("stroke", "#FF7043")
-      .attr("stroke-width", "3px")
 
     @min_lines = @svg.selectAll("line.min")
       .data(@min_links)
-      .enter()
+
+    @min_lines.enter()
       .append("line")
       .attr("class", "min")
+      .style("stroke", "#42A5F5")
+      .attr("stroke-width", "3px")
       .attr("x1", (d)->
         return d.source.x
         )
@@ -284,8 +390,6 @@ class Graph
       .attr("y2", (d)->
         return d.target.y
         )
-      .style("stroke", "#42A5F5")
-      .attr("stroke-width", "3px")
 
 
 
