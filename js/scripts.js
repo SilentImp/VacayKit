@@ -465,7 +465,7 @@ Kits = (function() {
 
   Kits.prototype.getCurrentKit = function() {
     var bottom, head, i, id, last, len, level, link, menu_height, menu_width, ref;
-    bottom = $('html').scrollTop() + this.viewport_height;
+    bottom = Math.max($('html').scrollTop(), document.body.scrollTop) + this.viewport_height;
     last = null;
     ref = this.heads;
     for (i = 0, len = ref.length; i < len; i++) {
