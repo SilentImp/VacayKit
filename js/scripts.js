@@ -838,7 +838,8 @@ Switcher = (function() {
   };
 
   Switcher.prototype.toggleState = function(event) {
-    $(event.currentTarget).toggleClass("switcher__selected");
+    this.widget.find('.switcher__selected').removeClass("switcher__selected");
+    $(event.currentTarget).addClass("switcher__selected");
     return this.getStates();
   };
 
