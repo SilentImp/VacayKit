@@ -1146,9 +1146,12 @@ body>header .project__link_mobile {
   color: rgba(74,74,74,0.4);
 }
 .item__element {
+  display: block;
   position: relative;
   width: 100%;
   margin: 20px 0;
+  color: #4a4a4a;
+  text-decoration: none;
 }
 .item__element:after {
   content: ".";
