@@ -1,18 +1,22 @@
-
 class Graph
+
   constructor: (@widget)->
     @labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
     @labels_mobile = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
     @container = @widget.find '.best__graph-container'
-    @margin = {top: 0, right: 0, bottom: 30, left: 0}
-    @svg = d3.select(@container[0])
+    @margin =
+      top: 0
+      right: 0
+      bottom: 30
+      left: 0
+    @svg = d3.select @container[0]
 
     $(window).on 'resize', @init
     @init()
 
   init: =>
 
-    if Modernizr.mq('(min-width: 500px)')
+    if Modernizr.mq '(min-width: 500px)'
       @radius = "8px"
     else
       @radius = "5px"
@@ -28,17 +32,13 @@ class Graph
         @switcher_status = @switcher.find('.switcher__selected').attr 'data-filter'
         @min = JSON.parse @widget.attr 'data-min'
         @max = JSON.parse @widget.attr 'data-max'
-        @max_nodes = []
-        @min_nodes = []
-        @min_links = []
-        @max_links = []
         @temperaturesChart()
 
   axes: =>
     @width = @widget.width() - @margin.left - @margin.right
     @height = @container.height() - @margin.top - @margin.bottom
 
-    if Modernizr.mq('(min-width: 500px)')
+    if Modernizr.mq '(min-width: 500px)'
       @axis = @svg.selectAll("text.xaxis").data @labels
     else
       @axis = @svg.selectAll("text.xaxis").data @labels_mobile
@@ -62,7 +62,7 @@ class Graph
       .attr("width", "100%")
       .attr("height", "1px")
       .attr("y", "270px")
-      .attr("x", "0")
+      .attr "x", "0"
 
     @y = d3.scale.linear().range [@height, 0]
     @x = d3.scale.linear().range [@width, 0]
@@ -98,12 +98,12 @@ class Graph
     return "#" + (g | (b << 8) | (r << 16)).toString(16)
 
   precipitationChart: =>
-    @values = JSON.parse @widget.attr('data-values')
+    @values = JSON.parse @widget.attr 'data-values'
     maxX = Math.max.apply null, @values
     dx = 100/24
     color = d3.rgb '#1E88E5'
     chart = d3.select @container[0]
-    bar = chart.selectAll(".bar").data(@values)
+    bar = chart.selectAll(".bar").data @values
 
     bar
       .enter()
@@ -137,23 +137,23 @@ class Graph
         return Math.min(tmp, 100 - 100/12)+ "%"
         )
       .attr "fill", (d)=>
-        return @lightenDarkenColor('#1E88E5', 100 - d*100/maxX)
+        return @lightenDarkenColor '#1E88E5', 100 - d*100/maxX
 
   toggleTemperature: =>
-    @switcher_buttons.toggleClass('switcher__selected')
+    @switcher_buttons.toggleClass 'switcher__selected'
     if @switcher_status == "F"
       @min = (Math.round((t - 32)*(5/9)) for t in @min)
       @max = (Math.round((t - 32)*(5/9)) for t in @max)
     else
       @min = (Math.round(t*(9/5) + 32) for t in @min)
       @max = (Math.round(t*(9/5) + 32) for t in @max)
-    @switcher_status = @switcher.find('.switcher__selected').attr('data-filter')
+    @switcher_status = @switcher.find('.switcher__selected').attr 'data-filter'
     @update()
 
   update: =>
     @temperatureData()
 
-    max_text = @max_text.data(@max_nodes)
+    max_text = @max_text.data @max_nodes
     max_text
       .transition()
       .attr("x", (d)->
@@ -162,15 +162,14 @@ class Graph
       .attr("y", (d)->
         return (parseInt(d.y,10) - 20)
         )
-      .text((d)=>
+      .text (d)->
         return d.value
-        )
     max_text
       .exit()
       .remove()
 
 
-    min_text = @min_text.data(@min_nodes)
+    min_text = @min_text.data @min_nodes
     min_text
       .transition()
       .attr("x", (d)->
@@ -179,43 +178,39 @@ class Graph
       .attr("y", (d)->
         return (parseInt(d.y,10) + 30)
         )
-      .text((d)=>
+      .text (d)->
         return d.value
-        )
     min_text
       .exit()
       .remove()
 
-    max_dots = @max_dots.data(@max_nodes)
+    max_dots = @max_dots.data @max_nodes
     max_dots
       .transition()
       .attr("r", @radius)
       .attr("cx", (d)->
         return d.x
         )
-      .attr("cy", (d)->
+      .attr "cy", (d)->
         return d.y
-        )
     max_dots
       .exit()
       .remove()
 
-    min_dots = @min_dots.data(@min_nodes)
-
+    min_dots = @min_dots.data @min_nodes
     min_dots
       .transition()
       .attr("r", @radius)
       .attr("cx", (d)->
         return d.x
         )
-      .attr("cy", (d)->
+      .attr "cy", (d)->
         return d.y
-        )
     min_dots
       .exit()
       .remove()
 
-    min_lines = @min_lines.data(@min_links)
+    min_lines = @min_lines.data @min_links
     min_lines
       .transition()
       .attr("x1", (d)->
@@ -227,14 +222,13 @@ class Graph
       .attr("x2", (d)->
         return d.target.x
         )
-      .attr("y2", (d)->
+      .attr "y2", (d)->
         return d.target.y
-        )
     min_lines
       .exit()
       .remove()
 
-    max_lines = @max_lines.data(@max_links)
+    max_lines = @max_lines.data @max_links
     max_lines
       .transition()
       .attr("x1", (d)->
@@ -246,13 +240,11 @@ class Graph
       .attr("x2", (d)->
         return d.target.x
         )
-      .attr("y2", (d)->
+      .attr "y2", (d)->
         return d.target.y
-        )
     max_lines
       .exit()
       .remove()
-
 
   temperatureData: =>
     maxX = Math.max.apply null, @max
@@ -261,7 +253,7 @@ class Graph
     minX = Math.max 0, minX-20
 
     d = 100/24
-    @max_nodes.splice 0
+    @max_nodes = []
     for x in @max
       tmp = d
       @max_nodes.push
@@ -271,7 +263,7 @@ class Graph
       d+=100/12
 
     d = 100/24
-    @min_nodes.splice 0
+    @min_nodes = []
     for x in @min
       tmp = d
       @min_nodes.push
@@ -280,7 +272,7 @@ class Graph
         value: x
       d+=100/12
 
-    @min_links.splice 0
+    @min_links = []
     old_node = null
     for node in @min_nodes
       if old_node != null
@@ -289,7 +281,7 @@ class Graph
           target: node
       old_node = node
 
-    @max_links.splice 0
+    @max_links = []
     old_node = null
     for node in @max_nodes
       if old_node != null
@@ -302,9 +294,7 @@ class Graph
 
     @temperatureData()
 
-    @max_text = @svg.selectAll("text.max")
-      .data(@max_nodes)
-
+    @max_text = @svg.selectAll("text.max").data @max_nodes
     @max_text.enter()
       .append("svg:text")
       .attr("class", "max")
@@ -315,13 +305,10 @@ class Graph
       .attr("y", (d)->
         return (parseInt(d.y,10) - 20)
         )
-      .text((d)=>
+      .text (d)->
         return d.value
-        )
 
-    @min_text = @svg.selectAll("text.min")
-      .data(@min_nodes)
-
+    @min_text = @svg.selectAll("text.min").data @min_nodes
     @min_text.enter()
       .append("svg:text")
       .attr("class", "min")
@@ -332,13 +319,10 @@ class Graph
       .attr("y", (d)->
         return (parseInt(d.y,10) + 30)
         )
-      .text((d)=>
+      .text (d)->
         return d.value
-        )
 
-    @max_dots = @svg.selectAll("circle.max")
-      .data(@max_nodes)
-
+    @max_dots = @svg.selectAll("circle.max").data @max_nodes
     @max_dots.enter()
       .append("svg:circle")
       .attr("class", "max")
@@ -347,13 +331,10 @@ class Graph
       .attr("cx", (d)->
         return d.x
         )
-      .attr("cy", (d)->
+      .attr "cy", (d)->
         return d.y
-        )
 
-    @min_dots = @svg.selectAll("circle.min")
-      .data(@min_nodes)
-
+    @min_dots = @svg.selectAll("circle.min").data @min_nodes
     @min_dots.enter()
       .append("svg:circle")
       .attr("class", "min")
@@ -362,12 +343,10 @@ class Graph
       .attr("cx", (d)->
         return d.x
         )
-      .attr("cy", (d)->
+      .attr "cy", (d)->
         return d.y
-        )
 
-    @max_lines = @svg.selectAll("line.max")
-      .data(@max_links)
+    @max_lines = @svg.selectAll("line.max").data @max_links
 
     @max_lines.enter()
       .append("line")
@@ -383,13 +362,10 @@ class Graph
       .attr("x2", (d)->
         return d.target.x
         )
-      .attr("y2", (d)->
+      .attr "y2", (d)->
         return d.target.y
-        )
 
-    @min_lines = @svg.selectAll("line.min")
-      .data(@min_links)
-
+    @min_lines = @svg.selectAll("line.min").data @min_links
     @min_lines.enter()
       .append("line")
       .attr("class", "min")
@@ -404,10 +380,8 @@ class Graph
       .attr("x2", (d)->
         return d.target.x
         )
-      .attr("y2", (d)->
+      .attr "y2", (d)->
         return d.target.y
-        )
-
 
 
 $(document).ready ->

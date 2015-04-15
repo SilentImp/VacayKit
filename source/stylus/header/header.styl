@@ -78,6 +78,14 @@ body
       margin 0 20px
 
 @media (max-width: $mobile)
+  html>body.menu_open>header
+    .project
+      position fixed
+      &__wrapper
+        transform translateX(0)
+      &__lightbox
+        right 0
+        opacity 1
   html>body>header
     height 200px
     .subscribe
@@ -85,11 +93,6 @@ body
     .hamburger
       z-index 3
       display block
-      &_open + .project__wrapper
-        transform translateX(0)
-      &_open + .project__wrapper + .project__lightbox
-        right 0
-        opacity 1
     .logotype
       height 44px
       left 0

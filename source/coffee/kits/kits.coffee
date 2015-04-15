@@ -9,13 +9,14 @@ class Kits
     @footer = $ 'body>footer'
     @heads = $ '.items__header'
     @head_height = $(@heads.get(0)).height()
-    @wrapper = @menu.find('.kits__wrapper')
-
-    @getLayout()
+    @wrapper = @menu.find '.kits__wrapper'
 
     @buttons.on 'click', @scrollTo
     $(window).on 'scroll', @stickIt
     $(window).on 'resize', @getLayout
+
+    @getLayout()
+    @stickIt()
 
   getLayout: =>
     @layout = 'desktop'

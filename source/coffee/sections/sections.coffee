@@ -6,7 +6,9 @@ class Sections
     @buttons.on 'click', @toggleState
 
   toggleState: (event)=>
-    $(event.currentTarget).toggleClass "page__section-button_open"
+    button = $ event.currentTarget
+    button.toggleClass "page__section-button_open"
+    button.next().toggleClass "page__section_open"
 
 $(document).ready ->
   new Sections
