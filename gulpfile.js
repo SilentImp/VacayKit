@@ -40,7 +40,7 @@ gulp.task('list', function () {
         , file;
     for(var i=0; i<files.length; i++){
       file = files[i];
-      if(file.indexOf('index.html')>-1){
+      if(file.indexOf('index.html')>-1 || (file.match(/\//g) || []).length>1){
         continue;
       }
       names.push(path.basename(file))

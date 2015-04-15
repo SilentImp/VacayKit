@@ -53,7 +53,7 @@ class Graph
         dx+=100/12
         return tmp+"%"
         )
-      .attr("y", "300px")
+      .attr("y", @container.height()+"px")
       .text (d)->
         return d
 
@@ -61,7 +61,7 @@ class Graph
       .attr("class", "axis-line")
       .attr("width", "100%")
       .attr("height", "1px")
-      .attr("y", "270px")
+      .attr("y", @container.height()-25+"px")
       .attr "x", "0"
 
     @y = d3.scale.linear().range [@height, 0]

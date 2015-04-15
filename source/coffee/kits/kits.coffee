@@ -76,11 +76,10 @@ class Kits
       menu_height = @menu.height()
 
       if (@layout == 'mobile' && @links_width > menu_width) || (@layout != 'mobile' && @links_height > menu_height)
-
-        window.clearTimeout @scroll_timer
-        @scroll_timer = window.setTimeout @scroll_menu, 100, link, menu_width, menu_height
+        @scroll_menu link, menu_width, menu_height
 
   scroll_menu: (link, menu_width, menu_height)=>
+
     if @layout == 'mobile'
 
       scroll_left = @menu.scrollLeft()
@@ -88,20 +87,17 @@ class Kits
       link_width = link.width()
       if link_left<scroll_left || (link_left+link_width)>(scroll_left+menu_width)
         @menu.scrollTop 0
-        # @menu.scrollLeft parseInt(link_left + link_width/2 - menu_width/2, 10)
         @menu.stop().animate(
             scrollLeft: parseInt(link_left + link_width/2 - menu_width/2, 10) + 'px'
           , 'fast')
 
     else
-
       scroll_top = @menu.scrollTop()
       link_top = link.offset().top - link.parent().offset().top
       link_height = link.height()
 
       if (link_top < scroll_top) || (link_top+link_height)>(scroll_top+menu_height)
         @menu.scrollLeft 0
-        # @menu.scrollTop parseInt(link_top + link_height/2 - menu_height/2 + 15, 10)
         @menu.stop().animate(
             scrollTop: parseInt(link_top + link_height/2 - menu_height/2 + 15, 10) + 'px'
           , 'fast')
