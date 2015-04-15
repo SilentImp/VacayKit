@@ -913,7 +913,6 @@ body>header .project__link_mobile {
     background-color: rgba(29,31,34,0.9);
     will-change: opacity;
     opacity: 0;
-    transition: opacity 0.25s linear;
     pointer-events: all;
     cursor: pointer;
   }
@@ -933,8 +932,6 @@ body>header .project__link_mobile {
     background-color: rgba(100,102,106,0.94);
     line-height: 20px;
     will-change: transform;
-    transition: -webkit-transform 0.25s linear;
-    transition: transform 0.25s linear;
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
   }
