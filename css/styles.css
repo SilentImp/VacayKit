@@ -389,6 +389,11 @@ table {
   background-color: #a2abb2;
   border-radius: 3px;
 }
+@media (max-width: 500px) {
+  html>body .checkbox__label {
+    font-size: 14px;
+  }
+}
 
 .dropdown {
   display: inline-block;
@@ -1051,6 +1056,9 @@ body>header .project__link_mobile {
     width: auto;
     border-bottom: 1px solid #ebebeb;
   }
+  html body .info_mobile-hidden {
+    display: none;
+  }
   html body .info__currency-rate {
     margin-bottom: 0;
   }
@@ -1414,7 +1422,8 @@ body>header .project__link_mobile {
   .items-subscribe {
     margin: 0 -15px;
     border-radius: 0;
-    padding: 0 0 20px;
+    overflow: hidden;
+    padding: 0;
     height: auto;
     min-height: initial;
     background-size: 90px 90px;
@@ -2241,6 +2250,9 @@ html body .page__section-button_open {
   }
   html>body .page__section {
     display: none;
+  }
+  html>body .page__section_open {
+    display: block;
   }
   html>body .page__subscribe,
   html>body .page__share {
