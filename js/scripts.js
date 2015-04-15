@@ -11,11 +11,15 @@ Country = (function() {
     var currency_title;
     this.widget = $('.page[data-code]');
     this.country_code = this.widget.attr('data-code');
-    currency_title = window.currency_info[this.country_code].currencyName + ' (' + window.currency_info[this.country_code].currencyId + ')';
-    this.currency = window.currency_info[this.country_code].currencyId;
-    this.exchange();
-    $('.info__currency-name').text(currency_title);
-    $.get('https://restcountries.eu/rest/v1/alpha?codes=' + this.country_code).success(this.countryData);
+    if ($('.info__currency').length > 0) {
+      currency_title = window.currency_info[this.country_code].currencyName + ' (' + window.currency_info[this.country_code].currencyId + ')';
+      this.currency = window.currency_info[this.country_code].currencyId;
+      $('.info__currency-name').text(currency_title);
+      this.exchange();
+    }
+    if ($('.info__capital').length > 0) {
+      $.get('https://restcountries.eu/rest/v1/alpha?codes=' + this.country_code).success(this.countryData);
+    }
   }
 
   Country.prototype.countryData = function(data) {
