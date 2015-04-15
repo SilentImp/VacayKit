@@ -26,7 +26,8 @@ class Switcher
     @list.find(tags).show()
 
   toggleState: (event)=>
-    $(event.currentTarget).toggleClass "switcher__selected"
+    @widget.find('.switcher__selected').removeClass "switcher__selected"
+    $(event.currentTarget).addClass "switcher__selected"
     @getStates()
 
 $(document).ready ->
