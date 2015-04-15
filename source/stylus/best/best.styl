@@ -53,14 +53,12 @@
         float left
       .bar:hover
         fill brown
-      .axis text
+      .x-axis
         font-size 14px
         font-family 'Lato', sans-serif
         fill $semi-grey
-      .axis path,
-      .axis line
-        fill none
-        stroke $light-grey-border
+      .axis-line
+        fill $light-grey-border
         shape-rendering crispEdges
 
   &__stats
@@ -132,13 +130,14 @@
       width auto
     &__graph
       width 100%
+      .x-axis
+        font-size 12px
+        fill $grey
       .min,
       .max,
       .bar-text
         font-size 11px
         font-weight normal
-      .axis text
-        font-size 11px
     &__graphs
       width auto
       float none

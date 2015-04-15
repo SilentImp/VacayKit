@@ -11,6 +11,12 @@ class Graph
     @init()
 
   init: =>
+
+    if Modernizr.mq('(min-width: 500px)')
+      @radius = "8px"
+    else
+      @radius = "5px"
+
     @svg.selectAll("*").remove()
     @axes()
     switch @widget.attr 'data-type'
@@ -29,23 +35,37 @@ class Graph
         @temperaturesChart()
 
   axes: =>
-    @width = @container.width() - @margin.left - @margin.right
+    @width = @widget.width() - @margin.left - @margin.right
     @height = @container.height() - @margin.top - @margin.bottom
 
     if Modernizr.mq('(min-width: 500px)')
-      @x = d3.scale.ordinal().domain(@labels).rangeRoundBands [@width, 0], 0
+      @axis = @svg.selectAll("text.xaxis").data @labels
     else
-      @x = d3.scale.ordinal().domain(@labels_mobile).rangeRoundBands [@width, 0], 0
+      @axis = @svg.selectAll("text.xaxis").data @labels_mobile
 
+    dx = 100/24
+    @axis.enter()
+      .append("svg:text")
+      .attr("class", "x-axis")
+      .style("text-anchor", "middle")
+      .attr("x", ->
+        tmp = dx
+        dx+=100/12
+        return tmp+"%"
+        )
+      .attr("y", "300px")
+      .text (d)->
+        return d
+
+    @axis_line = @svg.append("rect")
+      .attr("class", "axis-line")
+      .attr("width", "100%")
+      .attr("height", "1px")
+      .attr("y", "270px")
+      .attr("x", "0")
 
     @y = d3.scale.linear().range [@height, 0]
-
-    @xAxis = d3.svg.axis().scale(@x).orient("bottom")
-    @svg.append("g")
-      .attr("class", "axis")
-      .attr("transform", "translate(0," + @height + ")")
-      .call(@xAxis)
-
+    @x = d3.scale.linear().range [@width, 0]
 
 
   lightenDarkenColor: (col, amt)->
@@ -78,46 +98,46 @@ class Graph
     return "#" + (g | (b << 8) | (r << 16)).toString(16)
 
   precipitationChart: =>
-    @values = JSON.parse(@widget.attr('data-values'))
-    maxX = Math.max.apply(null, @values)
+    @values = JSON.parse @widget.attr('data-values')
+    maxX = Math.max.apply null, @values
     dx = 100/24
-    color = d3.rgb('#1E88E5')
+    color = d3.rgb '#1E88E5'
+    chart = d3.select @container[0]
+    bar = chart.selectAll(".bar").data(@values)
 
-    chart = d3.select(@container[0])
-    bar = chart.selectAll(".bar")
-    barUpdate = bar.data(@values)
-
-    barText = barUpdate.enter().append("text")
-    barText.attr("y", (@height-20)+"px")
-    barText.attr("x", (d)=>
-      tmp = dx
-      dx += 100/12
-      return tmp+ "%"
-      )
-    barText.style("text-anchor", "middle")
-    .attr("class", "bar-text")
-    barText.text((d)=>
-      return d
-      )
+    bar
+      .enter()
+      .append("text")
+      .attr("y", (@height-20)+"px")
+      .attr("x", (d)=>
+        tmp = dx
+        dx += 100/12
+        return tmp+ "%"
+        )
+      .style("text-anchor", "middle")
+      .attr("class", "bar-text")
+      .text (d)=>
+        return d
 
     dx = 0
 
-    barEnter = barUpdate.enter().append("rect")
-    barEnter.attr("width", 100/12 + "%")
-    barEnter.attr("height", (d)=>
-      return Math.floor(((d*100/maxX)/100)*(@height-50))+"px"
-      )
-    barEnter.attr("y", (d)=>
-      return ((@height-50) - Math.floor(((d*100/maxX)/100)*(@height-50)))+"px"
-      )
-    barEnter.attr("x", (d)=>
-      tmp = dx
-      dx += 100/12
-      return Math.min(tmp, 100 - 100/12)+ "%"
-      )
-    barEnter.attr("fill", (d)=>
-      return @lightenDarkenColor('#1E88E5', 100 - d*100/maxX)
-      )
+    bar
+      .enter()
+      .append("rect")
+      .attr("width", 100/12 + "%")
+      .attr("height", (d)=>
+        return Math.floor(((d*100/maxX)/100)*(@height-50))+"px"
+        )
+      .attr("y", (d)=>
+        return ((@height-50) - Math.floor(((d*100/maxX)/100)*(@height-50)))+"px"
+        )
+      .attr("x", (d)=>
+        tmp = dx
+        dx += 100/12
+        return Math.min(tmp, 100 - 100/12)+ "%"
+        )
+      .attr "fill", (d)=>
+        return @lightenDarkenColor('#1E88E5', 100 - d*100/maxX)
 
   toggleTemperature: =>
     @switcher_buttons.toggleClass('switcher__selected')
@@ -169,6 +189,7 @@ class Graph
     max_dots = @max_dots.data(@max_nodes)
     max_dots
       .transition()
+      .attr("r", @radius)
       .attr("cx", (d)->
         return d.x
         )
@@ -183,6 +204,7 @@ class Graph
 
     min_dots
       .transition()
+      .attr("r", @radius)
       .attr("cx", (d)->
         return d.x
         )
@@ -231,8 +253,6 @@ class Graph
       .exit()
       .remove()
 
-    # @svg.selectAll(".min,.max").remove()
-    # @temperaturesChart()
 
   temperatureData: =>
     maxX = Math.max.apply null, @max
@@ -323,7 +343,7 @@ class Graph
       .append("svg:circle")
       .attr("class", "max")
       .attr("fill", '#FF7043')
-      .attr("r", "8px")
+      .attr("r", @radius)
       .attr("cx", (d)->
         return d.x
         )
@@ -338,7 +358,7 @@ class Graph
       .append("svg:circle")
       .attr("class", "min")
       .attr("fill", '#42A5F5')
-      .attr("r", "8px")
+      .attr("r", @radius)
       .attr("cx", (d)->
         return d.x
         )
