@@ -992,17 +992,17 @@ body>header .project__link_mobile {
   color: #4a4a4a;
   margin: 0 0 10px;
 }
-.info .info__currency {
+.info__currency {
   display: none;
 }
-.info .info__currency-name {
+.info__currency-name {
   display: block;
   white-space: normal;
 }
-.info .info__currency-rates {
+.info__currency-rates {
   white-space: normal;
 }
-.info .info__currency-rate {
+.info__currency-rate {
   display: inline-block;
   font-size: 14px;
   margin: 0 10px 10px 0;
@@ -1011,7 +1011,7 @@ body>header .project__link_mobile {
   height: 25px;
   white-space: nowrap;
 }
-.info .info__currency-rate:before {
+.info__currency-rate:before {
   content: ".";
   overflow: hidden;
   text-indent: -999px;
@@ -1026,10 +1026,10 @@ body>header .project__link_mobile {
   background-position: 50% 50%;
   background-color: transparent;
 }
-.info .info__currency-rate_usd:before {
+.info__currency-rate_usd:before {
   background-image: url("../svg/usd.svg");
 }
-.info .info__currency-rate_eur:before {
+.info__currency-rate_eur:before {
   background-image: url("../svg/eur.svg");
 }
 @media (max-width: 1024px) {
@@ -1045,6 +1045,9 @@ body>header .project__link_mobile {
     padding: 0 15px 0 0;
     width: auto;
     border-bottom: 1px solid #ebebeb;
+  }
+  html body .info__currency-rate {
+    margin-bottom: 0;
   }
   html body .info section {
     position: relative;
@@ -1567,6 +1570,10 @@ body>header .project__link_mobile {
 @media (max-width: 500px) {
   html body .items {
     max-width: initial;
+  }
+  html body .items__count {
+    font-size: 15px;
+    font-weight: normal;
   }
   html body .items__title {
     font-size: 28px;
