@@ -115,10 +115,10 @@ Graph = (function() {
       tmp = dx;
       dx += 100 / 12;
       return tmp + "%";
-    }).attr("y", "300px").text(function(d) {
+    }).attr("y", this.container.height() + "px").text(function(d) {
       return d;
     });
-    this.axis_line = this.svg.append("rect").attr("class", "axis-line").attr("width", "100%").attr("height", "1px").attr("y", "270px").attr("x", "0");
+    this.axis_line = this.svg.append("rect").attr("class", "axis-line").attr("width", "100%").attr("height", "1px").attr("y", this.container.height() - 25 + "px").attr("x", "0");
     this.y = d3.scale.linear().range([this.height, 0]);
     return this.x = d3.scale.linear().range([this.width, 0]);
   };
@@ -548,8 +548,7 @@ Kits = (function() {
       menu_width = this.menu.width();
       menu_height = this.menu.height();
       if ((this.layout === 'mobile' && this.links_width > menu_width) || (this.layout !== 'mobile' && this.links_height > menu_height)) {
-        window.clearTimeout(this.scroll_timer);
-        return this.scroll_timer = window.setTimeout(this.scroll_menu, 100, link, menu_width, menu_height);
+        return this.scroll_menu(link, menu_width, menu_height);
       }
     }
   };
