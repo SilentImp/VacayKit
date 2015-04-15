@@ -443,12 +443,14 @@ Hamburger = (function() {
     if (this.button.length === 0) {
       return;
     }
+    this.body = $('body');
     this.button.on('click touch', this.switchState);
     $('.project__lightbox').on('click touch', this.switchState);
   }
 
   Hamburger.prototype.switchState = function() {
-    return this.button.toggleClass('hamburger_open');
+    this.button.toggleClass('hamburger_open');
+    return this.body.toggleClass('menu_open');
   };
 
   return Hamburger;
@@ -479,10 +481,11 @@ Kits = (function() {
     this.heads = $('.items__header');
     this.head_height = $(this.heads.get(0)).height();
     this.wrapper = this.menu.find('.kits__wrapper');
-    this.getLayout();
     this.buttons.on('click', this.scrollTo);
     $(window).on('scroll', this.stickIt);
     $(window).on('resize', this.getLayout);
+    this.getLayout();
+    this.stickIt();
   }
 
   Kits.prototype.getLayout = function() {
@@ -675,7 +678,10 @@ Sections = (function() {
   }
 
   Sections.prototype.toggleState = function(event) {
-    return $(event.currentTarget).toggleClass("page__section-button_open");
+    var button;
+    button = $(event.currentTarget);
+    button.toggleClass("page__section-button_open");
+    return button.next().toggleClass("page__section_open");
   };
 
   return Sections;
