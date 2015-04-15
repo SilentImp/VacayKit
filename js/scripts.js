@@ -79,6 +79,11 @@ Graph = (function() {
   }
 
   Graph.prototype.init = function() {
+    if (Modernizr.mq('(min-width: 500px)')) {
+      this.radius = "8px";
+    } else {
+      this.radius = "5px";
+    }
     this.svg.selectAll("*").remove();
     this.axes();
     switch (this.widget.attr('data-type')) {
@@ -91,25 +96,31 @@ Graph = (function() {
         this.switcher_status = this.switcher.find('.switcher__selected').attr('data-filter');
         this.min = JSON.parse(this.widget.attr('data-min'));
         this.max = JSON.parse(this.widget.attr('data-max'));
-        this.max_nodes = [];
-        this.min_nodes = [];
-        this.min_links = [];
-        this.max_links = [];
         return this.temperaturesChart();
     }
   };
 
   Graph.prototype.axes = function() {
-    this.width = this.container.width() - this.margin.left - this.margin.right;
+    var dx;
+    this.width = this.widget.width() - this.margin.left - this.margin.right;
     this.height = this.container.height() - this.margin.top - this.margin.bottom;
     if (Modernizr.mq('(min-width: 500px)')) {
-      this.x = d3.scale.ordinal().domain(this.labels).rangeRoundBands([this.width, 0], 0);
+      this.axis = this.svg.selectAll("text.xaxis").data(this.labels);
     } else {
-      this.x = d3.scale.ordinal().domain(this.labels_mobile).rangeRoundBands([this.width, 0], 0);
+      this.axis = this.svg.selectAll("text.xaxis").data(this.labels_mobile);
     }
+    dx = 100 / 24;
+    this.axis.enter().append("svg:text").attr("class", "x-axis").style("text-anchor", "middle").attr("x", function() {
+      var tmp;
+      tmp = dx;
+      dx += 100 / 12;
+      return tmp + "%";
+    }).attr("y", "300px").text(function(d) {
+      return d;
+    });
+    this.axis_line = this.svg.append("rect").attr("class", "axis-line").attr("width", "100%").attr("height", "1px").attr("y", "270px").attr("x", "0");
     this.y = d3.scale.linear().range([this.height, 0]);
-    this.xAxis = d3.svg.axis().scale(this.x).orient("bottom");
-    return this.svg.append("g").attr("class", "axis").attr("transform", "translate(0," + this.height + ")").call(this.xAxis);
+    return this.x = d3.scale.linear().range([this.width, 0]);
   };
 
   Graph.prototype.lightenDarkenColor = function(col, amt) {
@@ -142,52 +153,42 @@ Graph = (function() {
   };
 
   Graph.prototype.precipitationChart = function() {
-    var bar, barEnter, barText, barUpdate, chart, color, dx, maxX;
+    var bar, chart, color, dx, maxX;
     this.values = JSON.parse(this.widget.attr('data-values'));
     maxX = Math.max.apply(null, this.values);
     dx = 100 / 24;
     color = d3.rgb('#1E88E5');
     chart = d3.select(this.container[0]);
-    bar = chart.selectAll(".bar");
-    barUpdate = bar.data(this.values);
-    barText = barUpdate.enter().append("text");
-    barText.attr("y", (this.height - 20) + "px");
-    barText.attr("x", (function(_this) {
+    bar = chart.selectAll(".bar").data(this.values);
+    bar.enter().append("text").attr("y", (this.height - 20) + "px").attr("x", (function(_this) {
       return function(d) {
         var tmp;
         tmp = dx;
         dx += 100 / 12;
         return tmp + "%";
       };
-    })(this));
-    barText.style("text-anchor", "middle").attr("class", "bar-text");
-    barText.text((function(_this) {
+    })(this)).style("text-anchor", "middle").attr("class", "bar-text").text((function(_this) {
       return function(d) {
         return d;
       };
     })(this));
     dx = 0;
-    barEnter = barUpdate.enter().append("rect");
-    barEnter.attr("width", 100 / 12 + "%");
-    barEnter.attr("height", (function(_this) {
+    return bar.enter().append("rect").attr("width", 100 / 12 + "%").attr("height", (function(_this) {
       return function(d) {
         return Math.floor(((d * 100 / maxX) / 100) * (_this.height - 50)) + "px";
       };
-    })(this));
-    barEnter.attr("y", (function(_this) {
+    })(this)).attr("y", (function(_this) {
       return function(d) {
         return ((_this.height - 50) - Math.floor(((d * 100 / maxX) / 100) * (_this.height - 50))) + "px";
       };
-    })(this));
-    barEnter.attr("x", (function(_this) {
+    })(this)).attr("x", (function(_this) {
       return function(d) {
         var tmp;
         tmp = dx;
         dx += 100 / 12;
         return Math.min(tmp, 100 - 100 / 12) + "%";
       };
-    })(this));
-    return barEnter.attr("fill", (function(_this) {
+    })(this)).attr("fill", (function(_this) {
       return function(d) {
         return _this.lightenDarkenColor('#1E88E5', 100 - d * 100 / maxX);
       };
@@ -252,32 +253,28 @@ Graph = (function() {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
-    }).text((function(_this) {
-      return function(d) {
-        return d.value;
-      };
-    })(this));
+    }).text(function(d) {
+      return d.value;
+    });
     max_text.exit().remove();
     min_text = this.min_text.data(this.min_nodes);
     min_text.transition().attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) + 30;
-    }).text((function(_this) {
-      return function(d) {
-        return d.value;
-      };
-    })(this));
+    }).text(function(d) {
+      return d.value;
+    });
     min_text.exit().remove();
     max_dots = this.max_dots.data(this.max_nodes);
-    max_dots.transition().attr("cx", function(d) {
+    max_dots.transition().attr("r", this.radius).attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     });
     max_dots.exit().remove();
     min_dots = this.min_dots.data(this.min_nodes);
-    min_dots.transition().attr("cx", function(d) {
+    min_dots.transition().attr("r", this.radius).attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
@@ -314,7 +311,7 @@ Graph = (function() {
     minX = Math.min.apply(null, this.min);
     minX = Math.max(0, minX - 20);
     d = 100 / 24;
-    this.max_nodes.splice(0);
+    this.max_nodes = [];
     ref = this.max;
     for (i = 0, len = ref.length; i < len; i++) {
       x = ref[i];
@@ -327,7 +324,7 @@ Graph = (function() {
       d += 100 / 12;
     }
     d = 100 / 24;
-    this.min_nodes.splice(0);
+    this.min_nodes = [];
     ref1 = this.min;
     for (j = 0, len1 = ref1.length; j < len1; j++) {
       x = ref1[j];
@@ -339,7 +336,7 @@ Graph = (function() {
       });
       d += 100 / 12;
     }
-    this.min_links.splice(0);
+    this.min_links = [];
     old_node = null;
     ref2 = this.min_nodes;
     for (k = 0, len2 = ref2.length; k < len2; k++) {
@@ -352,7 +349,7 @@ Graph = (function() {
       }
       old_node = node;
     }
-    this.max_links.splice(0);
+    this.max_links = [];
     old_node = null;
     ref3 = this.max_nodes;
     results = [];
@@ -376,29 +373,25 @@ Graph = (function() {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) - 20;
-    }).text((function(_this) {
-      return function(d) {
-        return d.value;
-      };
-    })(this));
+    }).text(function(d) {
+      return d.value;
+    });
     this.min_text = this.svg.selectAll("text.min").data(this.min_nodes);
     this.min_text.enter().append("svg:text").attr("class", "min").style("text-anchor", "middle").attr("x", function(d) {
       return d.x;
     }).attr("y", function(d) {
       return parseInt(d.y, 10) + 30;
-    }).text((function(_this) {
-      return function(d) {
-        return d.value;
-      };
-    })(this));
+    }).text(function(d) {
+      return d.value;
+    });
     this.max_dots = this.svg.selectAll("circle.max").data(this.max_nodes);
-    this.max_dots.enter().append("svg:circle").attr("class", "max").attr("fill", '#FF7043').attr("r", "8px").attr("cx", function(d) {
+    this.max_dots.enter().append("svg:circle").attr("class", "max").attr("fill", '#FF7043').attr("r", this.radius).attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;
     });
     this.min_dots = this.svg.selectAll("circle.min").data(this.min_nodes);
-    this.min_dots.enter().append("svg:circle").attr("class", "min").attr("fill", '#42A5F5').attr("r", "8px").attr("cx", function(d) {
+    this.min_dots.enter().append("svg:circle").attr("class", "min").attr("fill", '#42A5F5').attr("r", this.radius).attr("cx", function(d) {
       return d.x;
     }).attr("cy", function(d) {
       return d.y;

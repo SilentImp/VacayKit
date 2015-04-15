@@ -161,15 +161,13 @@ table {
 .best__graph-container .bar:hover {
   fill: #a52a2a;
 }
-.best__graph-container .axis text {
+.best__graph-container .x-axis {
   font-size: 14px;
   font-family: 'Lato', sans-serif;
   fill: rgba(74,74,74,0.6);
 }
-.best__graph-container .axis path,
-.best__graph-container .axis line {
-  fill: none;
-  stroke: #ededed;
+.best__graph-container .axis-line {
+  fill: #ededed;
   shape-rendering: crispEdges;
 }
 .best__stats {
@@ -275,14 +273,15 @@ table {
   html body .best__graph {
     width: 100%;
   }
+  html body .best__graph .x-axis {
+    font-size: 12px;
+    fill: #4a4a4a;
+  }
   html body .best__graph .min,
   html body .best__graph .max,
   html body .best__graph .bar-text {
     font-size: 11px;
     font-weight: normal;
-  }
-  html body .best__graph .axis text {
-    font-size: 11px;
   }
   html body .best__graphs {
     width: auto;
@@ -1569,9 +1568,13 @@ body>header .project__link_mobile {
   html body .items {
     max-width: initial;
   }
+  html body .items__title {
+    font-size: 28px;
+  }
   html body .items__header {
     margin: 0 -15px 15px;
     border-radius: 0;
+    height: 120px;
   }
   html body .items__abstract {
     font-size: 16px;
