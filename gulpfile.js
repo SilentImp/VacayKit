@@ -21,7 +21,7 @@ var gulp = require('gulp')
         , 'stylus': './source/stylus/**/*.styl'
         , 'css': './source/css/*.css'
         , 'svg': './source/svg/**/*.svg'
-        , 'images': './source/images/*'
+        , 'images': './source/images/**/*'
         , 'fonts': './source/fonts/*'
       }
       , 'build': {
@@ -56,11 +56,12 @@ gulp.task('list', function () {
 
 gulp.task('images', function () {
   return gulp.src(dirs.source.images)
-          .pipe(imagemin({
+          .pipe(gulpif(/[.](png|jpeg|jpg|svg)$/, imagemin({
               progressive: true,
               svgoPlugins: [{removeViewBox: false}],
               use: [pngquant()]
-            }))
+            })
+          ))
           .pipe(gulp.dest(dirs.build.images));
 });
 
