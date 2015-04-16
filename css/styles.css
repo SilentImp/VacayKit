@@ -2949,12 +2949,12 @@ html body .page__section-button_open {
   margin: 0;
 }
 
-section.team {
+.team {
   max-width: 760px;
   padding: 0 30px 0;
   margin: 0 auto 130px;
 }
-section.team:after {
+.team:after {
   content: ".";
   font-size: 0;
   line-height: 0;
@@ -2964,46 +2964,46 @@ section.team:after {
   clear: both;
   display: block;
 }
-section.team__title {
+.team__title {
   margin: 0 0 30px;
   font-size: 32px;
   line-height: 39px;
   font-weight: bold;
 }
-section.team__persons {
+.team__persons {
   margin: 0 0 0 -25px;
   font-size: 0;
 }
-section.team__person {
+.team__person {
   display: inline-block;
   min-width: 160px;
   margin: 0 15px 40px;
   text-align: center;
   white-space: nowrap;
 }
-section.team__person * {
+.team__person * {
   pointer-events: all;
 }
-section.team__photo {
+.team__photo {
   width: 140px;
   height: 140px;
   border-radius: 100%;
   display: block;
   margin: 0 auto 16px;
 }
-section.team__name {
+.team__name {
   font-size: 21px;
   line-height: 25px;
   font-weight: bold;
   margin: 0 0 5px;
 }
-section.team__role {
+.team__role {
   font-size: 16px;
   line-height: 19px;
   color: rgba(74,74,74,0.6);
   margin: 0 0 15px;
 }
-section.team__social a {
+.team__social a {
   width: 26px;
   height: 26px;
   line-height: 26px;
@@ -3018,11 +3018,11 @@ section.team__social a {
   color: #b1b1b1;
   transition: color 0.25s, border-color 0.25s;
 }
-section.team__social a:hover {
+.team__social a:hover {
   border-color: #a5a5a5;
   color: #7e7e7e;
 }
-section.team__social a:before {
+.team__social a:before {
   font-family: 'icon';
   speak: none;
   font-style: normal;
@@ -3033,19 +3033,19 @@ section.team__social a:before {
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
 }
-section.team__social a.fb:before {
+.team__social a.fb:before {
   content: "\e002";
 }
-section.team__social a.tw:before {
+.team__social a.tw:before {
   content: "\e005";
 }
-section.team__social a.gp:before {
+.team__social a.gp:before {
   content: "\e003";
 }
-section.team__social a.pi:before {
+.team__social a.pi:before {
   content: "\e004";
 }
-section.team__social a.yt:before {
+.team__social a.yt:before {
   content: "\e007";
 }
 @media (max-width: 500px) {
@@ -3083,43 +3083,43 @@ section.team__social a.yt:before {
   }
 }
 
-section.text-page {
+.text-page {
   max-width: 760px;
   padding: 0 30px;
   margin: 40px auto 50px;
 }
-section.text-page * {
+.text-page * {
   pointer-events: all;
 }
-section.text-page p {
+.text-page p {
   font-size: 18px;
   line-height: 26px;
   margin: 0 0 18px;
 }
-section.text-page blockquote {
+.text-page blockquote {
   text-align: right;
   margin: 0 0 30px;
   line-height: 0;
 }
-section.text-page blockquote p {
+.text-page blockquote p {
   font-size: 24px;
   margin: 0;
   position: relative;
   display: inline;
 }
-section.text-page blockquote p:before {
+.text-page blockquote p:before {
   content: '“';
   color: rgba(74,74,74,0.6);
   position: absolute;
   right: 100%;
 }
-section.text-page blockquote p:after {
+.text-page blockquote p:after {
   content: '”';
   color: rgba(74,74,74,0.6);
   position: absolute;
   left: 100%;
 }
-section.text-page blockquote cite {
+.text-page blockquote cite {
   margin: 6px 0 0;
   display: block;
   font-size: 16px;
