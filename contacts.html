@@ -96,16 +96,19 @@
       <p>If you have any questions, ideas, suggestions, comments, or criticism, please feel free to contact us here directly.</p>
       <form action="/contact/" method="post" class="contacts__form">
         <fieldset>
-          <input type="text" placeholder="Name" name="name" value=""/>
+          <input type="text" placeholder="Name" name="name" value="" required="required"/>
           <input type="email" placeholder="Email" name="email" value="" required="required"/>
         </fieldset>
         <fieldset>
-          <textarea name="message" cols="30" rows="10" placeholder="Your message"></textarea>
+          <textarea name="message" cols="30" rows="10" placeholder="Your message" required="required"></textarea>
         </fieldset>
         <fieldset>
           <button type="submit">Send</button>
         </fieldset>
       </form>
+    </section>
+    <section class="contacts contacts_success">
+      <p>Thanks for your feedback</p>
     </section>
     <footer>
       <p class="copyright">© 2015 VacayKit.<span> All rights reserved.</span></p>

@@ -424,6 +424,18 @@ table {
 .contacts * {
   pointer-events: all;
 }
+.contacts_success.contacts {
+  display: none;
+  margin: 200px auto;
+  padding: 140px 30px 0;
+  background: url("../svg/success.svg") 50% 0px no-repeat;
+}
+.contacts_success.contacts p {
+  font-size: 28px;
+  line-height: 30px;
+  color: #4a4a4a;
+  margin: 0;
+}
 .contacts__title {
   font-size: 24px;
   line-height: 30px;
@@ -545,6 +557,15 @@ table {
     font-size: 18px;
     line-height: 22px;
     margin: 0 0 20px;
+  }
+  html>body .contacts_success.contacts {
+    margin: 80px auto 120px;
+    padding: 100px 15px 0;
+    background-size: 80px auto;
+  }
+  html>body .contacts_success.contacts p {
+    font-size: 19px;
+    line-height: 24px;
   }
   html>body .contacts__form {
     width: auto;
