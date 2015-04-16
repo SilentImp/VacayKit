@@ -95,13 +95,15 @@ html(lang="en")
       
       form.contacts__form(action="/contact/", method="post")
         fieldset
-          input(type="text", placeholder="Name", name="name", value="")
+          input(type="text", placeholder="Name", name="name", value="", required="required")
           input(type="email", placeholder="Email", name="email", value="", required="required")
         fieldset
-          textarea(name="message", cols="30", rows="10", placeholder="Your message")
+          textarea(name="message", cols="30", rows="10", placeholder="Your message", required="required")
         fieldset
           button(type="submit") Send
           
+    section.contacts.contacts_success
+      p Thanks for your feedback
         
 
     footer
