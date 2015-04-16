@@ -1,4 +1,15 @@
 @font-face {
+    font-family: 'icon';
+    src: url('../fonts/icon.eot');
+    src: url('../fonts/icon.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/icon.woff') format('woff'),
+         url('../fonts/icon.ttf') format('truetype'),
+         url('../fonts/icon.svg#icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Lato';
     src: url('../fonts/Lato-Light-webfont.eot');
     src: url('../fonts/Lato-Light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -8,7 +19,6 @@
          url('../fonts/Lato-Light-webfont.svg#latolight') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -593,6 +603,8 @@ body > footer .social a {
   transition: background-color 0.25s;
   background-size: 35px 35px;
   background-repeat: no-repeat;
+  line-height: 35px;
+  text-align: center;
 }
 body > footer .social a:active {
   box-shadow: inset 0 2px 0 0 rgba(0,0,0,0.1);
@@ -600,9 +612,23 @@ body > footer .social a:active {
 body > footer .social a:first-child {
   margin: 0;
 }
+body > footer .social a:before {
+  font-family: 'icon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  vertical-align: middle;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 19px;
+  color: #fff;
+}
 body > footer .social a.fb {
   background-color: #3b5fa6;
-  background-image: url("../svg/fb.svg");
+}
+body > footer .social a.fb:before {
+  content: "\e002";
 }
 body > footer .social a.fb:hover {
   background-color: #5580d5;
@@ -612,7 +638,9 @@ body > footer .social a.fb:active {
 }
 body > footer .social a.tw {
   background-color: #47a6ed;
-  background-image: url("../svg/tw.svg");
+}
+body > footer .social a.tw:before {
+  content: "\e005";
 }
 body > footer .social a.tw:hover {
   background-color: #71bff9;
@@ -622,7 +650,9 @@ body > footer .social a.tw:active {
 }
 body > footer .social a.gp {
   background-color: #d24238;
-  background-image: url("../svg/gp.svg");
+}
+body > footer .social a.gp:before {
+  content: "\e003";
 }
 body > footer .social a.gp:hover {
   background-color: #e76158;
@@ -632,7 +662,9 @@ body > footer .social a.gp:active {
 }
 body > footer .social a.pi {
   background-color: #aa262a;
-  background-image: url("../svg/pi.svg");
+}
+body > footer .social a.pi:before {
+  content: "\e004";
 }
 body > footer .social a.pi:hover {
   background-color: #c9393d;
@@ -642,7 +674,9 @@ body > footer .social a.pi:active {
 }
 body > footer .social a.yt {
   background-color: #e52c28;
-  background-image: url("../svg/yt.svg");
+}
+body > footer .social a.yt:before {
+  content: "\e007";
 }
 body > footer .social a.yt:hover {
   background-color: #fa5451;
@@ -904,6 +938,17 @@ body>header .project__link_mobile {
   html>body>header {
     height: 200px;
   }
+  html>body>header.content {
+    background-image: url("../images/header_bg_3.jpg");
+    height: 140px;
+  }
+  html>body>header .title {
+    line-height: 96px;
+    white-space: nowrap;
+    padding: 44px 0 0;
+    text-align: center;
+    font-size: 32px;
+  }
   html>body>header .subscribe {
     display: none;
   }
@@ -987,6 +1032,7 @@ body>header .project__link_mobile {
 
 
 
+
 .info {
   position: relative;
   float: left;
@@ -1038,25 +1084,34 @@ body>header .project__link_mobile {
   white-space: nowrap;
 }
 .info__currency-rate:before {
-  content: ".";
   overflow: hidden;
-  text-indent: -999px;
   border-radius: 100%;
   margin: 0 5px 0 0;
   width: 23px;
   height: 23px;
+  line-height: 23px;
   border: 1px solid #cfd4d7;
   vertical-align: middle;
   display: inline-block;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-color: transparent;
+  text-align: center;
+  font-family: 'icon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  vertical-align: middle;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #cfd4d7;
+  font-size: 12px;
 }
 .info__currency-rate_usd:before {
-  background-image: url("../svg/usd.svg");
+  content: "\e006";
+  font-size: 16px;
 }
 .info__currency-rate_eur:before {
-  background-image: url("../svg/eur.svg");
+  content: "\e001";
+  text-indent: -2px;
 }
 @media (max-width: 1024px) {
   html body .info {
@@ -2709,7 +2764,7 @@ html body .page__section-button_open {
 
 .team {
   max-width: 760px;
-  padding: 0 20px 0;
+  padding: 0 30px 0;
   margin: 0 auto 130px;
 }
 .team:after {
@@ -2722,34 +2777,128 @@ html body .page__section-button_open {
   clear: both;
   display: block;
 }
+.team__title {
+  margin: 0 0 30px;
+  font-size: 32px;
+  line-height: 39px;
+  font-weight: bold;
+}
+.team__persons {
+  margin: 0 0 0 -25px;
+  font-size: 0;
+}
 .team__person {
-  float: left;
-  width: 140px;
-  margin: 0 50px 40px 0;
+  display: inline-block;
+  min-width: 160px;
+  margin: 0 15px 40px;
   text-align: center;
   white-space: nowrap;
+}
+.team__person * {
+  pointer-events: all;
 }
 .team__photo {
   width: 140px;
   height: 140px;
   border-radius: 100%;
   display: block;
-  margin: 0 0 16px;
+  margin: 0 auto 16px;
 }
 .team__name {
   font-size: 21px;
   line-height: 25px;
   font-weight: bold;
+  margin: 0 0 5px;
 }
 .team__role {
   font-size: 16px;
   line-height: 19px;
   color: rgba(74,74,74,0.6);
+  margin: 0 0 15px;
+}
+.team__social a {
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 100%;
+  border: 1px solid #d8d8d8;
+  display: inline-block;
+  margin: 0 4px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  color: #b1b1b1;
+  transition: color 0.25s, border-color 0.25s;
+}
+.team__social a:hover {
+  border-color: #a5a5a5;
+  color: #7e7e7e;
+}
+.team__social a:before {
+  font-family: 'icon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  vertical-align: middle;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+.team__social a.fb:before {
+  content: "\e002";
+}
+.team__social a.tw:before {
+  content: "\e005";
+}
+.team__social a.gp:before {
+  content: "\e003";
+}
+.team__social a.pi:before {
+  content: "\e004";
+}
+.team__social a.yt:before {
+  content: "\e007";
+}
+@media (max-width: 500px) {
+  html>body .team {
+    padding: 0;
+  }
+  html>body .team__title {
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0 0 20px;
+  }
+  html>body .team__persons {
+    margin: 0;
+    text-align: center;
+  }
+  html>body .team__person {
+    min-width: 130px;
+    margin: 0 15px 20px;
+  }
+  html>body .team__photo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+  }
+  html>body .team__name {
+    font-size: 16px;
+    line-height: 19px;
+    margin: 0 0 2px;
+  }
+  html>body .team__role {
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0 0 10px;
+  }
 }
 
 .text-page {
   max-width: 760px;
-  padding: 0 20px 0;
+  padding: 0 30px;
   margin: 40px auto 50px;
 }
 .text-page p {
@@ -2760,13 +2909,13 @@ html body .page__section-button_open {
 .text-page blockquote {
   text-align: right;
   margin: 0 0 30px;
-  line-height: 30px;
+  line-height: 0;
 }
 .text-page blockquote p {
   font-size: 24px;
   margin: 0;
   position: relative;
-  display: inline-block;
+  display: inline;
 }
 .text-page blockquote p:before {
   content: '“';
@@ -2781,8 +2930,32 @@ html body .page__section-button_open {
   left: 100%;
 }
 .text-page blockquote cite {
+  margin: 6px 0 0;
   display: block;
   font-size: 16px;
   font-weight: bold;
   color: rgba(74,74,74,0.6);
+}
+@media (max-width: 500px) {
+  html>body .text-page {
+    padding: 0 15px;
+  }
+  html>body .text-page p {
+    font-size: 16px;
+    line-height: 23px;
+  }
+  html>body .text-page blockquote {
+    text-align: center;
+    margin: 0 0 20px;
+    line-height: 0;
+  }
+  html>body .text-page blockquote p {
+    font-size: 19px;
+    line-height: 24px;
+  }
+  html>body .text-page blockquote cite {
+    font-size: 16px;
+    line-height: 18px;
+    text-align: right;
+  }
 }
