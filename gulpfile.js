@@ -18,6 +18,7 @@ var gulp = require('gulp')
       'source': {
         'jade': './source/jade/**/*.jade'
         , 'list': './source/list/index.jade'
+        , 'copy': './source/copy/**/*'
         , 'coffee': './source/coffee/**/*.coffee'
         , 'js': './source/js/**/*.js'
         , 'stylus': './source/stylus/**/*.styl'
@@ -40,6 +41,7 @@ var gulp = require('gulp')
     };
 
 gulp.task('list', function () {
+  gulp.src(dirs.source.copy).pipe(gulp.dest(dirs.build.html));
   find.file(/\.html$/, dirs.build.html, function (files){
     var names = []
         , file;
@@ -58,7 +60,6 @@ gulp.task('list', function () {
       .pipe(gulp.dest(dirs.build.html));
   });
 });
-
 
 gulp.task('images', function () {
   return gulp.src(dirs.source.images)
