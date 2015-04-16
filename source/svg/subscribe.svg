@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch Beta 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
-    <desc>Created with Sketch Beta.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="desktop_wide_05" sketch:type="MSArtboardGroup" transform="translate(-883.000000, -303.000000)" fill="#FFFFFF">
-            <g id="VacayKit-2-+-Rectangle-6" sketch:type="MSLayerGroup" transform="translate(860.000000, 284.000000)">
-                <g id="Rectangle-9-+-Get-8-in-1-Pack-6" sketch:type="MSShapeGroup">
-                    <path d="M27.6266059,31.1687841 C27.6899546,30.8730502 27.9433496,30.6406879 28.2600933,30.5984402 L37.2344993,29.6689908 C37.4878943,29.6478669 37.4878943,29.2676377 37.2344993,29.22539 L28.2600933,28.3593121 C27.9433496,28.3381883 27.6899546,28.105826 27.6266059,27.8100921 L26.0217709,20.8814696 C25.8739572,20.2900018 26.5074446,19.8041533 27.0564671,20.0787633 L44.6040703,28.8662845 C45.1319766,29.1408946 45.1319766,29.9013531 44.6040703,30.1759632 L27.0564671,38.9212367 C26.5074446,39.1958467 25.8739572,38.7099982 26.0217709,38.1185304 L27.6266059,31.1687841 Z" id="Shape"></path>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0.5 24 24" enable-background="new 0 0.5 24 24" xml:space="preserve">
+<title>Shape</title>
+<desc>Created with Sketch Beta.</desc>
+<g>
+	<g>
+		<g>
+			<g>
+				<path fill="#FFFFFF" d="M2.1,14.6c0.1-0.4,0.4-0.7,0.8-0.7l11.3-1.2c0.3,0,0.3-0.5,0-0.6L2.9,11.1c-0.4,0-0.7-0.3-0.8-0.7L0,1.6
+					c-0.2-0.7,0.6-1.4,1.3-1l22.2,11.1c0.7,0.3,0.7,1.3,0,1.7l-22.2,11c-0.7,0.3-1.5-0.3-1.3-1L2.1,14.6z"/>
+			</g>
+		</g>
+	</g>
+</g>
 </svg>

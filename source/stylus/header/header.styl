@@ -6,12 +6,15 @@ body
     background-size cover
     background-repeat none
     color $white
-    &.content
+    &.contacts-bg
+      background-image url('../images/header_bg_4.jpg')
+      height 200px
+    &.content-bg
       background-image url('../images/header_bg_3.jpg')
       height 200px
-    &.thailand
+    &.thailand-bg
       background-image url('../images/header_bg_1.jpg')
-    &.fly
+    &.fly-bg
       background-image url('../images/header_bg_2.jpg')
 
     .subscribe
@@ -104,8 +107,8 @@ body
         opacity 1
   html>body>header
     height 200px
-    &.content
-      background-image url('../images/header_bg_3.jpg')
+    &.contacts-bg,
+    &.content-bg
       height 140px
     .title
       line-height 96px

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="application-name" content="VacayKit")
+    meta(name="msapplication-TileImage", content="images/favicon/apple-icon-precomposed.png")
+    meta(name="msapplication-TileColor" content="#ffffff")
+    
+    title Content page | VacayKit
+    
+    link(rel="icon", type="image/svg+xml", href="images/favicon/vacaykit_favicon.svg")
+    
+    link(rel="icon", sizes="16x16", type="image/x-icon", href="images/favicon/favicon.ico")
+    link(rel="icon", sizes="16x16", type="image/png", href="images/favicon/favicon-16x16.png")
+    link(rel="icon", sizes="32x32", type="image/png", href="images/favicon/favicon-32x32.png")
+    link(rel="icon", sizes="96x96", type="image/png", href="images/favicon/favicon-96x96.png")
+    
+    link(rel="icon", sizes="36x36", href="images/favicon/android-icon-36x36.png")
+    link(rel="icon", sizes="48x48", href="images/favicon/android-icon-48x48.png")
+    link(rel="icon", sizes="72x72", href="images/favicon/android-icon-72x72.png")
+    link(rel="icon", sizes="144x144", href="images/favicon/android-icon-144x144.png")
+    link(rel="icon", sizes="192x192", href="images/favicon/android-icon-192x192.png")
+    
+    link(rel="icon", sizes="70x70", href="images/favicon/ms-icon-70x70.png")
+    link(rel="icon", sizes="150x150", href="images/favicon/ms-icon-150x150.png")
+    link(rel="icon", sizes="310x310", href="images/favicon/ms-icon-310x310.png")
+    
+    link(rel="apple-touch-icon", href="images/favicon/apple-icon.png")
+    link(rel="apple-touch-icon", sizes="57x57", href="images/favicon/apple-icon-57x57.png")
+    link(rel="apple-touch-icon", sizes="60x60", href="images/favicon/apple-icon-60x60.png")
+    link(rel="apple-touch-icon", sizes="72x72", href="images/favicon/apple-icon-72x72.png")
+    link(rel="apple-touch-icon", sizes="76x76", href="images/favicon/apple-icon-76x76.png")
+    link(rel="apple-touch-icon", sizes="114x114", href="images/favicon/apple-icon-114x114.png")
+    link(rel="apple-touch-icon", sizes="120x120", href="images/favicon/apple-icon-120x120.png")
+    link(rel="apple-touch-icon", sizes="144x144", href="images/favicon/apple-icon-144x144.png")
+    link(rel="apple-touch-icon", sizes="152x152", href="images/favicon/apple-icon-152x152.png")
+    link(rel="apple-touch-icon", sizes="180x180", href="images/favicon/apple-icon-180x180.png")
+    link(rel="apple-touch-icon", sizes="192x192", href="images/favicon/apple-icon-precomposed.png")
+    
+    
+    link(rel="stylesheet", href="css/styles.css")
+    
+    script(src="js/modernizr/modernizr.js")
+    script(src="js/jquery/dist/jquery.min.js")
+    script(src="js/d3/d3.min.js")
+    
+    script(src="js/scripts.js", defer, async)
+
+  body
+
+    header.contacts-bg
+
+      nav.project
+
+        a(href="/")
+          h1.logotype VacayKit
+
+        button.hamburger(type="button")
+          span.hamburger__line.hamburger__line_top
+          span.hamburger__line.hamburger__line_middle
+          span.hamburger__line.hamburger__line_bottom
+
+        .project__wrapper
+          a.project__link.project__link_mobile(href="/") Home
+          .dropdown
+            h2.dropdown__title Popular Kits
+            .dropdown__panel
+              .dropdown__wrapper
+                ul.dropdown__body
+                  - var n = 5
+                    while n--
+                      li: a(href="#") Beaching
+                      li: a(href="#") Surfing
+                      li: a(href="#") Caving
+                      li: a(href="#") Diving
+                      li: a(href="#") Snorkeling
+                      li: a(href="#") Jungle
+          a.project__link(href="#") Blog
+          a.project__link(href="content.html") About
+          a.project__link.project__link_mobile.project__link_selected(href="contacts.html") Contact us
+
+        .project__lightbox
+
+      .wrapper
+        h2.title Contact us
+
+    section.contacts
+      
+      h2.contacts__title We would be incredibly happy to hear from you personally!
+      
+      p If you have any questions, ideas, suggestions, comments, or criticism, please feel free to contact us here directly.
+      
+      form.contacts__form(action="/contact/", method="post")
+        fieldset
+          input(type="text", placeholder="Name", name="name", value="")
+          input(type="email", placeholder="Email", name="email", value="", required="required")
+        fieldset
+          textarea(name="message", cols="30", rows="10", placeholder="Your message")
+        fieldset
+          button(type="submit") Send
+          
+        
+
+    footer
+      p.copyright © 2015 VacayKit.
+        span  All rights reserved.
+      nav.project
+        a.project__link(href="#") Popular kits
+        a.project__link(href="#") Blog
+        a.project__link(href="content.html") About
+        a.project__link.project__link_selected(href="contacts.html") Contact us
+      nav.social
+        a.fb(href="#")
+        a.tw(href="#")
+        a.gp(href="#")
+        a.pi(href="#")
+        a.yt(href="#")
