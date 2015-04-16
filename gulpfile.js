@@ -3,6 +3,7 @@ var gulp = require('gulp')
     , coffee = require('gulp-coffee')
     , stylus = require('gulp-stylus')
     , imagemin = require('gulp-imagemin')
+    , del = require('del')
     , pngquant = require('imagemin-pngquant')
     , svgo = require('imagemin-svgo')
     , order = require("gulp-order")
@@ -11,6 +12,7 @@ var gulp = require('gulp')
     , deploy = require('gulp-gh-pages')
     , find = require('find')
     , path = require('path')
+    , iconfont = require('gulp-iconfont')
     , gulpif = require('gulp-if')
     , dirs = {
       'source': {
@@ -23,6 +25,9 @@ var gulp = require('gulp')
         , 'svg': './source/svg/**/*.svg'
         , 'images': './source/images/**/*'
         , 'fonts': './source/fonts/*'
+        , 'svg4font': './source/svg4font/*.svg'
+        , 'svg4font_source': './source/svg4font-source/*.svg'
+        , 'svg4font_tmp': './source/svg4font/'
       }
       , 'build': {
         'html': './build/'
@@ -54,6 +59,7 @@ gulp.task('list', function () {
   });
 });
 
+
 gulp.task('images', function () {
   return gulp.src(dirs.source.images)
           .pipe(gulpif(/[.](png|jpeg|jpg|svg)$/, imagemin({
@@ -75,15 +81,32 @@ gulp.task('svg', function () {
           .pipe(gulp.dest(dirs.build.svg));
 });
 
-gulp.task('html', function() {
-  return gulp.src(dirs.source.jade)
-    .pipe(jade({pretty: true}))
-    .pipe(gulp.dest(dirs.build.html));
+gulp.task('copyfonts', function() {
+  del.sync([dirs.source.svg4font]);
+  return gulp.src(dirs.source.svg4font_source).pipe(gulp.dest(dirs.source.svg4font_tmp));
+});
+
+gulp.task('iconfont', ['copyfonts'], function(){
+  gulp.src(dirs.source.svg4font)
+    .pipe(iconfont({
+      fontName: 'icon',
+      appendCodepoints: true
+    }))
+    .on('codepoints', function(codepoints) {
+      console.log(codepoints);
+    })
+    .pipe(gulp.dest(dirs.build.fonts));
 });
 
 gulp.task('fonts', function() {
   return gulp.src(dirs.source.fonts)
     .pipe(gulp.dest(dirs.build.fonts));
+});
+
+gulp.task('html', function() {
+  return gulp.src(dirs.source.jade)
+    .pipe(jade({pretty: true}))
+    .pipe(gulp.dest(dirs.build.html));
 });
 
 gulp.task('js', function() {

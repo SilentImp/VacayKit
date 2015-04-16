@@ -43,23 +43,26 @@
       height 25px
       white-space nowrap
       &:before
-        content "."
         overflow hidden
-        text-indent -999px
         border-radius 100%
         margin 0 5px 0 0
         width 23px
         height 23px
+        line-height 23px
         border 1px solid $currency-border
         vertical-align middle
         display inline-block
-        background-repeat no-repeat
-        background-position 50% 50%
-        background-color transparent
+        text-align center
+
+        icon()
+        color $currency-border
+        font-size 12px
       &_usd:before
-        background-image url("../svg/usd.svg")
+        content "\e006"
+        font-size 16px
       &_eur:before
-        background-image url("../svg/eur.svg")
+        content "\e001"
+        text-indent -2px
 
 
 

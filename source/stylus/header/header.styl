@@ -6,6 +6,9 @@ body
     background-size cover
     background-repeat none
     color $white
+    &.content
+      background-image url('../images/header_bg_3.jpg')
+      height 200px
     &.thailand
       background-image url('../images/header_bg_1.jpg')
     &.fly
@@ -23,6 +26,15 @@ body
       height 100%
       position relative
       max-width 1000px
+    .title
+      line-height 140px
+      white-space nowrap
+      padding 60px 0 0
+      text-align center
+      font-size 60px
+      font-weight bold
+      color $white
+      text-shadow 0 2px 4px $light-shade
     .hamburger
       display none
     .logotype
@@ -57,6 +69,10 @@ body
         display inline-block
         &:hover
           background-color $opaq-black-light
+        &_selected
+          background-color $opaq-black-light
+          font-weight bold
+          pointer-events none
         &_mobile
           display none
 
@@ -88,6 +104,15 @@ body
         opacity 1
   html>body>header
     height 200px
+    &.content
+      background-image url('../images/header_bg_3.jpg')
+      height 140px
+    .title
+      line-height 96px
+      white-space nowrap
+      padding 44px 0 0
+      text-align center
+      font-size 32px
     .subscribe
       display none
     .hamburger

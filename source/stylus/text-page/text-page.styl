@@ -1,0 +1,55 @@
+@import "../helpers/*"
+
+.text-page
+  max-width 760px
+  padding 0 30px
+  margin 40px auto 50px
+  p
+    font-size 18px
+    line-height 26px
+    margin 0 0 18px
+
+  blockquote
+    text-align right
+    margin 0 0 30px
+    line-height 0
+    p
+      font-size 24px
+      margin 0
+      position relative
+      display inline
+      &:before
+        content '“'
+        color $semi-grey
+        position absolute
+        right 100%
+      &:after
+        content '”'
+        color $semi-grey
+        position absolute
+        left 100%
+    cite
+      margin 6px 0 0
+      display block
+      font-size 16px
+      font-weight bold
+      color $semi-grey
+
+
+@media (max-width: $mobile)
+  html>body .text-page
+    padding 0 15px
+    p
+      font-size 16px
+      line-height 23px
+    blockquote
+      text-align center
+      margin 0 0 20px
+      line-height 0
+      p
+        font-size 19px
+        line-height 24px
+      cite
+        font-size 16px
+        line-height 18px
+        text-align right
