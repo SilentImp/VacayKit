@@ -2876,7 +2876,7 @@ html body .page__section-button_open {
     text-align: center;
   }
   html>body .team__person {
-    min-width: 130px;
+    min-width: 100px;
     margin: 0 15px 20px;
   }
   html>body .team__photo {
