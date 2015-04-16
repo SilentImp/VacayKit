@@ -2942,6 +2942,7 @@ html body .page__section-button_open {
 }
 @media (max-width: 500px) {
   html>body .text-page {
+    margin: 20px auto 40px;
     padding: 0 15px;
   }
   html>body .text-page p {
