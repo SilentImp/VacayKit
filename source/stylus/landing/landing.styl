@@ -20,20 +20,23 @@
     height 54px
     line-height 54px
     background-color $cyan
+    white-space nowrap
     clearit()
     label
       font-size 21px
       color $grey
       margin 0 30px 0 10px
       vertical-align middle
+      float left
     button
       green_button_middle()
       vertical-align middle
       float right
     select
-      width 340px
-      box-sizing border-box
       vertical-align middle
+      float left
+    .select
+      float left
 
 @media (max-width: $laptop)
   html>body .landing
@@ -46,8 +49,7 @@
   html>body .landing
     &__selector
       width 710px
-      .select,
-      select
+      .select
         width 280px
       label
         margin 0 20px 0 0
@@ -62,11 +64,12 @@
       padding 0 15px
       .select
         display block
+        clear both
+        float none
         width auto
-      select
-        display block
-        width 100%
       label
+        clear both
+        float none
         display block
         text-align center
         font-size 22px
@@ -77,6 +80,8 @@
         margin 10px 0 15px
         display block
         width 100%
+        clear both
+        float none
 
 @media (max-width: $mobile)
   html>body .landing
