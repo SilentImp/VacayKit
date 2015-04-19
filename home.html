@@ -8,7 +8,7 @@
     <meta name="application-name" content="VacayKit"/>
     <meta name="msapplication-TileImage" content="images/favicon/apple-icon-precomposed.png"/>
     <meta name="msapplication-TileColor" content="#ffffff"/>
-    <title>About | VacayKit</title>
+    <title>VacayKit</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon/vacaykit_favicon.svg"/>
     <link rel="icon" sizes="16x16" type="image/x-icon" href="images/favicon/favicon.ico"/>
     <link rel="icon" sizes="16x16" type="image/png" href="images/favicon/favicon-16x16.png"/>
@@ -41,7 +41,7 @@
     <script src="js/scripts.js" defer="defer" async="async"></script>
   </head>
   <body>
-    <header class="content-bg">
+    <header class="landing-bg">
       <nav class="project"><a href="home.html">
           <h1 class="logotype">VacayKit</h1></a>
         <button type="button" class="hamburger"><span class="hamburger__line hamburger__line_top"></span><span class="hamburger__line hamburger__line_middle"></span><span class="hamburger__line hamburger__line_bottom"></span></button>
@@ -84,70 +84,80 @@
                 </ul>
               </div>
             </div>
-          </div><a href="#" class="project__link">Blog</a><a href="content.html" class="project__link project__link_selected">About</a><a href="contacts.html" class="project__link project__link_mobile">Contact us</a>
+          </div><a href="#" class="project__link">Blog</a><a href="content.html" class="project__link">About</a><a href="contacts.html" class="project__link project__link_mobile">Contact us</a>
         </div>
         <div class="project__lightbox"></div>
       </nav>
       <div class="wrapper">
-        <h2 class="title">About</h2>
+        <h2 class="title">Plan less, vacation more!</h2>
       </div>
     </header>
-    <section class="text-page">
-      <blockquote>
-        <p>Live, travel, adventure, bless, and don’t be sorry.</p>
-        <cite>— Jack Kerouac</cite>
-      </blockquote>
-      <p>Have you ever wondered what type of traveler you are? Traveling is a perfect way to escape from the daily grind and jump into a truly unknown adventure, full of exciting experiences that await you. As our lifetimes are limited, vacations are a fantastic opportunity to try and learn something new and maybe even risky; they’re a chance to step outside of your comfort zone! There’s nothing quite like that special feeling when you do something new for the first time, savoring the moment as a true explorer.</p>
-      <p>When most people plan their holidays, they desperately try to fit in as many activities as possible, in order to deeply discover the country they’re visiting, enhance their emotions and bring their experience to the next level. Walking city streets, scuba diving, trekking through jungles, caving, surfing, hiking mountains - why not do all of this in one vacation?  However, to thoroughly enjoy adventures, careful preparation is necessary.</p>
-      <p>When we travel, we think hard about what we might need and usually buy a lot of stuff in advance. It doesn’t have to be something grand or expensive; it could just be something that helps us to relax and not worry about any possible hardships we’ll face while traveling. For example, if you go trekking in a rainforest, it’s very convenient to have water-resistant covers for your bags (e.g. a big backpack, a daypack and a camera bag). Instead of buying expensive waterproof bags, you can just have a hardy trash bag made from thick plastic. If you plan ahead and gather this in advance, together with good packing tape and a knife, you’ll have nothing to worry about if you experience heavy rain during your jungle trip!</p>
-      <p>Whenever we prepared for our vacations, we would browse multiple travel forums regarding what to pack, so that nothing could distract us from having an amazing time. However, we were left wondering why, in the whole world-wide web, there is no resource which helps travelers pack their bags with the things they’ll need to make life easier. “If you want a thing done well, do it yourself,” Napoleon Bonaparte once said. And so, we decided to create a website that saves you time and gives you a complete packing list of everything you’ll need to have the experience of a lifetime when traveling!</p>
-      <p>If you find this project interesting and useful, we’d love to receive your feedback. Simply share your opinion by contacting us here.</p>
-      <p>Welcome to Vacay Kit!</p>
+    <section class="landing">
+      <p class="landing__message">VacayKit is a simple online app designed to deliver customized travel kits for unique holiday activities anywhere you want to go in the world. Pick your destination, grab your vacation kits, and have the holiday experience of a lifetime!</p>
+      <form action="/show/kit/" method="post" class="landing__selector">
+        <label for="kit-selector">I'm travelling to</label>
+        <select id="kit-selector" data-select="true">
+          <option value="1">Long Flight</option>
+          <option value="2">Thailand</option>
+          <option value="3">Sri Lanka</option>
+          <option value="4">Ecuador</option>
+          <option value="5">Germany</option>
+          <option value="6">Swiss Confederation</option>
+          <option value="7">Russia</option>
+          <option value="8">Urugvay</option>
+          <option value="9">France</option>
+          <option value="10">Perda de la Villa de la papa de mama</option>
+        </select>
+        <button type="submit">Get my Packing List</button>
+      </form>
     </section>
-    <section class="team">
-      <h2 class="team__title">Our team</h2>
-      <div class="team__persons">
-        <article class="team__person"><img src="images/photos/photo-1.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Anna Nazarova</h2>
-          <h3 class="team__role">Co-founder, Editor</h3>
-          <nav class="team__social"><a href="#" class="fb"></a><a href="#" class="tw"></a><a href="#" class="pi"></a></nav>
-        </article>
-        <article class="team__person"><img src="images/photos/photo-2.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Anton Reshetnikov</h2>
-          <h3 class="team__role">Co-founder, Editor</h3>
-          <nav class="team__social"><a href="#" class="fb"></a><a href="#" class="tw"></a><a href="#" class="gp"></a></nav>
-        </article>
-        <article class="team__person"><img src="images/photos/photo-3.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Gene Boyle</h2>
-          <h3 class="team__role">Developer</h3>
-          <nav class="team__social"><a href="#" class="fb"></a><a href="#" class="tw"></a></nav>
-        </article>
-        <article class="team__person"><img src="images/photos/photo-4.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Dianna Grigoryan</h2>
-          <h3 class="team__role">Designer</h3>
-          <nav class="team__social"><a href="#" class="fb"></a></nav>
-        </article>
-        <article class="team__person"><img src="images/photos/photo-7.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Anton Nemtsev</h2>
-          <h3 class="team__role">Frontend Developer</h3>
-          <nav class="team__social"><a href="https://www.facebook.com/SilentImp" class="fb"></a><a href="https://twitter.com/silentimp" class="tw"></a></nav>
-        </article>
-        <article class="team__person"><img src="images/photos/photo-5.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Laura Gibbs</h2>
-          <h3 class="team__role">Editor</h3>
-          <nav class="team__social"><a href="#" class="fb"></a><a href="#" class="tw"></a><a href="#" class="gp"></a></nav>
-        </article>
-        <article class="team__person"><img src="images/photos/photo-6.jpg" alt="Фотография" class="team__photo"/>
-          <h2 class="team__name">Brenda Stevens</h2>
-          <h3 class="team__role">Editor</h3>
-          <nav class="team__social"><a href="#" class="tw"></a><a href="#" class="gp"></a><a href="#" class="yt"></a></nav>
-        </article>
-      </div>
+    <section class="featured">
+      <h2 class="featured__title">Featured travel kits</h2>
+      <article class="featured__item"><a href="#" class="featured__link"><img src="images/places/place-1.jpg" alt="Фотография" width="320" height="240" class="featured__photo"/>
+          <div class="featured__details"><img src="images/kiticon-1.png" alt="Иконка" class="featured__kit-icon"/>
+            <h3 class="featured__kit-name">Long Flight</h3>
+            <p class="featured__kit-count">8 items</p>
+          </div></a></article>
+      <article class="featured__item"><a href="#" class="featured__link"><img src="images/places/place-2.jpg" alt="Фотография" width="320" height="240" class="featured__photo"/>
+          <div class="featured__details"><img src="images/kiticon-2.png" alt="Иконка" class="featured__kit-icon"/>
+            <h3 class="featured__kit-name">Thailand</h3>
+            <p class="featured__kit-count">15 activities, 45 items</p>
+          </div></a></article>
+      <article class="featured__item"><a href="#" class="featured__link"><img src="images/places/place-3.jpg" alt="Фотография" width="320" height="240" class="featured__photo"/>
+          <div class="featured__details"><img src="images/kiticon-3.png" alt="Иконка" class="featured__kit-icon"/>
+            <h3 class="featured__kit-name">Sri Lanka</h3>
+            <p class="featured__kit-count">12 activities, 50 items</p>
+          </div></a></article>
+      <article class="featured__item"><a href="#" class="featured__link"><img src="images/places/place-4.jpg" alt="Фотография" width="320" height="240" class="featured__photo"/>
+          <div class="featured__details"><img src="images/kiticon-4.png" alt="Иконка" class="featured__kit-icon"/>
+            <h3 class="featured__kit-name">Ecuador</h3>
+            <p class="featured__kit-count">10 activities, 50 items</p>
+          </div></a></article>
+      <article class="featured__item"><a href="#" class="featured__link"><img src="images/places/place-5.jpg" alt="Фотография" width="320" height="240" class="featured__photo"/>
+          <div class="featured__details"><img src="images/kiticon-5.png" alt="Иконка" class="featured__kit-icon"/>
+            <h3 class="featured__kit-name">Germany</h3>
+            <p class="featured__kit-count">14 activities, 32 items</p>
+          </div></a></article>
+      <article class="featured__item"><a href="#" class="featured__link"><img src="images/places/place-6.jpg" alt="Фотография" width="320" height="240" class="featured__photo"/>
+          <div class="featured__details"><img src="images/kiticon-6.png" alt="Иконка" class="featured__kit-icon"/>
+            <h3 class="featured__kit-name">Swiss Confederation</h3>
+            <p class="featured__kit-count">8 activities, 34 items</p>
+          </div></a></article>
     </section>
     <footer>
       <p class="copyright">© 2015 VacayKit.<span> All rights reserved.</span></p>
       <nav class="project"><a href="#" class="project__link">Popular kits</a><a href="#" class="project__link">Blog</a><a href="content.html" class="project__link">About</a><a href="contacts.html" class="project__link">Contact us</a></nav>
       <nav class="social"><a href="#" class="fb"></a><a href="#" class="tw"></a><a href="#" class="gp"></a><a href="#" class="pi"></a><a href="#" class="yt"></a></nav>
     </footer>
+    <script id="select-template" type="text/x-handlebars-template">
+      <span class="select">
+        <span class="select__current select__current_unchanged">Please select</span>
+        <span class="select__dropdown">
+          {{#each options}}
+          <span tabindex="{{../tab}}" class="select__option" data-value="{{value}}">{{label}}</span>
+          {{/each}}
+        </span>
+      </span>
+    </script>
   </body>
 </html>

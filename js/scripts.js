@@ -723,6 +723,107 @@ $(document).ready(function() {
   return new Sections;
 });
 
+var Select,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Select = (function() {
+  function Select(input) {
+    var i, label, len, option, ref, tab;
+    this.input = input;
+    this.clickOptions = bind(this.clickOptions, this);
+    this.toggleDropdown = bind(this.toggleDropdown, this);
+    this.refocus = bind(this.refocus, this);
+    this.tapOptions = bind(this.tapOptions, this);
+    this.inputSync = bind(this.inputSync, this);
+    this.html = $('html');
+    this.input.css({
+      position: 'fixed',
+      left: '-200%',
+      top: 0
+    });
+    tab = parseInt(this.input.attr('tabindex'), 10);
+    if (isNaN(tab)) {
+      tab = 1;
+    }
+    this.input.attr('tabindex', -1);
+    this.template = Handlebars.compile($('#select-template').html());
+    this.options = [];
+    ref = this.input.find('option');
+    for (i = 0, len = ref.length; i < len; i++) {
+      option = ref[i];
+      option = $(option);
+      label = option.attr('label');
+      if (typeof label === "undefined") {
+        label = option.text();
+      }
+      this.options.push({
+        'value': option.attr('value'),
+        'label': label
+      });
+    }
+    this.widget = this.template({
+      'options': this.options,
+      'tab': tab
+    });
+    this.input.after(this.widget);
+    this.widget = this.input.next();
+    this.widget.attr('tabindex', tab);
+    this.current = this.widget.find('.select__current');
+    if (this.html.hasClass('no-touch')) {
+      this.input.on('focus', this.refocus);
+      this.current.on('click', this.toggleDropdown);
+      this.widget.on('click', '.select__option', this.clickOptions);
+    } else {
+      this.current.on('touchend click', this.tapOptions);
+      this.input.on('change', this.inputSync);
+    }
+  }
+
+  Select.prototype.inputSync = function() {
+    var label, value;
+    value = this.input.val();
+    label = this.input.find('option[value="' + value + '"]').text();
+    return this.current.attr('data-value', value).text(label).toggleClass('select__current_unchanged', false);
+  };
+
+  Select.prototype.tapOptions = function() {
+    return this.input[0].focus();
+  };
+
+  Select.prototype.refocus = function() {
+    this.widget.toggleClass('select_open', true);
+    return this.widget.find('.select__option:first').focus();
+  };
+
+  Select.prototype.toggleDropdown = function() {
+    return this.widget.toggleClass('select_open');
+  };
+
+  Select.prototype.clickOptions = function(event) {
+    var label, option, value;
+    option = $(event.currentTarget);
+    value = option.attr('data-value');
+    label = option.text();
+    this.current.attr('data-value', value).text(label).toggleClass('select__current_unchanged', false);
+    this.input.val(value);
+    return this.widget.toggleClass('select_open', false);
+  };
+
+  return Select;
+
+})();
+
+$(document).ready(function() {
+  var i, len, ref, results, select;
+  ref = $('select[data-select]');
+  results = [];
+  for (i = 0, len = ref.length; i < len; i++) {
+    select = ref[i];
+    results.push(new Select($(select)));
+  }
+  return results;
+});
+
 var Subscribe,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
