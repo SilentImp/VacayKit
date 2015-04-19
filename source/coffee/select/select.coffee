@@ -4,7 +4,6 @@ class Select
     @input.css
       position: 'fixed'
       left: '-200%'
-      top: 0
     tab = parseInt @input.attr('tabindex'), 10
     if isNaN(tab)
       tab = 1
