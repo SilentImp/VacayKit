@@ -18,11 +18,22 @@
     display inline-block
     padding 0 21px 0 0
     white-space nowrap
-    background url('../svg/dropdown.svg') 100% 27px no-repeat
+    transition color .25s
     -webkit-user-select none
     -moz-user-select none
     -ms-user-select none
     user-select none
+    position:relative
+    &:after
+      transition color .25s
+      content "\e008"
+      display block
+      position absolute
+      right 0
+      top 2px
+      icon()
+      color $white
+      font-size 12px
   &__wrapper
     width 210px
     max-height 180px

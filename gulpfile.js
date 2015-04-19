@@ -87,7 +87,7 @@ gulp.task('copyfonts', function() {
   return gulp.src(dirs.source.svg4font_source).pipe(gulp.dest(dirs.source.svg4font_tmp));
 });
 
-gulp.task('iconfont', ['copyfonts'], function(){
+gulp.task('iconfont', function(){
   gulp.src(dirs.source.svg4font)
     .pipe(iconfont({
       fontName: 'icon',

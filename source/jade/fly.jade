@@ -8,26 +8,26 @@ html(lang="en")
     meta(name="application-name" content="VacayKit")
     meta(name="msapplication-TileImage", content="images/favicon/apple-icon-precomposed.png")
     meta(name="msapplication-TileColor" content="#ffffff")
-    
+
     title Long Flight Kit | VacayKit
-    
+
     link(rel="icon", type="image/svg+xml", href="images/favicon/vacaykit_favicon.svg")
-    
+
     link(rel="icon", sizes="16x16", type="image/x-icon", href="images/favicon/favicon.ico")
     link(rel="icon", sizes="16x16", type="image/png", href="images/favicon/favicon-16x16.png")
     link(rel="icon", sizes="32x32", type="image/png", href="images/favicon/favicon-32x32.png")
     link(rel="icon", sizes="96x96", type="image/png", href="images/favicon/favicon-96x96.png")
-    
+
     link(rel="icon", sizes="36x36", href="images/favicon/android-icon-36x36.png")
     link(rel="icon", sizes="48x48", href="images/favicon/android-icon-48x48.png")
     link(rel="icon", sizes="72x72", href="images/favicon/android-icon-72x72.png")
     link(rel="icon", sizes="144x144", href="images/favicon/android-icon-144x144.png")
     link(rel="icon", sizes="192x192", href="images/favicon/android-icon-192x192.png")
-    
+
     link(rel="icon", sizes="70x70", href="images/favicon/ms-icon-70x70.png")
     link(rel="icon", sizes="150x150", href="images/favicon/ms-icon-150x150.png")
     link(rel="icon", sizes="310x310", href="images/favicon/ms-icon-310x310.png")
-    
+
     link(rel="apple-touch-icon", href="images/favicon/apple-icon.png")
     link(rel="apple-touch-icon", sizes="57x57", href="images/favicon/apple-icon-57x57.png")
     link(rel="apple-touch-icon", sizes="60x60", href="images/favicon/apple-icon-60x60.png")
@@ -39,13 +39,14 @@ html(lang="en")
     link(rel="apple-touch-icon", sizes="152x152", href="images/favicon/apple-icon-152x152.png")
     link(rel="apple-touch-icon", sizes="180x180", href="images/favicon/apple-icon-180x180.png")
     link(rel="apple-touch-icon", sizes="192x192", href="images/favicon/apple-icon-precomposed.png")
-    
-    
-    
+
+
+
     link(rel="stylesheet", href="css/styles.css")
 
     script(src="js/modernizr/modernizr.js")
     script(src="js/jquery/dist/jquery.min.js")
+    script(src="js/handlebars/handlebars.min.js")
 
     script(src="js/scripts.js", defer, async)
 
@@ -55,7 +56,7 @@ html(lang="en")
 
       nav.project
 
-        a(href="/")
+        a(href="home.html")
           h1.logotype VacayKit
 
         button.hamburger(type="button")
@@ -64,7 +65,7 @@ html(lang="en")
           span.hamburger__line.hamburger__line_bottom
 
         .project__wrapper
-          a.project__link.project__link_mobile(href="/") Home
+          a.project__link.project__link_mobile(href="home.html") Home
           .dropdown
             h2.dropdown__title Popular Kits
             .dropdown__panel
@@ -107,10 +108,10 @@ html(lang="en")
 
           section.brief
 
-            p Ditch the usual tourist traps and vacation like a native—on foot! With 50 adventures to choose from in each deck, just pick a card from the deck and be on your way. 
+            p Ditch the usual tourist traps and vacation like a native—on foot! With 50 adventures to choose from in each deck, just pick a card from the deck and be on your way.
 
             p Whether you're a first time visitor to the city, or just want to discover new terrain, City Walks gives you an intimate view.
-            
+
         button.page__subscribe(type="button") Get the Packing List
         button.page__share(type="button") Share with friends
 
