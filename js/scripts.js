@@ -773,7 +773,7 @@ Select = (function() {
       this.current.on('click', this.toggleDropdown);
       this.widget.on('click', '.select__option', this.clickOptions);
     } else {
-      this.current.on('touchend click', this.tapOptions);
+      this.current.on('touchend click tap', this.tapOptions);
       this.input.on('change', this.inputSync);
     }
   }

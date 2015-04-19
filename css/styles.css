@@ -811,6 +811,10 @@ table {
   font-weight: bold;
 }
 @media (max-width: 1024px) {
+  html>body .featured__title {
+    font-size: 36px;
+    line-height: 48px;
+  }
   html>body .featured__item {
     width: 280px;
     height: 210px;
@@ -822,14 +826,19 @@ table {
   }
 }
 @media (max-width: 768px) {
-  html>body .featured__item,
-  margin 20px auto 86px__item {
+  html>body .featured {
+    margin: 20px auto 86px;
+  }
+  html>body .featured__title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  html>body .featured__item {
     width: 340px;
     height: 255px;
     margin: 0 15px 30px;
   }
-  html>body .featured__kit-name,
-  margin 20px auto 86px__kit-name {
+  html>body .featured__kit-name {
     margin-top: -5px;
     font-size: 26px;
     line-height: 32px;
