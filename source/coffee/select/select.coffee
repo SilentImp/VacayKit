@@ -32,7 +32,7 @@ class Select
       @current.on 'click', @toggleDropdown
       @widget.on 'click', '.select__option', @clickOptions
     else
-      @current.on 'touchend click', @tapOptions
+      @current.on 'touchend click tap', @tapOptions
       @input.on 'change', @inputSync
 
   inputSync: =>
