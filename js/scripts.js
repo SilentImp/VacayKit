@@ -738,8 +738,7 @@ Select = (function() {
     this.html = $('html');
     this.input.css({
       position: 'fixed',
-      left: '-200%',
-      top: 0
+      left: '-200%'
     });
     tab = parseInt(this.input.attr('tabindex'), 10);
     if (isNaN(tab)) {
