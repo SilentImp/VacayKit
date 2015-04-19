@@ -748,7 +748,7 @@ table {
 .featured {
   font-size: 0;
   max-width: 1080px;
-  margin: 30px auto 56px;
+  margin: 30px auto 76px;
   text-align: center;
 }
 .featured__title {
@@ -811,12 +811,14 @@ table {
   }
 }
 @media (max-width: 768px) {
-  html>body .featured__item {
+  html>body .featured__item,
+  margin 20px auto 86px__item {
     width: 340px;
     height: 255px;
     margin: 0 15px 30px;
   }
-  html>body .featured__kit-name {
+  html>body .featured__kit-name,
+  margin 20px auto 86px__kit-name {
     margin-top: -5px;
     font-size: 26px;
     line-height: 32px;
@@ -2530,6 +2532,7 @@ body>header .project__link_mobile {
   height: 54px;
   line-height: 54px;
   background-color: #e5eaef;
+  white-space: nowrap;
 }
 .landing__selector:after {
   content: ".";
@@ -2546,6 +2549,7 @@ body>header .project__link_mobile {
   color: #4a4a4a;
   margin: 0 30px 0 10px;
   vertical-align: middle;
+  float: left;
 }
 .landing__selector button {
   -webkit-appearance: none;
@@ -2578,9 +2582,11 @@ body>header .project__link_mobile {
   background-color: #4bae3b;
 }
 .landing__selector select {
-  width: 340px;
-  box-sizing: border-box;
   vertical-align: middle;
+  float: left;
+}
+.landing__selector .select {
+  float: left;
 }
 @media (max-width: 1024px) {
   html>body .landing {
@@ -2595,8 +2601,7 @@ body>header .project__link_mobile {
   html>body .landing__selector {
     width: 710px;
   }
-  html>body .landing__selector .select,
-  html>body .landing__selector select {
+  html>body .landing__selector .select {
     width: 280px;
   }
   html>body .landing__selector label {
@@ -2613,13 +2618,13 @@ body>header .project__link_mobile {
   }
   html>body .landing__selector .select {
     display: block;
+    clear: both;
+    float: none;
     width: auto;
   }
-  html>body .landing__selector select {
-    display: block;
-    width: 100%;
-  }
   html>body .landing__selector label {
+    clear: both;
+    float: none;
     display: block;
     text-align: center;
     font-size: 22px;
@@ -2631,6 +2636,8 @@ body>header .project__link_mobile {
     margin: 10px 0 15px;
     display: block;
     width: 100%;
+    clear: both;
+    float: none;
   }
 }
 @media (max-width: 500px) {
