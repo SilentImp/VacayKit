@@ -3183,44 +3183,6 @@ html body .social-likes__icon {
   padding: 103px 45px 30px;
   text-align: center;
 }
-.subscribe-confirmation .show-socials {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  border-style: none;
-  margin: 0;
-  color: #4a4a4a;
-  border: 2px solid #e0e3e6;
-  text-decoration: none;
-  font-weight: normal;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-  font-family: 'Lato', sans-serif;
-  transition: background-color 0.25s, border-color 0.25s;
-  height: 44px;
-  line-height: 40px;
-  padding: 0px 25px 0 50px;
-  font-size: 20px;
-  border-radius: 25px;
-  display: none;
-  background-position: 20px 50%;
-  background-image: url("../svg/share.svg");
-  background-size: 15px 20px;
-  background-position: 20px 10px;
-  margin: 0;
-  width: 250px;
-}
-.subscribe-confirmation .show-socials:hover {
-  background-color: #d7dce1;
-  border-color: #d7dce1;
-}
-.subscribe-confirmation .show-socials:active {
-  background-color: #bec6ce;
-  border-color: #bec6ce;
-}
 .subscribe-confirmation__title {
   font-size: 32px;
   font-weight: bold;
@@ -3253,9 +3215,6 @@ html body .social-likes__icon {
     padding: 80px 15px 15px;
     background-size: 95px auto;
   }
-  html body .subscribe-confirmation .show-socials {
-    display: block;
-  }
   html body .subscribe-confirmation__title {
     font-size: 24px;
     line-height: 29px;
@@ -3279,9 +3238,6 @@ html body .social-likes__icon {
   background-size: 152px auto;
   padding: 45px 80px 60px;
   text-align: center;
-}
-.subscribe-form .show-socials {
-  display: none;
 }
 .subscribe-form__line {
   white-space: nowrap;
@@ -3354,9 +3310,6 @@ html body .social-likes__icon {
     padding: 0;
     background-size: auto 90px;
     background-position: -18px 10px;
-  }
-  html body .subscribe-form .show-socials {
-    display: block;
   }
   html body .subscribe-form__title {
     font-size: 22px;

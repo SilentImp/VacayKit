@@ -833,8 +833,6 @@ Subscribe = (function() {
     this.openConfirmPopup = bind(this.openConfirmPopup, this);
     this.closeInputPopup = bind(this.closeInputPopup, this);
     this.openInputPopup = bind(this.openInputPopup, this);
-    this.openSharePopup = bind(this.openSharePopup, this);
-    this.closeSharePopup = bind(this.closeSharePopup, this);
     this.button = $("body>header .subscribe");
     this.inputPopup = $(".subscribe-form-popup");
     this.inputPopupForm = this.inputPopup.find(".subscribe-form");
@@ -844,10 +842,6 @@ Subscribe = (function() {
     this.confirmPopupClose = this.confirmPopup.find(".popup__close");
     this.confirmPopupLightbox = this.confirmPopup.find(".popup__lightbox");
     this.itemsSubscribeForm = $(".items-subscribe");
-    this.shareButton = this.confirmPopup.find(".show-socials");
-    this.sharePopup = $(".share-list-popup");
-    this.sharePopupClose = this.sharePopup.find(".popup__close");
-    this.sharePopupLightbox = this.sharePopup.find(".popup__lightbox");
     this.pageSubscribeButton = $(".page__subscribe");
     this.pageShareButton = $(".page__share");
     if (this.button.length + this.inputPopup.length + this.confirmPopup.length !== 3) {
@@ -858,26 +852,10 @@ Subscribe = (function() {
     this.inputPopupLightbox.on('click', this.closeInputPopup);
     this.confirmPopupClose.on('click', this.closeConfirmPopup);
     this.confirmPopupLightbox.on('click', this.closeConfirmPopup);
-    this.sharePopupClose.on('click', this.closeSharePopup);
-    this.sharePopupLightbox.on('click', this.closeSharePopup);
     this.pageSubscribeButton.on('click', this.openInputPopup);
     this.inputPopupForm.on('submit', this.submitEmail);
     this.itemsSubscribeForm.on("submit", this.submitEmail);
-    this.pageShareButton.on('click', this.openSharePopup);
-    this.shareButton.on('click', this.openSharePopup);
   }
-
-  Subscribe.prototype.closeSharePopup = function(event) {
-    if (event) {
-      event.preventDefault();
-    }
-    return this.sharePopup.fadeOut();
-  };
-
-  Subscribe.prototype.openSharePopup = function() {
-    this.closeConfirmPopup();
-    return this.sharePopup.fadeIn();
-  };
 
   Subscribe.prototype.openInputPopup = function(event) {
     if (event) {
