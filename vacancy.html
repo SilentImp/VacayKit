@@ -38,6 +38,8 @@
     <script src="js/jquery/dist/jquery.min.js"></script>
     <script src="js/handlebars/handlebars.min.js"></script>
     <script src="js/d3/d3.min.js"></script>
+    <link rel="stylesheet" href="js/social-likes/social-likes_flat.css"/>
+    <script src="js/social-likes/social-likes.min.js"></script>
     <script src="js/scripts.js" defer="defer" async="async"></script>
   </head>
   <body>
@@ -111,15 +113,16 @@
                 <p class="info__currency-rates"><strong class="info__currency-rate info__currency-rate_usd">32 THB</strong><strong class="info__currency-rate info__currency-rate_eur">37 THB</strong></p>
               </div>
             </section>
-            <section class="info__social">
-              <h2 class="info__title">Share with friends</h2>
-              <div class="info__details"><img src="images/social_dummy_2.png" alt="Заглушка"/></div>
-            </section>
           </aside>
           <section class="brief">
             <p>Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.</p>
             <p>The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.</p>
             <p>What ever you are looking for in a summer holiday, you can find it in Thailand!</p>
+            <div class="social-likes">
+              <div title="Share link on Facebook" class="facebook">Facebook</div>
+              <div title="Share link on Twitter" data-via="vacaykit" class="twitter">Twitter</div>
+              <div title="Share image on Pinterest" data-media="images/header_bg_5.jpg" class="pinterest">Pinterest</div>
+            </div>
           </section>
         </section>
         <button type="button" class="page__section-button page__section-button_visible">Best time to visit</button>
@@ -179,7 +182,11 @@
           </div>
         </section>
         <button type="button" class="page__subscribe">Get the Packing List</button>
-        <button type="button" class="page__share">Share with friends</button>
+        <div class="social-likes social-likes_mobile">
+          <div title="Share link on Facebook" class="facebook">Facebook</div>
+          <div title="Share link on Twitter" data-via="vacaykit" class="twitter">Twitter</div>
+          <div title="Share image on Pinterest" data-media="images/header_bg_5.jpg" class="pinterest">Pinterest</div>
+        </div>
       </div>
       <div class="kits">
         <div class="kits__available">Available kits<span class="kits__count">8</span></div>
@@ -638,14 +645,6 @@
         <nav class="subscribe-confirmation__socials">
           <h3>Help us get famous</h3><img src="images/social_dummy.png" alt="Заглушка для социальных сетей"/>
         </nav>
-        <nav><a href="#" class="popup__close"></a></nav>
-      </div>
-    </div>
-    <div class="popup share-list-popup">
-      <div class="popup__lightbox"></div>
-      <div class="popup__panel share-list">
-        <h2 class="share-list__title">Share with friends</h2>
-        <nav class="share-list__navigation"><a href="#" class="fb">Like</a><a href="#" class="tw">Tweet</a><a href="#" class="gp">+1</a><a href="#" class="pi">Pin it</a><a href="#" class="email">Send by Email</a></nav>
         <nav><a href="#" class="popup__close"></a></nav>
       </div>
     </div>

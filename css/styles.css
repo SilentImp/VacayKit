@@ -3158,6 +3158,28 @@ html body .page__section-button_open {
   background-color: #3b922e;
 }
 
+html body .social-likes {
+  margin: 0 0 24px;
+  pointer-events: all;
+}
+html body .social-likes * {
+  pointer-events: all;
+}
+html body .social-likes.social-likes_vertical .social-likes__widget {
+  min-width: initial;
+}
+html body .social-likes.social-likes_mobile {
+  display: none;
+}
+@media (max-width: 940px) {
+  html>body .social-likes {
+    display: none;
+  }
+  html>body .social-likes.social-likes_mobile {
+    display: block;
+  }
+}
+
 .stars {
   vertical-align: middle;
   display: inline-block;
