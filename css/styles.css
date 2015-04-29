@@ -3144,6 +3144,7 @@ html body .social-likes__icon {
   html>body .social-likes {
     display: none;
   }
+  html>body .social-likes_both,
   html>body .social-likes_mobile {
     display: block;
   }
