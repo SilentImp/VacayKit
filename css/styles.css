@@ -1757,6 +1757,10 @@ body>header .project__link_mobile {
     border-bottom-style: none;
     border-top: 1px solid #929292;
   }
+  html body .item__votes {
+    line-height: 15px;
+    font-size: 12px;
+  }
   html body .item__rating {
     white-space: nowrap;
   }
@@ -1783,26 +1787,27 @@ body>header .project__link_mobile {
     left: 95px;
   }
   html body .item__element {
-    height: 128px;
+    position: relative;
+    z-index: 1;
+    height: 150px;
     width: 280px;
+    box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     white-space: normal;
-    margin: 0;
+    margin: 0 0 0 -1px;
     padding: 10px;
-    border-top: 1px solid #e6e8ea;
-    border-bottom: 1px solid #e6e8ea;
-    border-right: 1px solid #e6e8ea;
+    border: 1px solid #e6e8ea;
   }
   html body .item__element:first-child {
-    border-left: 1px solid #e6e8ea;
+    margin-left: 0;
   }
   html body .item__elements {
     margin: 0;
     white-space: nowrap;
     font-size: 0;
     line-height: 0;
-    height: 150px;
+    height: auto;
     padding: 0 15px;
     display: inline-block;
     vertical-align: top;
@@ -3165,6 +3170,18 @@ html body .page__section-button_open {
   height: 20px;
   display: block;
   background: url("../svg/star-selected.svg") 0px 0px repeat-x;
+  background-size: 22px 20px;
+}
+@media (max-width: 750px) {
+  html body .stars {
+    background-size: auto 15px;
+    height: 15px;
+    width: 81px;
+  }
+  html body .stars__current {
+    height: 15px;
+    background-size: auto 15px;
+  }
 }
 
 .subscribe-confirmation {
