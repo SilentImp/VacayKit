@@ -37,6 +37,8 @@
     <script src="js/modernizr/modernizr.js"></script>
     <script src="js/jquery/dist/jquery.min.js"></script>
     <script src="js/handlebars/handlebars.min.js"></script>
+    <link rel="stylesheet" href="js/social-likes/social-likes_flat.css"/>
+    <script src="js/social-likes/social-likes.min.js"></script>
     <script src="js/scripts.js" defer="defer" async="async"></script>
   </head>
   <body>
@@ -97,7 +99,13 @@
           <aside class="info info_mobile-hidden">
             <section class="info__social">
               <h2 class="info__title">Share with friends</h2>
-              <div class="info__details"><img src="images/social_dummy_2.png" alt="Заглушка"/></div>
+              <div class="info__details">
+                <div class="social-likes social-likes_vertical">
+                  <div title="Share link on Facebook" class="facebook">Facebook</div>
+                  <div title="Share link on Twitter" data-via="vacaykit" class="twitter">Twitter</div>
+                  <div title="Share image on Pinterest" data-media="images/header_bg_5.jpg" class="pinterest">Pinterest</div>
+                </div>
+              </div>
             </section>
           </aside>
           <section class="brief">
