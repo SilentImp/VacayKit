@@ -1139,7 +1139,7 @@ body>header {
 body>header.landing-bg {
   background-image: url("../images/header_bg_5.jpg");
   height: 580px;
-  background-position: 100% 100%;
+  background-position: 100% 40%;
 }
 body>header.landing-bg .hamburger:hover {
   background: none;
