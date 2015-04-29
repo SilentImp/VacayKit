@@ -116,6 +116,9 @@
     width auto
     border-bottom-style none
     border-top 1px solid $border-color
+    &__votes
+      line-height 15px
+      font-size 12px
     &__rating
       white-space nowrap
     &__price
@@ -139,24 +142,25 @@
       right 10px
       left 95px
     &__element
-      height 128px
+      position relative
+      z-index 1
+      height 150px
       width 280px
+      box-sizing border-box
       display inline-block
       vertical-align top
       white-space normal
-      margin 0
+      margin 0 0 0 -1px
       padding 10px
-      border-top 1px solid $border-color-darker
-      border-bottom 1px solid $border-color-darker
-      border-right 1px solid $border-color-darker
+      border 1px solid $border-color-darker
       &:first-child
-        border-left 1px solid $border-color-darker
+        margin-left 0
     &__elements
       margin 0
       white-space nowrap
       font-size 0
       line-height 0
-      height 150px
+      height auto
       padding 0 15px
       display inline-block
       vertical-align top
