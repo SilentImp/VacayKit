@@ -717,6 +717,9 @@ table {
     white-space: nowrap;
     background: url("../svg/dropdown-open.svg") 90% 50% no-repeat;
   }
+  html body .dropdown__title:after {
+    display: none;
+  }
   html body .dropdown__title:hover {
     background-color: rgba(62,66,71,0.4);
   }
