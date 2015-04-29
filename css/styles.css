@@ -3457,6 +3457,7 @@ html body .page__section-button_open {
   font-size: 0;
 }
 .team__person {
+  vertical-align: top;
   display: inline-block;
   min-width: 160px;
   margin: 0 15px 40px;
