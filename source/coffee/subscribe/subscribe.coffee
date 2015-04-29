@@ -11,11 +11,6 @@ class Subscribe
 
     @itemsSubscribeForm = $ ".items-subscribe"
 
-    @shareButton = @confirmPopup.find ".show-socials"
-    @sharePopup = $ ".share-list-popup"
-    @sharePopupClose = @sharePopup.find ".popup__close"
-    @sharePopupLightbox = @sharePopup.find ".popup__lightbox"
-
     @pageSubscribeButton = $ ".page__subscribe"
     @pageShareButton = $ ".page__share"
 
@@ -27,24 +22,10 @@ class Subscribe
     @inputPopupLightbox.on 'click', @closeInputPopup
     @confirmPopupClose.on 'click', @closeConfirmPopup
     @confirmPopupLightbox.on 'click', @closeConfirmPopup
-    @sharePopupClose.on 'click', @closeSharePopup
-    @sharePopupLightbox.on 'click', @closeSharePopup
     @pageSubscribeButton.on 'click', @openInputPopup
 
     @inputPopupForm.on 'submit', @submitEmail
     @itemsSubscribeForm.on "submit", @submitEmail
-
-    @pageShareButton.on 'click', @openSharePopup
-    @shareButton.on 'click', @openSharePopup
-
-  closeSharePopup: (event)=>
-    if event
-      event.preventDefault()
-    @sharePopup.fadeOut()
-
-  openSharePopup: =>
-    @closeConfirmPopup()
-    @sharePopup.fadeIn()
 
   openInputPopup: (event)=>
     if event

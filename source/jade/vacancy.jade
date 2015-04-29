@@ -48,6 +48,9 @@ html(lang="en")
     script(src="js/handlebars/handlebars.min.js")
     script(src="js/d3/d3.min.js")
     
+    link(rel="stylesheet", href="js/social-likes/social-likes_flat.css")
+    script(src="js/social-likes/social-likes.min.js")
+    
     script(src="js/scripts.js", defer, async)
 
   body
@@ -113,11 +116,6 @@ html(lang="en")
                   strong.info__currency-rate.info__currency-rate_usd 32 THB
                   strong.info__currency-rate.info__currency-rate_eur 37 THB
 
-            section.info__social
-              h2.info__title Share with friends
-              .info__details
-                img(src="images/social_dummy_2.png", alt="Заглушка")
-
           section.brief
 
             p Known as one of the most popular holiday destinations on earth, Thailand has so much to offer travellers that it’s hard to know where to begin. From the golden sandy beaches to the rolling mountains of the North, antique shopping and dining like a king - Thailand has it all.
@@ -125,6 +123,11 @@ html(lang="en")
             p The south of Thailand has some of the most beautiful beaches and resorts in the world, and going underwater you can find colourful reefs and exotic sea creatures. Bangkok is an Asian metropolis like no other, packed with shopping and fine dining at a fraction of western prices, while the North of Thailand offers culture, a chance to visit remote hill tribes, elephant sanctuaries and treks to hidden waterfalls.
 
             p What ever you are looking for in a summer holiday, you can find it in Thailand!
+            
+            .social-likes.social-likes_both
+              .facebook(title="Share link on Facebook") Share
+              .twitter(title="Share link on Twitter",  data-via="vacaykit") Tweet
+              .pinterest(title="Share image on Pinterest", data-media="images/header_bg_5.jpg") Pin
 
         button.page__section-button.page__section-button_visible(type="button") Best time to visit
         section.page__section
@@ -181,7 +184,7 @@ html(lang="en")
                 svg.best__graph-container
                 
         button.page__subscribe(type="button") Get the Packing List
-        button.page__share(type="button") Share with friends
+        
 
       .kits
         .kits__available
@@ -659,22 +662,8 @@ html(lang="en")
       .popup__panel.subscribe-confirmation
         h2.subscribe-confirmation__title Check your inbox
         p.subscribe-confirmation__message We've sent The Complete Packing List for Thailand to your Email. Please check Spam folder if you won't have received it in 5 minutes.
-        button.show-socials(type="button") Share with friends
         nav.subscribe-confirmation__socials
           h3 Help us get famous
           img(src="images/social_dummy.png", alt="Заглушка для социальных сетей")
-        nav
-          a.popup__close(href="#")
-
-    .popup.share-list-popup
-      .popup__lightbox
-      .popup__panel.share-list
-        h2.share-list__title Share with friends
-        nav.share-list__navigation
-          a.fb(href="#") Like
-          a.tw(href="#") Tweet
-          a.gp(href="#") +1
-          a.pi(href="#") Pin it
-          a.email(href="#") Send by Email
         nav
           a.popup__close(href="#")

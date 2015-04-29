@@ -1,0 +1,52 @@
+@import "../helpers/*"
+
+html body .social-likes
+  margin 2px 0 24px
+  pointer-events all
+  clearit()
+  *
+    pointer-events all
+
+  &.social-likes_vertical
+    .social-likes__widget
+      min-width initial
+      margin 0 0 2px
+
+  &_mobile
+    display none
+
+  &__widget
+    margin 0 2px 0 0
+    float left
+
+  &__button
+    line-height 27px
+    font-size 11px
+    font-weight 300
+    padding 0 8px 0 26px
+    -webkit-font-smoothing auto
+    transition background-color .15s
+    &_facebook
+      background-color #325a97
+      &:hover
+        background-color #233f69
+    &_twitter
+      background-color #00aced
+      &:hover
+        background-color #0080b0
+    &_pinterest
+      background-color #cc2127
+      &:hover
+        background-color #97181d
+
+  &__icon
+    left 8px
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+
+@media (max-width: 940px)
+  html>body .social-likes
+    display none
+    &_both,
+    &_mobile
+      display block
